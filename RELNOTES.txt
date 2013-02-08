@@ -1,0 +1,91 @@
+Version 0.4.3 (2013-02-06)
+# more bug fixes (-to CLI switch not working anymore)
+
+
+Version 0.4.2 (2013-02-01)
+# some bug fixes
+
+
+Version 0.4.1 (2012-11-17)
+# auto capture now uses the much more robust Ghostscript ps-to-text capabilities instead of self investigating the PostScript stream
+# automatic switch to "send individually" if distinct fax numbers are found into the submitted documents
+
+
+Version 0.4.0 (2012-11-14)
+# added active mode FTP transfer support
+# network timeout is user editable now
+# added auto capture of fax numbers into PostScript code using regular expressions
+# files can be individually submitted now, each one with its recipient(s)
+
+
+Version 0.3.10 (2012-07-09)
+# works with Windows 8
+
+
+Version 0.3.9 (2012-04-06)
+# added max dials parameter
+
+
+Version 0.3.8 (2012-03-01)
+# resolutions other than Standard or Fine caused a protocol syntax error
+
+
+Version 0.3.7 (2012-02-18)
+# fixed more and more bugs
+# enhanced command line interface, see README.txt for details
+
+
+Version 0.3.6 (2012-01-03)
+# fixed some bugs
+# added a bunch of features requested by SF users
+
+
+Version 0.3.5 (2011-11-23)
+# added Terminal Services support
+
+
+Version 0.3.4 (2011-10-27)
+# added ODBC support
+# added russian language (thanks to Artyom E. Gerasimenko)
+
+
+Version 0.3.3 (2011-10-11)
+# added german language (thanks to Alex)
+
+
+Version 0.3.2 (2011-10-05)
+# fixed some Extended MAPI bugs
+# added support for number@name#subaddress syntax (just like the sendfax command line client)
+
+
+Version 0.3.1 (2011-06-16)
+# fixed a bug where multiple recipients were not handled correctly if fax numbers had spaces inside them
+# can read address book from Extended MAPI (Outlook)
+
+
+Version 0.3.0 (2011-05-27)
+# multi language
+# multiple recipients
+# delayed send
+# kill time
+
+
+Version 0.2.1 (2011-05-11)
+# the gui now popups over existing windows
+# resizable/iconizable window
+# some bugfixes
+
+
+Version 0.2.0 (2011-05-06)
+# address book is now in CSV format
+# location of address book is now configurable by the user
+# improved HylaFAX protocol: now uses Indy components and is much more tolerant to network errors (e.g. server down)
+# many bugfixes, complete code review, heavy use of protected code blocks (try...catch...finally)
+
+
+Version 0.1.1 (2011-04-28)
+# fixed a bug where the port monitor could hang the spooler during uninstall.
+
+
+Version 0.1.0 (2011-04-27)
+# first release.

@@ -1,0 +1,903 @@
+# Winprint HylaFAX Reloaded
+# Copyright (C) 2011-2013 Monti Lorenzo
+# This file is distributed under the GNU General Public License version 3.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Winprint HylaFAX Reloaded\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-02-06 11:24+0100\n"
+"PO-Revision-Date: 2013-02-06 11:27+0100\n"
+"Last-Translator: Lorenzo Monti <lomo74@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. ConfigForm..Caption
+#. ConfigForm..Panel1..Label5..Caption
+#: Config.dfm:7
+msgid "Configure HylaFAX Client"
+msgstr "Configura il client HylaFAX"
+
+#. ConfigForm..Font.Name
+#. ConfigForm..Panel1..Label5..Font.Name
+#. ConfigForm..Panel1..Label9..Font.Name
+#. ConfigForm..Panel1..Label12..Font.Name
+#. ConfigForm..Panel1..Label6..Font.Name
+#. RecipientName..Font.Name
+#. SelectRcpt..Font.Name
+#. FAXSend..Font.Name
+#. FAXSend..Panel1..Label4..Font.Name
+#. FAXSend..Panel1..Label2..Font.Name
+#. FAXSend..Panel1..Label8..Font.Name
+#. FAXSend..Panel1..Label12..Font.Name
+#. FAXSend..Panel2..Panel4..Label7..Font.Name
+#: Config.dfm:14 Recipient.dfm:12 Select.dfm:11 SendFAX.dfm:13 SendFAX.dfm:109
+#: SendFAX.dfm:123 SendFAX.dfm:137 SendFAX.dfm:151 SendFAX.dfm:193
+msgid "Tahoma"
+msgstr ""
+
+#. ConfigForm..Panel1..Label9..Caption
+#. FAXSend..Panel1..Label8..Caption
+#: Config.dfm:125
+msgid "rel. 0.4.3"
+msgstr ""
+
+#. ConfigForm..Panel1..Label12..Caption
+#. FAXSend..Panel1..Label12..Caption
+#: Config.dfm:139
+msgid "Winprint HylaFAX Reloaded"
+msgstr ""
+
+#. ConfigForm..Panel1..Label6..Caption
+#. FAXSend..Panel1..Label2..Caption
+#: Config.dfm:153
+msgid "Enhanced by Lorenzo Monti"
+msgstr "Potenziato da Lorenzo Monti"
+
+#. ConfigForm..Panel3..btnOK..Caption
+#. RecipientName..OK..Caption
+#. SelectRcpt..OK..Caption
+#: Config.dfm:174
+msgid "OK"
+msgstr ""
+
+#. ConfigForm..Panel3..btnCancel..Caption
+#. RecipientName..Cancel..Caption
+#. SelectRcpt..Cancel..Caption
+#: Config.dfm:185
+msgid "Cancel"
+msgstr "Annulla"
+
+#. ConfigForm..tabs..tsMain..Caption
+#: Config.dfm:201
+msgid "Main"
+msgstr "Principale"
+
+#. ConfigForm..tabs..tsMain..Label11..Caption
+#: Config.dfm:211
+msgid "Language"
+msgstr "Lingua"
+
+#. ConfigForm..tabs..tsMain..Label10..Caption
+#: Config.dfm:219
+msgid "Resolution"
+msgstr "Risoluzione"
+
+#. ConfigForm..tabs..tsMain..Label8..Caption
+#: Config.dfm:227
+msgid "Notification"
+msgstr "Notifica"
+
+#. ConfigForm..tabs..tsMain..Label7..Caption
+#: Config.dfm:235
+msgid "Page size"
+msgstr "Dimensioni pagina"
+
+#. ConfigForm..tabs..tsMain..Label4..Caption
+#: Config.dfm:243
+msgid "Modem"
+msgstr ""
+
+#. ConfigForm..tabs..tsMain..Default..Caption
+#: Config.dfm:251
+msgid "Default notify"
+msgstr "Indirizzo per notifiche"
+
+#. ConfigForm..tabs..tsMain..Label3..Caption
+#. ConfigForm..tabs..tsAddrBook..gbODBC..Label17..Caption
+#: Config.dfm:259
+msgid "Password"
+msgstr ""
+
+#. ConfigForm..tabs..tsMain..Label2..Caption
+#. ConfigForm..tabs..tsAddrBook..gbODBC..Label16..Caption
+#: Config.dfm:267
+msgid "Username"
+msgstr "Nome Utente"
+
+#. ConfigForm..tabs..tsMain..Label1..Caption
+#: Config.dfm:275
+msgid "HylaFAX server address"
+msgstr "Indirizzo del server HylaFAX"
+
+#. ConfigForm..tabs..tsMain..Label21..Caption
+#. FAXSend..Panel2..PageControl1..tsSchedule..Label13..Caption
+#: Config.dfm:283
+msgid "Max dials"
+msgstr "Max chiamate"
+
+#. ConfigForm..tabs..tsMain..hResolution..Hint
+#: Config.dfm:298
+msgid "Resolution. \"Fine\" ought to be enough for anybody."
+msgstr "La risoluzione. \"Fine\" dovrebbe essere sufficiente."
+
+#. ConfigForm..tabs..tsMain..hResolution..Text
+#. ConfigForm..tabs..tsMain..hResolution....Items.Strings
+#: Config.dfm:302
+msgid "Fine"
+msgstr ""
+
+#. ConfigForm..tabs..tsMain..hResolution....Items.Strings
+#: Config.dfm:304
+msgid "Standard"
+msgstr ""
+
+#. ConfigForm..tabs..tsMain..hResolution....Items.Strings
+#: Config.dfm:306
+msgid "Superfine"
+msgstr ""
+
+#. ConfigForm..tabs..tsMain..hResolution....Items.Strings
+#: Config.dfm:307
+msgid "Ultrafine"
+msgstr ""
+
+#. ConfigForm..tabs..tsMain..hResolution....Items.Strings
+#: Config.dfm:308
+msgid "Hyperfine"
+msgstr "Iperfine"
+
+#. ConfigForm..tabs..tsMain..hNotificationType..Hint
+#: Config.dfm:315
+msgid "Which events to notify."
+msgstr "Gli eventi da notificare."
+
+#. ConfigForm..tabs..tsMain..hNotificationType..Text
+#. ConfigForm..tabs..tsMain..hNotificationType....Items.Strings
+#: Config.dfm:319
+msgid "Failure and Success"
+msgstr "Errori e invii riusciti"
+
+#. ConfigForm..tabs..tsMain..hNotificationType....Items.Strings
+#: Config.dfm:322
+msgid "Success Only"
+msgstr "Solo invii riusciti"
+
+#. ConfigForm..tabs..tsMain..hNotificationType....Items.Strings
+#: Config.dfm:323
+msgid "Failure Only"
+msgstr "Solo errori"
+
+#. ConfigForm..tabs..tsMain..hNotificationType....Items.Strings
+#. ConfigForm..tabs..tsAddrBook..hAddrBookType..Text
+#. ConfigForm..tabs..tsAddrBook..hAddrBookType....Items.Strings
+#: Config.dfm:324
+msgid "None"
+msgstr "Nessuna"
+
+#. ConfigForm..tabs..tsMain..hPageSize..Hint
+#: Config.dfm:331
+msgid "Obvious."
+msgstr "Ovvio."
+
+#. ConfigForm..tabs..tsMain..hPageSize..Text
+#. ConfigForm..tabs..tsMain..hPageSize....Items.Strings
+#: Config.dfm:336
+msgid "US Letter"
+msgstr ""
+
+#. ConfigForm..tabs..tsMain..hPageSize....Items.Strings
+#: Config.dfm:339
+msgid "A4"
+msgstr ""
+
+#. ConfigForm..tabs..tsMain..hModem..Hint
+#: Config.dfm:346
+msgid "Which modem HylaFAX should use. Leave blank to use any modem."
+msgstr ""
+"Il modem che HylaFAX deve usare. Lasciare vuoto per usare un modem qualsiasi."
+
+#. ConfigForm..tabs..tsMain..hDefaultEmail..Hint
+#. FAXSend..Panel2..PageControl1..tsFax..hNotifyEmail..Hint
+#: Config.dfm:355
+msgid "Events will be notified to this email address."
+msgstr "Gli eventi saranno notificati a questo indirizzo email."
+
+#. ConfigForm..tabs..tsMain..hDefaultEmail..Text
+#: Config.dfm:358
+msgid "email@address.com"
+msgstr ""
+
+#. ConfigForm..tabs..tsMain..hPassword..Hint
+#: Config.dfm:365
+msgid "HylaFAX password. Use faxadduser to setup."
+msgstr "Password per HylaFAX. Impostare con faxadduser."
+
+#. ConfigForm..tabs..tsMain..hPassword..PasswordChar
+#. ConfigForm..tabs..tsAddrBook..gbODBC..hODBCPassword..PasswordChar
+#: Config.dfm:367
+msgid "●"
+msgstr ""
+
+#. ConfigForm..tabs..tsMain..hUsername..Hint
+#: Config.dfm:375
+msgid "HylaFAX user. Use faxadduser to setup."
+msgstr "Utente di HylaFAX. Impostare con faxadduser."
+
+#. ConfigForm..tabs..tsMain..hUsername..Text
+#: Config.dfm:378
+msgid "fax"
+msgstr ""
+
+#. ConfigForm..tabs..tsMain..hServer....Hint
+#: Config.dfm:387
+msgid ""
+"IP address or DNS name of HylaFAX server. Also accepts SERVER:PORT syntax."
+msgstr ""
+"Indirizzo IP o nome DNS del server HylaFAX. Accetta anche la sintassi SERVER:"
+"PORTA."
+
+#. ConfigForm..tabs..tsMain..hServer..Text
+#: Config.dfm:390
+msgid "fax.server"
+msgstr ""
+
+#. ConfigForm..tabs..tsMain..hDials..Hint
+#. FAXSend..Panel2..PageControl1..tsSchedule..hDials..Hint
+#: Config.dfm:397
+msgid "0 = use server default"
+msgstr "0 = usa il default del server"
+
+#. ConfigForm..tabs..tsMain..gbFTP..Caption
+#: Config.dfm:408
+msgid "FTP options"
+msgstr "Opzioni FTP"
+
+#. ConfigForm..tabs..tsMain..gbFTP..Label22..Caption
+#: Config.dfm:416
+msgid "Port"
+msgstr "Porta"
+
+#. ConfigForm..tabs..tsMain..gbFTP..Label23..Caption
+#: Config.dfm:423
+msgid "EPRT command uses:"
+msgstr "Il comando EPRT usa:"
+
+#. ConfigForm..tabs..tsMain..gbFTP..Label24..Caption
+#: Config.dfm:430
+msgid "Timeout (sec)"
+msgstr ""
+
+#. ConfigForm..tabs..tsMain..gbFTP..hPassiveIPIgnore..Hint
+#: Config.dfm:437
+msgid "If flagged, IP address returned by PASV command is ignored."
+msgstr ""
+"Se impostato, l'indirizzo IP restituito dal comando PASV viene ignorato."
+
+#. ConfigForm..tabs..tsMain..gbFTP..hPassiveIPIgnore..Caption
+#: Config.dfm:438
+msgid "Ignore PASV IP address"
+msgstr "Ignora l'indirizzo IP di PASV"
+
+#. ConfigForm..tabs..tsMain..gbFTP..hActiveMode..Hint
+#: Config.dfm:446
+msgid "This can be useful to setup servers behind a NAT."
+msgstr "Può essere utile per configurare server dietro a dei NAT."
+
+#. ConfigForm..tabs..tsMain..gbFTP..hActiveMode..Caption
+#: Config.dfm:447
+msgid "Use active mode"
+msgstr "Usa modalità attiva"
+
+#. ConfigForm..tabs..tsMain..gbFTP..hPort..Hint
+#: Config.dfm:455
+msgid "The port that the client will listen on."
+msgstr "La porta su cui il client resterà in ascolto."
+
+#. ConfigForm..tabs..tsMain..gbFTP..hUseCurrentIP..Caption
+#: Config.dfm:466
+msgid "Current IP address"
+msgstr "L'indirizzo IP corrente"
+
+#. ConfigForm..tabs..tsMain..gbFTP..hUseThisIP..Caption
+#: Config.dfm:474
+msgid "This IP address:"
+msgstr "Questo indirizzo IP:"
+
+#. ConfigForm..tabs..tsMain..gbFTP..hUseDynDNS..Caption
+#: Config.dfm:482
+msgid "IP address taken from http://checkip.dyndns.com"
+msgstr "L'indirizzo IP recuperato da http://checkip.dyndns.com"
+
+#. ConfigForm..tabs..tsAddrBook..Caption
+#: Config.dfm:507
+msgid "Address book"
+msgstr "Rubrica"
+
+#. ConfigForm..tabs..tsAddrBook..Label14..Caption
+#: Config.dfm:518
+msgid "Address book type"
+msgstr "Tipo di rubrica"
+
+#. ConfigForm..tabs..tsAddrBook..gbAddressBook..Caption
+#. ConfigForm..tabs..tsAddrBook..hAddrBookType....Items.Strings
+#: Config.dfm:526
+msgid "CSV"
+msgstr ""
+
+#. ConfigForm..tabs..tsAddrBook..gbAddressBook..Label13..Caption
+#: Config.dfm:536
+msgid "Address book location"
+msgstr "Posizione della rubrica"
+
+#. ConfigForm..tabs..tsAddrBook..gbAddressBook..hAddressBook....Hint
+#: Config.dfm:545
+msgid ""
+"The path to addressbook.csv. File must be in CSV format delimited by commas."
+msgstr ""
+"Percorso del file addressbook.csv. Il file è in formato CSV delimitato da "
+"virgola."
+
+#. ConfigForm..tabs..tsAddrBook..gbAddressBook..btnBrowse..Hint
+#: Config.dfm:554
+msgid "Browse..."
+msgstr "Sfoglia..."
+
+#. ConfigForm..tabs..tsAddrBook..gbAddressBook..btnBrowse..Caption
+#: Config.dfm:556
+msgid "..."
+msgstr ""
+
+#. ConfigForm..tabs..tsAddrBook..gbAddressBook..btnDefault..Hint
+#: Config.dfm:565
+msgid "Set to default location (%APPDATA%\\Winprint HylaFAX Reloaded)"
+msgstr "Imposta la posizione di default (%APPDATA%\\Winprint HylaFAX Reloaded)"
+
+#. ConfigForm..tabs..tsAddrBook..gbAddressBook..btnDefault..Caption
+#: Config.dfm:567
+msgid "Default"
+msgstr ""
+
+#. ConfigForm..tabs..tsAddrBook..hAddrBookType..Hint
+#: Config.dfm:577
+msgid "Choose the type of address book."
+msgstr "Seleziona il tipo di rubrica."
+
+#. ConfigForm..tabs..tsAddrBook..hAddrBookType....Items.Strings
+#. ConfigForm..tabs..tsAddrBook..gbMAPI..Caption
+#: Config.dfm:585
+msgid "Extended MAPI"
+msgstr ""
+
+#. ConfigForm..tabs..tsAddrBook..hAddrBookType....Items.Strings
+#: Config.dfm:586
+msgid "Windows Contacts"
+msgstr ""
+
+#. ConfigForm..tabs..tsAddrBook..hAddrBookType....Items.Strings
+#. ConfigForm..tabs..tsAddrBook..gbODBC..Caption
+#: Config.dfm:587
+msgid "ODBC"
+msgstr ""
+
+#. ConfigForm..tabs..tsAddrBook..gbMAPI..hMAPIDefProfile..Caption
+#: Config.dfm:605
+msgid "Use default profile"
+msgstr "Usa il profilo di default"
+
+#. ConfigForm..tabs..tsAddrBook..gbMAPI..hMAPIUseProfile..Caption
+#: Config.dfm:613
+msgid "Use this profile:"
+msgstr "Usa questo profilo:"
+
+#. ConfigForm..tabs..tsAddrBook..gbODBC..Label15..Caption
+#: Config.dfm:639
+msgid "DSN"
+msgstr ""
+
+#. ConfigForm..tabs..tsAddrBook..gbODBC..Label18..Caption
+#: Config.dfm:660
+msgid "Fax field"
+msgstr "Campo fax"
+
+#. ConfigForm..tabs..tsAddrBook..gbODBC..Label19..Caption
+#: Config.dfm:667
+msgid "Name field"
+msgstr "Campo nome"
+
+#. ConfigForm..tabs..tsAddrBook..gbODBC..Label20..Caption
+#: Config.dfm:674
+msgid "Table"
+msgstr "Tabella"
+
+#. ConfigForm..tabs..tsAddrBook..gbODBC..hODBCDSN....Hint
+#: Config.dfm:683
+msgid ""
+"Data Source Name for the ODBC connection. Use ODBC administration tool to "
+"setup."
+msgstr ""
+"Nome origine dati (DSN) per la connessione ODBC. Configurare con il tool di "
+"amministrazione ODBC."
+
+#. ConfigForm..tabs..tsAddrBook..gbODBC..hODBCUser..Hint
+#: Config.dfm:691
+msgid "Optional. User name for the ODBC connection."
+msgstr "Opzionale. Nome utente per la connessione ODBC."
+
+#. ConfigForm..tabs..tsAddrBook..gbODBC..hODBCPassword..Hint
+#: Config.dfm:699
+msgid "Optional. Password for the ODBC connection."
+msgstr "Opzionale. Password per la connessione ODBC."
+
+#. ConfigForm..tabs..tsAddrBook..gbODBC..hODBCFax..Hint
+#: Config.dfm:708
+msgid "Name of the field containing the \"Fax number\"."
+msgstr "Nome del campo che contiene il \"Numero di fax\"."
+
+#. ConfigForm..tabs..tsAddrBook..gbODBC..hODBCTable..Hint
+#: Config.dfm:716
+msgid "Name of the table containing data."
+msgstr "Nome della tabella che contiene i dati."
+
+#. ConfigForm..tabs..tsAddrBook..gbODBC..hODBCName..Hint
+#: Config.dfm:724
+msgid "Name of the field containing the \"Recipient\"."
+msgstr "Nome del campo che contiene il \"Destinatario\"."
+
+#. ConfigForm..tabs..tsAddrBook..gbODBC..hODBCAuth....Hint
+#: Config.dfm:734
+msgid ""
+"Check this if ODBC should authenticate with user and password. Leave blank "
+"for anonymous access."
+msgstr ""
+"Selezionare se ODBC deve autenticarsi con utente e password. Lasciare bianco "
+"per acceso anonimo."
+
+#. ConfigForm..tabs..tsAddrBook..gbODBC..hODBCAuth..Caption
+#: Config.dfm:735
+msgid "ODBC authentication"
+msgstr "Autenticazione ODBC"
+
+#. ConfigForm..tabs..tsAutoNumber..Caption
+#: Config.dfm:742
+msgid "Number capture"
+msgstr "Cattura numero"
+
+#. ConfigForm..tabs..tsAutoNumber..Label25..Caption
+#: Config.dfm:752
+msgid "Capturing regular expression:"
+msgstr "Espressione regolare per la cattura:"
+
+#. ConfigForm..tabs..tsAutoNumber..REhelp....Caption
+#: Config.dfm:761
+msgid ""
+"What on earth are regular expressions? Find an answer <a href=\"http://www."
+"regular-expressions.info/\">here</a>."
+msgstr ""
+"Cosa diavolo sono le espressioni regolari? Trova una risposta <a href="
+"\"http://www.regular-expressions.info/\">qui</a>."
+
+#. ConfigForm..tabs..tsAutoNumber..JvHTLabel1....Caption
+#: Config.dfm:776
+msgid ""
+"<b>NOTE:</b> the regular expression used to capture the fax number <b>MUST</"
+"b> contain<br>\n"
+"a capturing group. Capturing groups are those enclosed by round parentheses."
+"<br>\n"
+"The fax number will be set to the contents of the first captured group.<br>\n"
+"Example:<br>\n"
+"regex = XXX<b><font color=\"clBlack\" bgcolor=\"clYellow\">(\\d+)</font></"
+"b>XXX<br>\n"
+"incoming text = XXX12345XXX<br>\n"
+"captured number = 12345"
+msgstr ""
+"<b>NOTA:</b> l'espressione regolare usata per catturare il numero di "
+"fax<br>\n"
+"<b>DEVE</b> contenere un <i>capturing group</i>. I <i>capturing groups</"
+"i><br>\n"
+"sono quelli racchiusi tra parentesi tonde.<br>\n"
+"Il numero di fax sarà settato al contenuto del primo gruppo catturato.<br>\n"
+"Esempio:<br>\n"
+"regex = XXX<b><font color=\"clBlack\" bgcolor=\"clYellow\">(\\d+)</font></"
+"b>XXX<br>\n"
+"testo in ingresso = XXX12345XXX<br>\n"
+"numero catturato = 12345"
+
+#. ConfigForm..tabs..tsAutoNumber..JvHTLabel2....Caption
+#: Config.dfm:785
+msgid ""
+"The default expression is<br>\n"
+"#{3}((?:[^#]|#(?!##))+)#{3}<br>\n"
+"which matches sequences like<br>\n"
+"###recipient@0123-45678###"
+msgstr ""
+"L'espressione di default è<br>\n"
+"#{3}((?:[^#]|#(?!##))+)#{3}<br>\n"
+"che trova corrispondenza in sequenze come<br>\n"
+"###destinatario@0123-45678###"
+
+#. ConfigForm..tabs..tsAutoNumber..hRegEx....Hint
+#: Config.dfm:794
+msgid ""
+"The regular expression to capture the fax number inside the submitted "
+"documents."
+msgstr ""
+"L'espressione regolare per catturare il numero di fax all'interno dei "
+"documenti inoltrati."
+
+#. ConfigForm..tabs..tsAutoNumber..gbReTest..Caption
+#: Config.dfm:805
+msgid "Test"
+msgstr ""
+
+#. ConfigForm..tabs..tsAutoNumber..gbReTest..Label26..Caption
+#: Config.dfm:815
+msgid "Input string:"
+msgstr "Stringa di input:"
+
+#. ConfigForm..tabs..tsAutoNumber..gbReTest..Label27..Caption
+#: Config.dfm:822
+msgid "Captured text:"
+msgstr "Testo catturato:"
+
+#. RecipientName..Caption
+#: Recipient.dfm:5
+msgid "Recipient's name"
+msgstr "Nome del destinatario"
+
+#. RecipientName..Label1..Caption
+#: Recipient.dfm:26
+msgid "FAX number:"
+msgstr "Numero di FAX:"
+
+#. RecipientName..Label2..Caption
+#: Recipient.dfm:34
+msgid "Recipient's name:"
+msgstr "Nome:"
+
+#. RecipientName..FAXNumber..Text
+#: Recipient.dfm:45
+msgid "FAXNumber"
+msgstr ""
+
+#. SelectRcpt..Caption
+#: Select.dfm:4
+msgid "Select Recipients"
+msgstr "Seleziona i Destinatari"
+
+#. SelectRcpt..popup..mnuSelectAll..Caption
+#. FAXSend..popup..mnuSelectAll..Caption
+#: Select.dfm:62
+msgid "Select All"
+msgstr "Seleziona Tutto"
+
+#. SelectRcpt..popup..mnuSelectNone..Caption
+#. FAXSend..popup..mnuSelectNone..Caption
+#: Select.dfm:66
+msgid "Select None"
+msgstr "Seleziona Nessuno"
+
+#. FAXSend..Caption
+#: SendFAX.dfm:6
+msgid "Send FAX to"
+msgstr "Invio FAX"
+
+#. FAXSend..Panel1..Label4..Caption
+#: SendFAX.dfm:105
+msgid "Send FAX"
+msgstr "Invio FAX"
+
+#. FAXSend..Panel2..Panel4..Label5..Caption
+#: SendFAX.dfm:180
+msgid "Documents to send:"
+msgstr "Documenti da inviare:"
+
+#. FAXSend..Panel2..Panel4..Label7..Caption
+#: SendFAX.dfm:189
+msgid "You can append new pages, or send selected documents now."
+msgstr "Puoi aggiungere pagine o inviare ora i documenti selezionati."
+
+#. FAXSend..Panel2..Panel4..lbDocuments....Hint
+#: SendFAX.dfm:206
+msgid "Drag documents or use arrows to sort. Right click for popup menu."
+msgstr ""
+"Trascina i documenti o usa le frecce per riordinarli. Tasto destro per il "
+"menù a comparsa."
+
+#. FAXSend..Panel2..Panel4..btnUp..Caption
+#. FAXSend..actions..actUp..Caption
+#: SendFAX.dfm:227
+msgid "Up"
+msgstr "Su"
+
+#. FAXSend..Panel2..Panel4..btnDown..Caption
+#. FAXSend..actions..actDown..Caption
+#: SendFAX.dfm:369
+msgid "Down"
+msgstr "Giù"
+
+#. FAXSend..Panel2..PageControl1..tsFax..Caption
+#: SendFAX.dfm:516
+msgid "Fax"
+msgstr ""
+
+#. FAXSend..Panel2..PageControl1..tsFax..Label1..Caption
+#: SendFAX.dfm:529
+msgid "FAX numbers"
+msgstr "Numeri di FAX"
+
+#. FAXSend..Panel2..PageControl1..tsFax..Label3..Caption
+#: SendFAX.dfm:537
+msgid "Notify E-Mail"
+msgstr "Notifica a"
+
+#. FAXSend..Panel2..PageControl1..tsFax..rbSendTogether..Caption
+#: SendFAX.dfm:544
+msgid "Send as a single fax"
+msgstr "Invia come fax singolo"
+
+#. FAXSend..Panel2..PageControl1..tsFax..rbSendIndividually..Caption
+#: SendFAX.dfm:555
+msgid "Send individually"
+msgstr "Invia individualmente"
+
+#. FAXSend..Panel2..PageControl1..tsFax..hFAXNumber..Hint
+#: SendFAX.dfm:564
+msgid "Enter multiple recipients separated by semicolons."
+msgstr "Inserisci più destinatari separandoli con punto e virgola."
+
+# SendFAX.dfm:265 D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:137
+# D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:275
+# D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:828
+#. FAXSend..Panel2..PageControl1..tsFax..ABNames..Text
+#: SendFAX.dfm:577
+msgid "Select from address book"
+msgstr "Seleziona dalla rubrica"
+
+#. FAXSend..Panel2..PageControl1..tsSchedule..Caption
+#: SendFAX.dfm:619
+msgid "Schedule"
+msgstr "Pianificazione"
+
+#. FAXSend..Panel2..PageControl1..tsSchedule..Label9..Caption
+#: SendFAX.dfm:629
+msgid "Keep retrying for"
+msgstr "Ritenta l'invio per"
+
+#. FAXSend..Panel2..PageControl1..tsSchedule..Label11..Caption
+#: SendFAX.dfm:637
+msgid "days"
+msgstr "giorni"
+
+#. FAXSend..Panel2..PageControl1..tsSchedule..Label10..Caption
+#: SendFAX.dfm:645
+msgid "hours"
+msgstr "ore"
+
+#. FAXSend..Panel2..PageControl1..tsSchedule..rbSendNow..Caption
+#: SendFAX.dfm:661
+msgid "Send immediately"
+msgstr "Invia subito"
+
+#. FAXSend..Panel2..PageControl1..tsSchedule..rbPostpone..Caption
+#: SendFAX.dfm:672
+msgid "Postpone to"
+msgstr "Posponi l'invio al"
+
+#. FAXSend..Panel2..PageControl1..tsSchedule..hTime..Format
+#. FAXSend..Panel2..PageControl1..tsSchedule..hHours..Format
+#: SendFAX.dfm:692
+msgid "HH:mm"
+msgstr ""
+
+#. FAXSend..actions..actSend..Caption
+#: SendFAX.dfm:772
+msgid "Send"
+msgstr "Invia"
+
+#. FAXSend..actions..actSave..Caption
+#: SendFAX.dfm:784
+msgid "Save Number"
+msgstr "Salva numero"
+
+#. FAXSend..actions..actDelete..Caption
+#: SendFAX.dfm:788
+msgid "Delete Entry"
+msgstr "Elimina numero"
+
+#. FAXSend..actions..actConfigure..Caption
+#: SendFAX.dfm:792
+msgid "Configure"
+msgstr "Configura"
+
+#. FAXSend..actions..actClose..Caption
+#: SendFAX.dfm:796
+msgid "Close"
+msgstr "Chiudi"
+
+#. FAXSend..actions..actSelect..Caption
+#: SendFAX.dfm:800
+msgid "Select..."
+msgstr "Seleziona..."
+
+#. FAXSend..popup..mnuAddfile..Caption
+#: SendFAX.dfm:834
+msgid "Add file..."
+msgstr "Aggiungi file..."
+
+#. FAXSend..opendlg..Filter
+#: SendFAX.dfm:847
+msgid "All supported files|*.ps;*.pdf;*.tif;*.tiff;*.pcl|All files|*.*"
+msgstr "Tutti i file supportati|*.ps;*.pdf;*.tif;*.tiff;*.pcl|Tutti i file|*.*"
+
+#. FAXSend..checkip..Request.Accept
+#: SendFAX.dfm:863
+msgid "text/html, */*"
+msgstr ""
+
+#. FAXSend..checkip..Request.UserAgent
+#: SendFAX.dfm:865
+msgid "Mozilla/3.0 (compatible; Indy Library)"
+msgstr ""
+
+# D:\proj\wphf-reloaded\wphfgui\AddrBookCSV.cpp:53
+msgid "Unable to lock addressbook.csv!"
+msgstr "Impossibile acquisire addressbook.csv!"
+
+# D:\proj\wphf-reloaded\wphfgui\AddrBookCSV.cpp:203
+msgid "Unable to create addressbook.csv!"
+msgstr "Impossibile creare addressbook.csv!"
+
+# D:\proj\wphf-reloaded\wphfgui\AddrBookMAPI.cpp:98
+msgid "Unable to query address book contents table: 0x"
+msgstr "Impossibile interrogare i contenuti della rubrica: 0x"
+
+# D:\proj\wphf-reloaded\wphfgui\AddrBookMAPI.cpp:205
+msgid "Unable to query address book hierarchy table: 0x"
+msgstr "Impossibile interrogare la gerarchia della rubrica: 0x"
+
+# D:\proj\wphf-reloaded\wphfgui\AddrBookMAPI.cpp:239
+msgid "Unable to open address book sub container: 0x"
+msgstr "Impossibile aprire un sotto-contenitore della rubrica: 0x"
+
+# D:\proj\wphf-reloaded\wphfgui\AddrBookMAPI.cpp:296
+msgid "Unable to initialize MAPI: 0x"
+msgstr "Impossibile inizializzare MAPI: 0x"
+
+# D:\proj\wphf-reloaded\wphfgui\AddrBookMAPI.cpp:317
+msgid "Unable to logon to MAPI: 0x"
+msgstr "Impossibile eseguire il logon a MAPI: 0x"
+
+# D:\proj\wphf-reloaded\wphfgui\AddrBookMAPI.cpp:322
+msgid "Unable to open MAPI address book: 0x"
+msgstr "Impossibile acquisire la rubrica MAPI: 0x"
+
+# D:\proj\wphf-reloaded\wphfgui\AddrBookMAPI.cpp:327
+msgid "Unable to open MAPI address book container: 0x"
+msgstr "Impossibile acquisire il contenitore della rubrica MAPI: 0x"
+
+# D:\proj\wphf-reloaded\wphfgui\AddrBookODBC.cpp:83
+msgid "Unable to initialize ODBC: "
+msgstr "Impossibile inizializzare ODBC: "
+
+# D:\proj\wphf-reloaded\wphfgui\AddrBookODBC.cpp:88
+msgid "Unable to setup ODBC: "
+msgstr "Impossibile configurare ODBC: "
+
+# D:\proj\wphf-reloaded\wphfgui\AddrBookODBC.cpp:93
+msgid "Unable to create ODBC connection: "
+msgstr "Impossibile creare la connessione ODBC: "
+
+# D:\proj\wphf-reloaded\wphfgui\AddrBookODBC.cpp:98
+# D:\proj\wphf-reloaded\wphfgui\AddrBookODBC.cpp:103
+msgid "Unable to setup ODBC connection: "
+msgstr "Impossibile configurare la connessione ODBC: "
+
+# D:\proj\wphf-reloaded\wphfgui\AddrBookODBC.cpp:114
+msgid "Unable to open ODBC connection: "
+msgstr "Impossibile aprire la connessione ODBC: "
+
+# D:\proj\wphf-reloaded\wphfgui\AddrBookODBC.cpp:119
+msgid "Unable to create ODBC statement: "
+msgstr "Impossibile creare l'istruzione ODBC: "
+
+# D:\proj\wphf-reloaded\wphfgui\AddrBookODBC.cpp:132
+msgid "Unable to execute ODBC statement: "
+msgstr "Impossibile eseguire l'istruzione ODBC: "
+
+# D:\proj\wphf-reloaded\wphfgui\AddrBookODBC.cpp:137
+# D:\proj\wphf-reloaded\wphfgui\AddrBookODBC.cpp:142
+msgid "Unable to bind ODBC column: "
+msgstr "Impossibile collegare la colonna ODBC: "
+
+# D:\proj\wphf-reloaded\wphfgui\AddrBookODBC.cpp:148
+msgid "Unable to fetch ODBC data: "
+msgstr "Impossibile leggere i dati ODBC: "
+
+# D:\proj\wphf-reloaded\wphfgui\Config.cpp:53
+msgid "Choose address book location"
+msgstr "Scegli la posizione della rubrica"
+
+# D:\proj\wphf-reloaded\wphfgui\Config.cpp:83
+msgid "Specify a valid path for the Address Book"
+msgstr "Specificare un percorso valido per la rubrica"
+
+# D:\proj\wphf-reloaded\wphfgui\Config.cpp:168
+msgid "No match!"
+msgstr "Nessuna corrispondenza!"
+
+# D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:149
+msgid "Configuration files have been moved to the user profile."
+msgstr "I file di configurazione sono stati spostati nel profilo utente."
+
+# D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:172
+msgid "Client is not configured. Would you like to configure it now?"
+msgstr "Il client non è configurato. Vuoi configurarlo ora?"
+
+# D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:266
+msgid ""
+" is already present in the address book.\n"
+"Do you want to modify the associated number?"
+msgstr ""
+" è già presente in rubrica.\n"
+"Vuoi modificare il numero associato?"
+
+# D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:426
+#, c-format
+msgid "PCRE error @ position %d: %s"
+msgstr "Errore PCRE @ posizione %d: %s"
+
+# D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:761
+msgid "Unsent faxes will be lost. Are you sure you want to exit?"
+msgstr "I fax non inviati andranno persi. Sei sicuro di voler uscire?"
+
+# D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:824
+msgid "Delete recipient?"
+msgstr "Cancellare il nominativo?"
+
+# SendFAX.dfm:265 D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:137
+# D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:275
+# D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:828
+#~ msgid "Delete from address book."
+#~ msgstr "Elimina dalla rubrica."
+
+#~ msgid "Delete entry"
+#~ msgstr "Elimina numero"
+
+# SendFAX.dfm:265 D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:137
+# D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:275
+# D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:828
+#~ msgid "Save to address book."
+#~ msgstr "Salva in rubrica."
+
+#~ msgid "Save number"
+#~ msgstr "Salva numero"
+
+#~ msgid "Move document up (send earlier)."
+#~ msgstr "Sposta sù il documento (invia prima)."
+
+#~ msgid "Move document down (send later)."
+#~ msgstr "Sposta giù il documento (invia dopo)."
+
+#~ msgid "Select multiple recipients."
+#~ msgstr "Seleziona destinatari multipli."
+
+#~ msgid "Selected documents will be sent as a single fax."
+#~ msgstr "I documenti selezionati saranno inviati in un singolo fax."
+
+#, fuzzy
+#~ msgid "User"
+#~ msgstr "Nome Utente"
