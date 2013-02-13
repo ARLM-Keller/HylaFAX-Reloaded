@@ -794,18 +794,18 @@ object FAXSend: TFAXSend
     end
   end
   object FTPctrl: TIdTCPClient
-    ConnectTimeout = 10000
+    ConnectTimeout = -2
     IPVersion = Id_IPv4
     Port = 0
-    ReadTimeout = 10000
+    ReadTimeout = -2
     Left = 88
     Top = 144
   end
   object FTPdata: TIdTCPClient
-    ConnectTimeout = 10000
+    ConnectTimeout = -2
     IPVersion = Id_IPv4
     Port = 0
-    ReadTimeout = 10000
+    ReadTimeout = -2
     Left = 144
     Top = 144
   end
