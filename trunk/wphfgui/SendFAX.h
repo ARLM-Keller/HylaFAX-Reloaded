@@ -63,6 +63,7 @@ public:
 extern int __cdecl IpcCallback(LPCSTR szFile, LPVOID param);
 
 #define WM_ADDFAX WM_USER + 2000
+#define WM_IMMEDIATESEND WM_USER + 2001
 
 class TFAXSend : public TForm
 {
@@ -162,8 +163,9 @@ __published:	// IDE-managed Components
 	void __fastcall FormResize(TObject *Sender);
 	void __fastcall rbSendModeClick(TObject *Sender);
 
+
 private:	// User declarations
-	CRITICAL_SECTION CSDocuments;
+	CRITICAL_SECTION CSUserInterface;
 	UnicodeString SelectFromAB;
 	TPoint DragPoint;
 	UnicodeString FFileBeingSent;
@@ -191,15 +193,18 @@ private:	// User declarations
 	bool __fastcall RegExProcessDocument(const UnicodeString& FileName,
 		UnicodeString& Numbers);
 	bool __fastcall FindMatches(const UnicodeString& Line, UnicodeString& Numbers);
-	__inline void LockDocuments() { EnterCriticalSection(&CSDocuments); }
-	__inline void UnlockDocuments() { LeaveCriticalSection(&CSDocuments); }
+	__inline void LockUI() { EnterCriticalSection(&CSUserInterface); }
+	__inline void UnlockUI() { LeaveCriticalSection(&CSUserInterface); }
 	void __fastcall ParseCommandLine(TStrings* pArgs);
+	void __fastcall AddFileToList(const UnicodeString& Title,
+		const UnicodeString& FileName, const UnicodeString& Number);
 	void __fastcall AddFileToList(const UnicodeString& Title,
 		const UnicodeString& FileName);
 	MESSAGE void __fastcall HandleWMAddFax(TMessage& Message);
-	MESSAGE void __fastcall HandleWMWakeUp(TMessage& Message);
+	MESSAGE void __fastcall HandleWMImmediateSend(TMessage& Message);
 	BEGIN_MESSAGE_MAP
 	MESSAGE_HANDLER(WM_ADDFAX, TMessage, HandleWMAddFax);
+	MESSAGE_HANDLER(WM_IMMEDIATESEND, TMessage, HandleWMImmediateSend);
 	END_MESSAGE_MAP(TForm);
 
 public:		// User declarations
