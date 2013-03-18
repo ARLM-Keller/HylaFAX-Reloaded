@@ -20,11 +20,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef _DEFS_H
 #define _DEFS_H
 
+#include <LMCons.h>
+
 //maximum command line for CreateProcessW
-#define MAXCOMMAND 32768
+#define MAX_COMMAND 32768
 
 //maximum user defined command
-#define MAXUSERCOMMMAND 1024
+#define MAX_USERCOMMMAND 1024
+#define MAX_USER (UNLEN + 1)
+#define MAX_DOMAIN (DNLEN + 1)
+#define MAX_PWBLOB ((PWLEN + 1 * sizeof(WCHAR)) + 32)
+#define MAX_PASSWORD (PWLEN + 1)
 
 extern LPCWSTR szMonitorName;
 extern LPCWSTR szDescription;

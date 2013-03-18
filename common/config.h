@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef _CONFIG_H
 #define _CONFIG_H
 
+#include <LMCons.h>
 #include "defs.h"
 
 //structure to transfer data between monitor DLL
@@ -35,6 +36,9 @@ typedef struct tagPORTCONFIG
 //	BOOL bWaitTermination;
 //	BOOL bPipeData;
 //	int nLogLevel;
+//	WCHAR szUser[MAX_USER];
+//	WCHAR szDomain[MAX_DOMAIN];
+//	WCHAR szPassword[MAX_PASSWORD];
 } PORTCONFIG, *LPPORTCONFIG;
 
 #endif

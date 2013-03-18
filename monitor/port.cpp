@@ -265,7 +265,8 @@ static bool isAbsPath(LPCWSTR szPath) {
 		szPath[1] == L':')
 		return true;
 	return false;
-} 
+}
+ 
 //-------------------------------------------------------------------------------------
 void CPort::StartExe(LPCWSTR szExeName, LPCWSTR szWorkingDir, LPWSTR szCmdLine,
 					 BOOL bTSEnabled, DWORD dwSessionId)
@@ -320,10 +321,7 @@ void CPort::StartExe(LPCWSTR szExeName, LPCWSTR szWorkingDir, LPWSTR szCmdLine,
 
 	if (bTokOk)
 	{
-		HANDLE hHeap = GetProcessHeap();
-
-		if ((szCommand = (LPWSTR)HeapAlloc(hHeap, 0, MAXCOMMAND * sizeof(WCHAR))) == NULL)
-			return;
+		szCommand = new WCHAR[MAX_COMMAND];
 
 		ZeroMemory(&si, sizeof(si));
 		ZeroMemory(&pi, sizeof(pi));
@@ -337,20 +335,20 @@ void CPort::StartExe(LPCWSTR szExeName, LPCWSTR szWorkingDir, LPWSTR szCmdLine,
 		if (!isAbsPath(szExeName))
 		{
 			//Not a full path, prefix with szWorkingDir
-			swprintf_s(szCommand, MAXCOMMAND, L"\"%s", szWorkingDir);
+			swprintf_s(szCommand, MAX_COMMAND, L"\"%s", szWorkingDir);
 			size_t pos = wcslen(szCommand);
 			if (pos == 0 || szCommand[pos - 1] != L'\\')
-				wcscat_s(szCommand, MAXCOMMAND, L"\\");
+				wcscat_s(szCommand, MAX_COMMAND, L"\\");
 		}
 		else
 		{
 			//Full path
-			swprintf_s(szCommand, MAXCOMMAND, L"\"");
+			swprintf_s(szCommand, MAX_COMMAND, L"\"");
 		}
 
-		wcscat_s(szCommand, MAXCOMMAND, szExeName);
-		wcscat_s(szCommand, MAXCOMMAND, L"\" ");
-		wcscat_s(szCommand, MAXCOMMAND, szCmdLine);
+		wcscat_s(szCommand, MAX_COMMAND, szExeName);
+		wcscat_s(szCommand, MAX_COMMAND, L"\" ");
+		wcscat_s(szCommand, MAX_COMMAND, szCmdLine);
 
 		//creazione environment
 		if (CreateEnvironmentBlock(&lpEnv, htok, FALSE))
@@ -401,7 +399,7 @@ void CPort::StartExe(LPCWSTR szExeName, LPCWSTR szWorkingDir, LPWSTR szCmdLine,
 		if (lpEnv)
 			DestroyEnvironmentBlock(lpEnv);
 
-		HeapFree(hHeap, 0, szCommand);
+		delete[] szCommand;
 
 		if (htok)
 			CloseHandle(htok);
@@ -428,10 +426,12 @@ CPort::CPort(LPCWSTR szPortName)
 
 //-------------------------------------------------------------------------------------
 CPort::CPort(LPCWSTR szPortName, LPCWSTR szOutputPath, LPCWSTR szFilePattern, BOOL bOverwrite,
-			 LPCWSTR szUserCommandPattern, LPCWSTR szExecPath, BOOL bWaitTermination, BOOL bPipeData)
+			 LPCWSTR szUserCommandPattern, LPCWSTR szExecPath, BOOL bWaitTermination, BOOL bPipeData,
+			 LPCWSTR szUser, LPCWSTR szDomain, LPCWSTR szPassword)
 {
 	Initialize(szPortName, szOutputPath, szFilePattern, bOverwrite,
-		szUserCommandPattern, szExecPath, bWaitTermination, bPipeData);
+		szUserCommandPattern, szExecPath, bWaitTermination, bPipeData,
+		szUser, szDomain, szPassword);
 }
 
 //-------------------------------------------------------------------------------------
@@ -440,6 +440,7 @@ void CPort::Initialize()
 	*m_szPortName = L'\0';
 	*m_szOutputPath = L'\0';
 	m_szPrinterName = NULL;
+	m_cchPrinterName = 0;
 	m_pPattern = NULL;
 	m_bOverwrite = FALSE;
 	m_pUserCommand = NULL;
@@ -454,8 +455,15 @@ void CPort::Initialize()
 	m_hDoneEvt = NULL;
 	m_nJobId = 0;
 	m_pJobInfo = NULL;
+	m_cbJobInfo = 0;
 	m_bPipeActive = FALSE;
 	InitializeCriticalSection(&m_threadData.csBuffer);
+	*m_szUser = L'\0';
+	wcscpy_s(m_szDomain, LENGTHOF(m_szDomain), L".");
+	*m_szPassword = L'\0';
+	m_hToken = NULL;
+	m_bRestrictedToken = FALSE;
+	m_bLogonInvalidated = TRUE;
 	SetFilePatternString(L"doc");
 }
 
@@ -468,7 +476,8 @@ void CPort::Initialize(LPCWSTR szPortName)
 
 //-------------------------------------------------------------------------------------
 void CPort::Initialize(LPCWSTR szPortName, LPCWSTR szOutputPath, LPCWSTR szFilePattern, BOOL bOverwrite,
-					   LPCWSTR szUserCommandPattern, LPCWSTR szExecPath, BOOL bWaitTermination, BOOL bPipeData)
+					   LPCWSTR szUserCommandPattern, LPCWSTR szExecPath, BOOL bWaitTermination, BOOL bPipeData,
+					   LPCWSTR szUser, LPCWSTR szDomain, LPCWSTR szPassword)
 {
 	Initialize(szPortName);
 	wcscpy_s(m_szOutputPath, LENGTHOF(m_szOutputPath), szOutputPath);
@@ -478,6 +487,10 @@ void CPort::Initialize(LPCWSTR szPortName, LPCWSTR szOutputPath, LPCWSTR szFileP
 	wcscpy_s(m_szExecPath, LENGTHOF(m_szExecPath), szExecPath);
 	m_bWaitTermination = bWaitTermination;
 	m_bPipeData = bPipeData;
+	wcscpy_s(m_szUser, LENGTHOF(m_szUser), szUser);
+	if (*szDomain)
+		wcscpy_s(m_szDomain, LENGTHOF(m_szDomain), szDomain);
+	wcscpy_s(m_szPassword, LENGTHOF(m_szPassword), szPassword);
 
 	g_pLog->Log(LOGLEVEL_ALL, L"Initializing port %s", szPortName);
 	g_pLog->Log(LOGLEVEL_ALL, L" Output path:      %s", szOutputPath);
@@ -487,6 +500,7 @@ void CPort::Initialize(LPCWSTR szPortName, LPCWSTR szOutputPath, LPCWSTR szFileP
 	g_pLog->Log(LOGLEVEL_ALL, L" Execute from:     %s", szExecPath);
 	g_pLog->Log(LOGLEVEL_ALL, L" Wait termination: %s", (bWaitTermination ? szTrue : szFalse));
 	g_pLog->Log(LOGLEVEL_ALL, L" Use pipe:         %s", (bPipeData ? szTrue : szFalse));
+	g_pLog->Log(LOGLEVEL_ALL, L" Run as:           %s\\%s", szDomain, szUser);
 }
 
 //-------------------------------------------------------------------------------------
@@ -498,13 +512,11 @@ CPort::~CPort()
 	if (m_pUserCommand)
 		delete m_pUserCommand;
 
-	HANDLE hHeap = GetProcessHeap();
-
 	if (m_szPrinterName)
-		HeapFree(hHeap, 0, m_szPrinterName);
+		delete[] m_szPrinterName;
 
 	if (m_pJobInfo)
-		HeapFree(hHeap, 0, m_pJobInfo);
+		delete[] m_pJobInfo;
 
 	if (m_hWriteThread)
 	{
@@ -576,8 +588,6 @@ BOOL CPort::StartJob(DWORD nJobId, LPWSTR szJobTitle, LPWSTR szPrinterName)
 
 	m_pPattern->Reset();
 
-	HANDLE hHeap = GetProcessHeap();
-
 	//retrieve job info
 	DWORD cbNeeded;
 
@@ -591,15 +601,16 @@ BOOL CPort::StartJob(DWORD nJobId, LPWSTR szJobTitle, LPWSTR szPrinterName)
 
 	GetJobW(printer, nJobId, 1, NULL, 0, &cbNeeded);
 
-	if (!m_pJobInfo)
-		m_pJobInfo = (JOB_INFO_1W*)HeapAlloc(hHeap, 0, cbNeeded);
-	else if (HeapSize(hHeap, 0, m_pJobInfo) < cbNeeded)
-		m_pJobInfo = (JOB_INFO_1W*)HeapReAlloc(hHeap, 0, m_pJobInfo, cbNeeded);
+	if (!m_pJobInfo || m_cbJobInfo < cbNeeded)
+	{
+		if (m_pJobInfo)
+			delete[] m_pJobInfo;
 
-	if (!m_pJobInfo)
-		return FALSE;
+		m_cbJobInfo = cbNeeded;
+		m_pJobInfo = (JOB_INFO_1W*)new BYTE[cbNeeded];
+	}
 
-	if (!GetJobW(printer, nJobId, 1, (LPBYTE)m_pJobInfo, (DWORD)HeapSize(hHeap, 0, m_pJobInfo), &cbNeeded))
+	if (!GetJobW(printer, nJobId, 1, (LPBYTE)m_pJobInfo, m_cbJobInfo, &cbNeeded))
 	{
 		g_pLog->Log(LOGLEVEL_ERRORS, this, L"CPort::StartJob: GetJobW failed (%i)", GetLastError());
 		return FALSE;
@@ -630,15 +641,16 @@ BOOL CPort::StartJob(DWORD nJobId, LPWSTR szJobTitle, LPWSTR szPrinterName)
 	//copy printer name locally
 	size_t len = wcslen(szPrinterName) + 1;
 
-	if (!m_szPrinterName)
-		m_szPrinterName = (LPWSTR)HeapAlloc(hHeap, 0, len * sizeof(WCHAR));
-	else if (HeapSize(hHeap, 0, m_szPrinterName) < len * sizeof(WCHAR))
-		m_szPrinterName = (LPWSTR)HeapReAlloc(hHeap, 0, m_szPrinterName, len * sizeof(WCHAR));
+	if (!m_szPrinterName || m_cchPrinterName < len)
+	{
+		if (m_szPrinterName)
+			delete[] m_szPrinterName;
 
-	if (!m_szPrinterName)
-		return FALSE;
+		m_cchPrinterName = (DWORD)len;
+		m_szPrinterName = new WCHAR[len];
+	}
 
-	wcscpy_s(m_szPrinterName, HeapSize(hHeap, 0, m_szPrinterName) / sizeof(WCHAR), szPrinterName);
+	wcscpy_s(m_szPrinterName, m_cchPrinterName, szPrinterName);
 
 	//event to signal work to be done
 	if (!m_hWorkEvt)
@@ -754,7 +766,7 @@ DWORD CPort::CreateOutputFile()
 
 		/*check if parent directory exists*/
 		GetFileParent(m_szFileName, m_szParent, LENGTHOF(m_szParent));
-		if (!RecursiveCreateFolder(m_szParent))
+		if (RecursiveCreateFolder(m_szParent) != ERROR_SUCCESS)
 		{
 			g_pLog->Log(LOGLEVEL_ERRORS, this, L"CPort::CreateOutputFile: can't create output directory (%i)", GetLastError());
 			return ERROR_DIRECTORY;
@@ -854,7 +866,7 @@ DWORD CPort::CreateOutputFile()
 			//around making its job until it's done
 			CloseHandle(hReadThread);
 
-			return 0;
+			return ERROR_SUCCESS;
 		}
 		else
 		{
@@ -868,7 +880,7 @@ DWORD CPort::CreateOutputFile()
 				return ERROR_FILE_INVALID;
 			}
 			else
-				return 0;
+				return ERROR_SUCCESS;
 		}
 	} while (m_pPattern->NextValue()); //loop until there are no more combinations for pattern
 
@@ -888,6 +900,7 @@ BOOL CPort::WriteToFile(LPCVOID lpBuffer, DWORD cbBuffer, LPDWORD pcbWritten)
 		if (!GetExitCodeProcess(m_procInfo.hProcess, &dwCode) ||
 			dwCode != STILL_ACTIVE)
 		{
+			m_bPipeActive = FALSE;
 			SetLastError(ERROR_CAN_NOT_COMPLETE);
 			return FALSE;
 		}
@@ -901,9 +914,7 @@ BOOL CPort::WriteToFile(LPCVOID lpBuffer, DWORD cbBuffer, LPDWORD pcbWritten)
 	//wake up thread
 	SetEvent(m_hWorkEvt);
 
-	BOOL bDone = FALSE;
-
-	while (!bDone)
+	for (;;)
 	{
 		switch (WaitForSingleObject(m_hDoneEvt, 10000))
 		{
@@ -923,8 +934,6 @@ BOOL CPort::WriteToFile(LPCVOID lpBuffer, DWORD cbBuffer, LPDWORD pcbWritten)
 			return FALSE;
 		}
 	}
-
-	return FALSE;
 }
 
 //-------------------------------------------------------------------------------------
@@ -1112,16 +1121,14 @@ BOOL CPort::EndJob()
 //		WideCharToMultiByte(CP_THREAD_ACP, 0, m_szFileName, -1,
 //			szBuf, sizeof(szBuf), NULL, NULL);
 		len = (DWORD)wcslen(m_szFileName) + (DWORD)wcslen(JobTitle()) + 2;
-		HANDLE hHeap = GetProcessHeap();
-		if ((szBuf = (LPWSTR)HeapAlloc(hHeap, 0, len * sizeof(WCHAR))) != NULL)
-		{
-			swprintf_s(szBuf, len, L"%s|%s", m_szFileName, JobTitle());
-			DWORD nBytes = len * sizeof(WCHAR);
-			WriteToPipe(hPipe, &nBytes, sizeof(nBytes), 1000, &ov);
-			WriteToPipe(hPipe, szBuf, nBytes, 1000, &ov);
+		szBuf = new WCHAR[len];
 
-			HeapFree(hHeap, 0, szBuf);
-		}
+		swprintf_s(szBuf, len, L"%s|%s", m_szFileName, JobTitle());
+		DWORD nBytes = len * sizeof(WCHAR);
+		WriteToPipe(hPipe, &nBytes, sizeof(nBytes), 1000, &ov);
+		WriteToPipe(hPipe, szBuf, nBytes, 1000, &ov);
+
+		delete[] szBuf;
 
 		CloseHandle(hPipe);
 		CloseHandle(ov.hEvent);
@@ -1133,17 +1140,15 @@ BOOL CPort::EndJob()
 		LPWSTR szCmdLine = NULL;
 
 		len = (DWORD)wcslen(m_szFileName) + (DWORD)wcslen(JobTitle()) + 6;
-		HANDLE hHeap = GetProcessHeap();
-		if ((szCmdLine = (LPWSTR)HeapAlloc(hHeap, 0, len * sizeof(WCHAR))) != NULL)
-		{
-			//componiamo la linea di comando
-			swprintf_s(szCmdLine, len, L"\"%s\" \"%s\"", m_szFileName, JobTitle());
+		szCmdLine = new WCHAR[len];
 
-			//esecuzione
-			StartExe(GUIPath(), ExecPath(), szCmdLine, bTSEnabled, dwSessionId);
+		//componiamo la linea di comando
+		swprintf_s(szCmdLine, len, L"\"%s\" \"%s\"", m_szFileName, JobTitle());
 
-			HeapFree(hHeap, 0, szCmdLine);
-		}
+		//esecuzione
+		StartExe(GUIPath(), ExecPath(), szCmdLine, bTSEnabled, dwSessionId);
+
+		delete[] szCmdLine;
 	}
 
 	*m_szFileName = L'\0';
@@ -1152,10 +1157,9 @@ BOOL CPort::EndJob()
 }
 
 //-------------------------------------------------------------------------------------
-void CPort::SetConfig(LPCWSTR szPortName/*, LPCWSTR szOutputPath, LPCWSTR szFilePattern, BOOL bOverwrite,
-		LPCWSTR szUserCommandPattern, LPCWSTR szExecPath, BOOL bWaitTermination, BOOL bPipeData, int nLogLevel*/)
+void CPort::SetConfig(LPPORTCONFIG pConfig)
 {
-	wcscpy_s(m_szPortName, LENGTHOF(m_szPortName), szPortName);
+	wcscpy_s(m_szPortName, LENGTHOF(m_szPortName), pConfig->szPortName);
 //	wcscpy_s(m_szOutputPath, LENGTHOF(m_szOutputPath), szOutputPath);
 //	SetFilePatternString(szFilePattern);
 //	m_bOverwrite = bOverwrite;
@@ -1164,6 +1168,14 @@ void CPort::SetConfig(LPCWSTR szPortName/*, LPCWSTR szOutputPath, LPCWSTR szFile
 //	m_bWaitTermination = bWaitTermination;
 //	m_bPipeData = bPipeData;
 //	g_pLog->SetLogLevel(nLogLevel);
+//	wcscpy_s(m_szUser, LENGTHOF(m_szUser), pConfig->szUser);
+//	Trim(m_szUser);
+//	wcscpy_s(m_szDomain, LENGTHOF(m_szDomain), pConfig->szDomain);
+//	Trim(m_szDomain);
+//	if (!*m_szDomain)
+//		wcscpy_s(m_szDomain, LENGTHOF(m_szDomain), L".");
+//	wcscpy_s(m_szPassword, LENGTHOF(m_szPassword), pConfig->szPassword);
+//	m_bLogonInvalidated = TRUE;
 }
 
 //-------------------------------------------------------------------------------------
@@ -1197,4 +1209,43 @@ LPWSTR CPort::JobTitle() const
 	return m_pJobInfo
 		? m_pJobInfo->pDocument
 		: (LPWSTR)L"";
+}
+
+//-------------------------------------------------------------------------------------
+DWORD CPort::RecursiveCreateFolder(LPCWSTR szPath)
+{
+	WCHAR szPathBuf[MAX_PATH];
+	WCHAR szParent[MAX_PATH];
+	LPCWSTR pPath = szPath;
+	size_t len;
+
+	/*strip off leading backslashes*/
+	len = wcslen(szPath);
+	if (len > 0 && ISSLASH(szPath[len - 1]))
+	{
+		/*make a copy of szPath only if needed*/
+		wcscpy_s(szPathBuf, LENGTHOF(szPathBuf), szPath);
+		pPath = szPathBuf;
+		while (len > 0 && ISSLASH(szPathBuf[len - 1]))
+		{
+			szPathBuf[len - 1] = L'\0';
+			len--;
+		}
+	}
+	/*only drive letter left or the directory already exists*/
+	if (len < 3 || DirectoryExists(pPath))
+		return ERROR_SUCCESS;
+	else
+	{
+		GetFileParent(pPath, szParent, LENGTHOF(szParent));
+		if (wcscmp(pPath, szParent) == 0)
+			return ERROR_SUCCESS;
+		/*our parent must exist before we can get created*/
+		DWORD dwRet = RecursiveCreateFolder(szParent);
+		if (dwRet != ERROR_SUCCESS)
+			return dwRet;
+		if (!CreateDirectoryW(pPath, NULL))
+			return GetLastError();
+		return ERROR_SUCCESS;
+	}
 }

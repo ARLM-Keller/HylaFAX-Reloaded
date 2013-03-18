@@ -59,7 +59,7 @@ BEGIN
       VALUE "FileDescription", "Winprint HylaFax port monitor\0"
       VALUE "FileVersion", szVersion
       VALUE "InternalName", "WPHFMON\0"
-      VALUE "LegalCopyright", "Copyright © 2011 Monti Lorenzo\0"
+      VALUE "LegalCopyright", "Copyright © 2011-2013 Monti Lorenzo\0"
       VALUE "LegalTrademarks", "\0"
       VALUE "OriginalFilename", "WPHFMON.DLL\0"
       VALUE "PrivateBuild", "\0"

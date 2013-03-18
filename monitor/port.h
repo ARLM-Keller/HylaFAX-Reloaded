@@ -20,7 +20,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef _PORT_H
 #define _PORT_H
 
+#include <LMCons.h>
 #include "pattern.h"
+#include "..\common\config.h"
 #include "..\common\defs.h"
 
 class CPort
@@ -31,14 +33,16 @@ private:
 	void Initialize();
 	void Initialize(LPCWSTR szPortName);
 	void Initialize(LPCWSTR szPortName, LPCWSTR szOutputPath, LPCWSTR szFilePattern, BOOL bOverwrite,
-		LPCWSTR szUserCommandPattern, LPCWSTR szExecPath, BOOL bWaitTermination, BOOL bPipeData);
+		LPCWSTR szUserCommandPattern, LPCWSTR szExecPath, BOOL bWaitTermination, BOOL bPipeData,
+		LPCWSTR szUser, LPCWSTR szDomain, LPCWSTR szPassword);
 	void StartExe(LPCWSTR szExeName, LPCWSTR szWorkingDir, LPWSTR szCmdLine, BOOL bTSEnabled, DWORD dwSessionId);
 
 public:
 	CPort();
 	CPort(LPCWSTR szPortName);
 	CPort(LPCWSTR szPortName, LPCWSTR szOutputPath, LPCWSTR szFilePattern, BOOL bOverwrite,
-		LPCWSTR szUserCommandPattern, LPCWSTR szExecPath, BOOL bWaitTermination, BOOL bPipeData);
+		LPCWSTR szUserCommandPattern, LPCWSTR szExecPath, BOOL bWaitTermination, BOOL bPipeData,
+		LPCWSTR szUser, LPCWSTR szDomain, LPCWSTR szPassword);
 	virtual ~CPort();
 	CPattern* GetPattern() const { return m_pPattern; }
 	void SetFilePatternString(LPCWSTR szPattern);
@@ -49,8 +53,9 @@ public:
 	BOOL WriteToFile(LPCVOID lpBuffer, DWORD cbBuffer,
 		LPDWORD pcbWritten);
 	BOOL EndJob();
-	void SetConfig(LPCWSTR szPortName/*, LPCWSTR szOutputPath, LPCWSTR szFilePattern, BOOL bOverwrite,
-		LPCWSTR szUserCommandPattern, LPCWSTR szExecPath, BOOL bWaitTermination, BOOL bPipeData, int nLogLevel*/);
+	void SetConfig(LPPORTCONFIG pConfig);
+	DWORD Logon();
+	DWORD CreateOutputPath();
 
 public:
 	LPCWSTR PortName() const { return m_szPortName; }
@@ -69,6 +74,9 @@ public:
 	LPCWSTR ComputerName() const;
 	LPWSTR FileName() const { return (LPWSTR)m_szFileName; }
 	LPWSTR Path() const { return (LPWSTR)m_szParent; }
+	LPCWSTR User() const { return m_szUser; }
+	LPCWSTR Domain() const { return m_szDomain; }
+	LPCWSTR Password() const { return m_szPassword; }
 	DWORD TotalPages() const { return m_pJobInfo ? m_pJobInfo->TotalPages : 0; }
 	DWORD Priority() const { return m_pJobInfo ? m_pJobInfo->Priority : DEF_PRIORITY; }
 	SYSTEMTIME& Submitted() const { return m_pJobInfo ? m_pJobInfo->Submitted : m_DefSysTime; }
@@ -85,6 +93,7 @@ private:
 	} THREADDATA, *LPTHREADDATA;
 	static DWORD WINAPI WriteThreadProc(LPVOID lpParam);
 	static DWORD WINAPI ReadThreadProc(LPVOID lpParam);
+	DWORD RecursiveCreateFolder(LPCWSTR szPath);
 
 private:
 	THREADDATA m_threadData;
@@ -96,6 +105,7 @@ private:
 	WCHAR m_szExecPath[MAX_PATH];
 	WCHAR m_szGUIPath[MAX_PATH];
 	LPWSTR m_szPrinterName;
+	DWORD m_cchPrinterName;
 	CPattern* m_pPattern;
 	CPattern* m_pUserCommand;
 	BOOL m_bOverwrite;
@@ -109,8 +119,15 @@ private:
 //	LPWSTR m_szCommandLine;
 	DWORD m_nJobId;
 	JOB_INFO_1W* m_pJobInfo;
+	DWORD m_cbJobInfo;
 	BOOL m_bJobIsLocal;
 	WCHAR m_szParent[MAX_PATH];
+	WCHAR m_szUser[MAX_USER];
+	WCHAR m_szDomain[MAX_DOMAIN];
+	WCHAR m_szPassword[MAX_PASSWORD];
+	HANDLE m_hToken;
+	BOOL m_bRestrictedToken;
+	BOOL m_bLogonInvalidated;
 };
 
 #endif

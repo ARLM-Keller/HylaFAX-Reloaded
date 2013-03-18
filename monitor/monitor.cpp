@@ -355,9 +355,7 @@ DWORD WINAPI MfmXcvDataPort(HANDLE hXcv, LPCWSTR pszDataName, PBYTE pInputData,
 				return ERROR_ACCESS_DENIED;
 			}
 			LPPORTCONFIG ppc = (LPPORTCONFIG)pInputData;
-			pXCVDATA->pPort->SetConfig(ppc->szPortName/*, ppc->szOutputPath, ppc->szFilePattern,
-				ppc->bOverwrite, ppc->szUserCommandPattern, ppc->szExecPath, ppc->bWaitTermination,
-				ppc->bPipeData, ppc->nLogLevel*/);
+			pXCVDATA->pPort->SetConfig(ppc);
 			g_pPortList->SaveToRegistry();
 			g_pLog->Log(LOGLEVEL_ALL, L"MfmXcvDataPort returning ERROR_SUCCESS");
 			return ERROR_SUCCESS;

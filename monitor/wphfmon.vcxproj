@@ -144,8 +144,8 @@
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>signtool.exe sign /f S:\OSD_Lorenzo_Monti.pfx /p $(PFXPWD) /v /t http://time.certum.pl/ "$(TargetDir)$(TargetFileName)"</Command>
+      <Message>Signature</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -174,8 +174,8 @@
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>signtool.exe sign /f S:\OSD_Lorenzo_Monti.pfx /p $(PFXPWD) /v /t http://time.certum.pl/ "$(TargetDir)$(TargetFileName)"</Command>
+      <Message>Signature</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -204,8 +204,8 @@
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>signtool.exe sign /f S:\OSD_Lorenzo_Monti.pfx /p $(PFXPWD) /v /t http://time.certum.pl/ "$(TargetDir)$(TargetFileName)"</Command>
+      <Message>Signature</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -237,8 +237,8 @@
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>signtool.exe sign /f S:\OSD_Lorenzo_Monti.pfx /p $(PFXPWD) /v /t http://time.certum.pl/ "$(TargetDir)$(TargetFileName)"</Command>
+      <Message>Signature</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release-ita|Win32'">
@@ -268,8 +268,8 @@
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>signtool.exe sign /f S:\OSD_Lorenzo_Monti.pfx /p $(PFXPWD) /v /t http://time.certum.pl/ "$(TargetDir)$(TargetFileName)"</Command>
+      <Message>Signature</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release-ita|x64'">
@@ -302,8 +302,8 @@
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>signtool.exe sign /f S:\OSD_Lorenzo_Monti.pfx /p $(PFXPWD) /v /t http://time.certum.pl/ "$(TargetDir)$(TargetFileName)"</Command>
+      <Message>Signature</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

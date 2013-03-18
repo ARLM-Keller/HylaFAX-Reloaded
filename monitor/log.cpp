@@ -48,7 +48,7 @@ CMfmLog::~CMfmLog()
 	DeleteCriticalSection(&m_CSLog);
 }
 
-void CMfmLog::SetLogLevel(int nLevel)
+void CMfmLog::SetLogLevel(DWORD nLevel)
 {
 	if (nLevel < LOGLEVEL_MIN)
 		nLevel = LOGLEVEL_MIN;
@@ -58,7 +58,7 @@ void CMfmLog::SetLogLevel(int nLevel)
 	m_nLogLevel = nLevel;
 }
 
-void CMfmLog::Log(int nLevel, CPort* pPort, LPCWSTR szFormat, ...)
+void CMfmLog::Log(DWORD nLevel, CPort* pPort, LPCWSTR szFormat, ...)
 {
 	if (m_hLogFile != INVALID_HANDLE_VALUE &&
 		m_nLogLevel >= nLevel)
@@ -79,7 +79,7 @@ void CMfmLog::Log(int nLevel, CPort* pPort, LPCWSTR szFormat, ...)
 	}
 }
 
-void CMfmLog::Log(int nLevel, LPCWSTR szFormat, ...)
+void CMfmLog::Log(DWORD nLevel, LPCWSTR szFormat, ...)
 {
 	if (m_hLogFile != INVALID_HANDLE_VALUE &&
 		m_nLogLevel >= nLevel)
