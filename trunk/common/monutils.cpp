@@ -20,8 +20,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "stdafx.h"
 #include "monutils.h"
 
-static BOOL IsRootUNCName(LPCWSTR path);
-
 /*
 //-------------------------------------------------------------------------------------
 BOOL Is_CorrectProcessorArchitecture()
@@ -202,25 +200,9 @@ BOOL FilePatternExists(LPCWSTR szFileName)
 //-------------------------------------------------------------------------------------
 BOOL DirectoryExists(LPCWSTR szDirName)
 {
-	WIN32_FIND_DATA wfd;
-	if (wcspbrk(szDirName, L"?*") != NULL)
-		return FALSE;
-	HANDLE hFind = FindFirstFileW(szDirName, &wfd);
-	if (hFind != INVALID_HANDLE_VALUE)
-	{
-		FindClose(hFind);
-		return (wfd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0;
-	}
-	LPWSTR path;
-	WCHAR pathbuf[MAX_PATH];
-	if (wcspbrk(szDirName, L"./\\") &&
-		((path = _wfullpath(pathbuf, szDirName, MAX_PATH)) != NULL) &&
-		(wcslen(path) == 3 || IsRootUNCName(path)) &&
-		GetDriveTypeW(path) > 1)
-	{
-		return TRUE;
-	}
-	return FALSE;
+	DWORD dwAttr = GetFileAttributesW(szDirName);
+	return (dwAttr != INVALID_FILE_ATTRIBUTES) &&
+		((dwAttr & FILE_ATTRIBUTE_DIRECTORY) != 0);
 }
 
 //-------------------------------------------------------------------------------------
@@ -256,50 +238,10 @@ void Trim(LPWSTR szString)
 }
 
 //-------------------------------------------------------------------------------------
-//this was stolen from crt...
-#define ISSLASH(a) ((a) == L'\\')
-
-static BOOL IsRootUNCName(LPCWSTR path)
-{
-    /*
-     * If a root UNC name, path will start with 2 (but not 3) slashes
-     */
-    if ((wcslen(path) >= 5) /* minimum string is "//x/y" */
-        && ISSLASH(path[0]) && ISSLASH(path[1]))
-    {
-		LPCWSTR p = path + 2;
-
-        /*
-         * find the slash between the server name and share name
-         */
-        while (*(++p))
-            if (ISSLASH(*p))
-                break ;
-
-        if (*p && p[1])
-        {
-            /*
-             * is there a further slash?
-             */
-            while (*(++p))
-                if (ISSLASH(*p))
-                    break ;
-
-            /*
-             * just final slash (or no final slash)
-             */
-            if (!*p || !p[1])
-                return TRUE;
-        }
-    }
-
-    return FALSE;
-}
-
-//-------------------------------------------------------------------------------------
 void GetFileParent(LPCWSTR szFile, LPWSTR szParent, size_t count)
 {
-	size_t i = wcslen(szFile) - 1;
+	size_t i, len;
+	i = len = wcslen(szFile) - 1;
 	/*go back until we encounter a colon or backslash(es)*/
 	BOOL bSlashSaw = FALSE;
 	while (i != 0)
@@ -307,7 +249,15 @@ void GetFileParent(LPCWSTR szFile, LPWSTR szParent, size_t count)
 		if (szFile[i] == L':')
 			break;
 		else if (ISSLASH(szFile[i]))
-			bSlashSaw = TRUE; //begin to eat backslashes
+		{
+			if (i == 1 && ISSLASH(szFile[0]))
+			{
+				i = len;
+				break;
+			}
+			else
+				bSlashSaw = TRUE; //begin to eat backslashes
+		}
 		else if (bSlashSaw)
 			break; //last backslash eaten
 		i--;
@@ -323,41 +273,6 @@ void GetFileParent(LPCWSTR szFile, LPWSTR szParent, size_t count)
 	}
 	else
 		szParent[0] = L'\0'; //should never occur...
-}
-
-//-------------------------------------------------------------------------------------
-BOOL RecursiveCreateFolder(LPCWSTR szPath)
-{
-	WCHAR szPathBuf[MAX_PATH];
-	WCHAR szParent[MAX_PATH];
-	LPCWSTR pPath = szPath;
-	size_t len;
-
-	/*strip off leading backslashes*/
-	len = wcslen(szPath);
-	if (len > 0 && ISSLASH(szPath[len - 1]))
-	{
-		/*make a copy of szPath only if needed*/
-		wcscpy_s(szPathBuf, LENGTHOF(szPathBuf), szPath);
-		pPath = szPathBuf;
-		while (len > 0 && ISSLASH(szPathBuf[len - 1]))
-		{
-			szPathBuf[len - 1] = L'\0';
-			len--;
-		}
-	}
-	/*only drive letter left or the directory already exists*/
-	if (len < 3 || DirectoryExists(pPath))
-		return TRUE;
-	else
-	{
-		GetFileParent(pPath, szParent, LENGTHOF(szParent));
-		if (wcscmp(pPath, szParent) == 0)
-			return TRUE;
-		/*our parent must exist before we can get created*/
-		return RecursiveCreateFolder(szParent) &&
-			CreateDirectoryW(pPath, NULL);
-	}
 }
 
 //-------------------------------------------------------------------------------------

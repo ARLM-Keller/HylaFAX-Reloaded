@@ -28,10 +28,8 @@ LPCWSTR CPattern::szDefaultUserCommand = L"";
 //-------------------------------------------------------------------------------------
 CPattern::CPattern(LPCWSTR szPattern, CPort* pPort, BOOL bUserCommand)
 {
-	HANDLE hHeap = GetProcessHeap();
-
-	m_szBuffer = (LPWSTR)HeapAlloc(hHeap, 0, MAXCOMMAND * sizeof(WCHAR));
-	m_szSearchBuffer = (LPWSTR)HeapAlloc(hHeap, 0, MAXCOMMAND * sizeof(WCHAR));
+	m_szBuffer = new WCHAR[MAX_COMMAND];
+	m_szSearchBuffer = new WCHAR[MAX_COMMAND];
 
 	//initialization
 	m_pPort = pPort;
@@ -319,10 +317,8 @@ CPattern::~CPattern()
 		m_pFirstSegment = pSeg;
 	}
 
-	HANDLE hHeap = GetProcessHeap();
-
-	HeapFree(hHeap, 0, m_szBuffer);
-	HeapFree(hHeap, 0, m_szSearchBuffer);
+	delete[] m_szBuffer;
+	delete[] m_szSearchBuffer;
 }
 
 //-------------------------------------------------------------------------------------
@@ -359,7 +355,7 @@ LPWSTR CPattern::Value()
 	{
 		LPCWSTR szVal = pSeg->Value();
 		if (szVal)
-			wcscat_s(m_szBuffer, MAXCOMMAND, szVal);
+			wcscat_s(m_szBuffer, MAX_COMMAND, szVal);
 		pSeg = pSeg->GetNext();
 	}
 	return m_szBuffer;
@@ -374,7 +370,7 @@ LPWSTR CPattern::SearchValue()
 	{
 		LPCWSTR szVal = pSeg->SearchValue();
 		if (szVal)
-			wcscat_s(m_szSearchBuffer, MAXCOMMAND, szVal);
+			wcscat_s(m_szSearchBuffer, MAX_COMMAND, szVal);
 		pSeg = pSeg->GetNext();
 	}
 	return m_szSearchBuffer;

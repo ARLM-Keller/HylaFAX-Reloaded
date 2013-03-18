@@ -56,6 +56,8 @@ MinVersion=0,5.0
 
 LicenseFile=gpl-3.0.rtf
 
+SignTool=lomosign /d "{#AppName}"
+
 [Languages]
 Name: "en"; MessagesFile: "compiler:Default.isl"
 Name: "it"; MessagesFile: "compiler:Languages\Italian.isl"

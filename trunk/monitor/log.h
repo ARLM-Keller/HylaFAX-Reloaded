@@ -40,13 +40,13 @@ public:
 	virtual ~CMfmLog();
 
 public:
-	void Log(int nLevel, LPCWSTR szFormat, ...);
-	void Log(int nLevel, CPort* pPort, LPCWSTR szFormat, ...);
-	void SetLogLevel(int nLevel);
-	int GetLogLevel() const { return m_nLogLevel; }
+	void Log(DWORD nLevel, LPCWSTR szFormat, ...);
+	void Log(DWORD nLevel, CPort* pPort, LPCWSTR szFormat, ...);
+	void SetLogLevel(DWORD nLevel);
+	DWORD GetLogLevel() const { return m_nLogLevel; }
 
 private:
-	int m_nLogLevel;
+	DWORD m_nLogLevel;
 	HANDLE m_hLogFile;
 	WCHAR m_szBuffer[MAXLOGLINE];
 	CRITICAL_SECTION m_CSLog;

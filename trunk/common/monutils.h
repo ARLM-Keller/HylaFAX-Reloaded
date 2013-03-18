@@ -20,6 +20,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef _MONUTILS_H
 #define _MONUTILS_H
 
+#define ISSLASH(a) ((a) == L'\\')
+
 //BOOL Is_CorrectProcessorArchitecture();
 
 BOOL Is_Win2000();
@@ -47,8 +49,6 @@ BOOL DirectoryExists(LPCWSTR szDirName);
 void Trim(LPWSTR szString);
 
 void GetFileParent(LPCWSTR szFile, LPWSTR szParent, size_t count);
-
-BOOL RecursiveCreateFolder(LPCWSTR szPath);
 
 BOOL IsUACEnabled();
 
