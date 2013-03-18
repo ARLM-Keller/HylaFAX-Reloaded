@@ -1,3 +1,7 @@
+Version 0.4.4 (2013-03-18)
+# added code signature
+
+
 Version 0.4.3 (2013-02-06)
 # more bug fixes (-to CLI switch not working anymore)
 
