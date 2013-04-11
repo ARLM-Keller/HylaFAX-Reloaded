@@ -613,6 +613,10 @@ object FAXSend: TFAXSend
       object tsSchedule: TTabSheet
         Caption = 'Schedule'
         ImageIndex = 1
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Label9: TLabel
           Left = 11
           Top = 73
