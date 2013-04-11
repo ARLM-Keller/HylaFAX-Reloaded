@@ -214,7 +214,8 @@ void __fastcall TFAXSend::AddFileToList(const UnicodeString& Title,
 	try {
 		UnicodeString tempnum = Number;
 
-		if (tempnum.Length() > 0 || RegExProcessDocument(FileName, tempnum)) {
+		if (tempnum.Length() > 0 ||
+		(ConfigIni->RegExEnabled && RegExProcessDocument(FileName, tempnum))) {
 			data->FaxNumber = tempnum;
 			data->HasNumber = GetNumbersCount(tempnum) > 0;
 
@@ -692,6 +693,9 @@ void __fastcall TFAXSend::LanguageChanged(TObject *Sender)
 void __fastcall TFAXSend::RegExChanged(TObject *Sender)
 {
 	CleanupRE();
+
+	if (!ConfigIni->RegExEnabled)
+		return;
 
 	//initialize PCRE objects
 	if (ConfigIni->NumberRegEx.Length() > 0)

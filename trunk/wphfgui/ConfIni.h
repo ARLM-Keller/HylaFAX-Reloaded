@@ -90,6 +90,7 @@ private:
 	UnicodeString FODBCUid;
 	UnicodeString FODBCPwd;
 	UnicodeString FNumberRegEx;
+	bool FRegExEnabled;
 	TAddressBookType FAddrBookType;
 	bool FAddrBookLocationChanged, FAddrBookTypeChanged, FLanguageChanged, FRegExChanged;
 	bool FMAPIUseDefProfile;
@@ -159,6 +160,7 @@ public:
 	__property UnicodeString ODBCUid = { read = FODBCUid, write = SetODBCUid };
 	__property UnicodeString ODBCPwd = { read = FODBCPwd, write = SetODBCPwd };
 	__property UnicodeString NumberRegEx = { read = FNumberRegEx, write = SetRegEx };
+	__property bool RegExEnabled = { read = FRegExEnabled, write = FRegExEnabled };
 };
 
 extern TConfigIni *ConfigIni;

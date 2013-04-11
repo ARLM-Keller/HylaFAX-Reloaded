@@ -60,6 +60,7 @@ static const UnicodeString ODBCAuthIdent = L"ODBCAuth";
 static const UnicodeString ODBCUidIdent = L"ODBCUid";
 static const UnicodeString ODBCPwdIdent = L"ODBCPwd";
 static const UnicodeString NumberRegExIdent = L"NumberRegEx";
+static const UnicodeString RegExEnabledIdent = L"RegExEnabled";
 bool TConfigIni::MovingConfigFiles = false;
 UnicodeString TConfigIni::WPHFUserDir = L"";
 UnicodeString TConfigIni::WPHFTempDir = L"";
@@ -73,7 +74,8 @@ __fastcall TConfigIni::TConfigIni(const UnicodeString& IniFile)
 	FAddrBookLocationChanged(false),
 	FRegExChanged(false),
 	FAddrBookType(abNone),
-	FODBCAuth(false)
+	FODBCAuth(false),
+	FRegExEnabled(true)
 {
 	FIniFile = IniFile;
 }
@@ -124,6 +126,7 @@ void __fastcall TConfigIni::Load()
 		ODBCPwd = Ini->ReadString(Section, ODBCPwdIdent, L"");
 		NumberRegEx = Ini->ReadString(Section, NumberRegExIdent,
 			L"#{3}((?:[^#]|#(?!##))+)#{3}");
+		RegExEnabled = Ini->ReadBool(Section, RegExEnabledIdent, true);
 		FireEvents();
 	}
 	__finally {
@@ -191,6 +194,7 @@ void __fastcall TConfigIni::Configure()
 		ConfForm->hODBCUser->ReadOnly = !ODBCAuth;
 		ConfForm->hODBCPassword->ReadOnly = !ODBCAuth;
 		ConfForm->hRegEx->Text = NumberRegEx;
+		ConfForm->hRegExEnabled->Checked = RegExEnabled;
 
 		if (ConfForm->ShowModal() == mrOk) {
 			try {
@@ -231,6 +235,7 @@ void __fastcall TConfigIni::Configure()
 				ODBCNameField = ConfForm->hODBCName->Text;
 				ODBCFaxField = ConfForm->hODBCFax->Text;
 				NumberRegEx = ConfForm->hRegEx->Text;
+				RegExEnabled = ConfForm->hRegExEnabled->Checked;
 
 				FireEvents();
 			}
@@ -278,7 +283,8 @@ void __fastcall TConfigIni::Save()
 		Ini->WriteBool(Section, ODBCAuthIdent, ODBCAuth);
 		Ini->WriteString(Section, ODBCUidIdent, ODBCUid);
 		Ini->WriteString(Section, ODBCPwdIdent, ODBCPwd);
-		Ini->WriteString(Section, NumberRegExIdent, UnicodeString(NumberRegEx));
+		Ini->WriteString(Section, NumberRegExIdent, NumberRegEx);
+		Ini->WriteBool(Section, RegExEnabledIdent, RegExEnabled);
 	}
 	__finally {
 		delete Ini;
