@@ -694,9 +694,6 @@ void __fastcall TFAXSend::RegExChanged(TObject *Sender)
 {
 	CleanupRE();
 
-	if (!ConfigIni->RegExEnabled)
-		return;
-
 	//initialize PCRE objects
 	if (ConfigIni->NumberRegEx.Length() > 0)
 	{
