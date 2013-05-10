@@ -130,7 +130,7 @@ object FAXSend: TFAXSend
       Width = 45
       Height = 13
       Anchors = [akTop, akRight]
-      Caption = 'rel. 0.4.4'
+      Caption = 'rel. 0.4.5'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clGray
       Font.Height = -11
@@ -613,10 +613,6 @@ object FAXSend: TFAXSend
       object tsSchedule: TTabSheet
         Caption = 'Schedule'
         ImageIndex = 1
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Label9: TLabel
           Left = 11
           Top = 73

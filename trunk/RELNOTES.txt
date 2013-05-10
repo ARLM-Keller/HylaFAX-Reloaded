@@ -1,3 +1,7 @@
+Version 0.4.5 (2013-05-10)
+# auto capture can be disabled if not needed
+
+
 Version 0.4.4 (2013-03-18)
 # added code signature
 

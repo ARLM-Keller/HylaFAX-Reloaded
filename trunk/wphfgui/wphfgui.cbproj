@@ -61,67 +61,67 @@
 			<TASM_Debugging>None</TASM_Debugging>
 		</PropertyGroup>
 		<ItemGroup>
-			<CppCompile Include="AddrBookODBC.cpp">
-				<DependentOn>AddrBookODBC.h</DependentOn>
-				<BuildOrder>12</BuildOrder>
+			<CppCompile Include="Select.cpp">
+				<Form>SelectRcpt</Form>
+				<DependentOn>Select.h</DependentOn>
+				<BuildOrder>8</BuildOrder>
 			</CppCompile>
-			<CppCompile Include="ConfIni.cpp">
-				<DependentOn>ConfIni.h</DependentOn>
-				<BuildOrder>2</BuildOrder>
+			<CppCompile Include="ipc.c">
+				<BuildOrder>6</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="AddressBook.cpp">
+				<DependentOn>AddressBook.h</DependentOn>
+				<BuildOrder>3</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="wphfgui.cpp">
+				<BuildOrder>0</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="AddrBookCSV.cpp">
+				<DependentOn>AddrBookCSV.h</DependentOn>
+				<BuildOrder>9</BuildOrder>
+			</CppCompile>
+			<ResFiles Include="wphfgui.res">
+				<BuildOrder>1</BuildOrder>
+			</ResFiles>
+			<CppCompile Include="SendFAX.cpp">
+				<Form>FAXSend</Form>
+				<DependentOn>SendFAX.h</DependentOn>
+				<BuildOrder>1</BuildOrder>
 			</CppCompile>
 			<CppCompile Include="Config.cpp">
 				<Form>ConfigForm</Form>
 				<DependentOn>Config.h</DependentOn>
 				<BuildOrder>4</BuildOrder>
 			</CppCompile>
+			<CppCompile Include="ConfIni.cpp">
+				<DependentOn>ConfIni.h</DependentOn>
+				<BuildOrder>2</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="AddrBookODBC.cpp">
+				<DependentOn>AddrBookODBC.h</DependentOn>
+				<BuildOrder>12</BuildOrder>
+			</CppCompile>
 			<CppCompile Include="Recipient.cpp">
 				<Form>RecipientName</Form>
 				<DependentOn>Recipient.h</DependentOn>
 				<BuildOrder>5</BuildOrder>
 			</CppCompile>
-			<LibFiles Include="libpcre16.lib">
-				<IgnorePath>true</IgnorePath>
-				<BuildOrder>14</BuildOrder>
-			</LibFiles>
-			<CppCompile Include="AddrBookWC.cpp">
-				<DependentOn>AddrBookWC.h</DependentOn>
-				<BuildOrder>11</BuildOrder>
-			</CppCompile>
 			<CppCompile Include="AddrBookMAPI.cpp">
 				<DependentOn>AddrBookMAPI.h</DependentOn>
 				<BuildOrder>11</BuildOrder>
 			</CppCompile>
-			<CppCompile Include="AddressBook.cpp">
-				<DependentOn>AddressBook.h</DependentOn>
-				<BuildOrder>3</BuildOrder>
+			<CppCompile Include="AddrBookWC.cpp">
+				<DependentOn>AddrBookWC.h</DependentOn>
+				<BuildOrder>11</BuildOrder>
 			</CppCompile>
-			<CppCompile Include="ipc.c">
-				<BuildOrder>6</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="Select.cpp">
-				<Form>SelectRcpt</Form>
-				<DependentOn>Select.h</DependentOn>
-				<BuildOrder>8</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="wphfgui.cpp">
-				<BuildOrder>0</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="SendFAX.cpp">
-				<Form>FAXSend</Form>
-				<DependentOn>SendFAX.h</DependentOn>
-				<BuildOrder>1</BuildOrder>
-			</CppCompile>
-			<ResFiles Include="wphfgui.res">
-				<BuildOrder>1</BuildOrder>
-			</ResFiles>
-			<CppCompile Include="AddrBookCSV.cpp">
-				<DependentOn>AddrBookCSV.h</DependentOn>
-				<BuildOrder>9</BuildOrder>
-			</CppCompile>
-			<FormResources Include="Config.dfm"/>
-			<FormResources Include="Recipient.dfm"/>
+			<LibFiles Include="libpcre16.lib">
+				<IgnorePath>true</IgnorePath>
+				<BuildOrder>14</BuildOrder>
+			</LibFiles>
 			<FormResources Include="Select.dfm"/>
 			<FormResources Include="SendFAX.dfm"/>
+			<FormResources Include="Config.dfm"/>
+			<FormResources Include="Recipient.dfm"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>
@@ -148,8 +148,8 @@
 						<VersionInfo Name="AutoIncBuild">True</VersionInfo>
 						<VersionInfo Name="MajorVer">0</VersionInfo>
 						<VersionInfo Name="MinorVer">4</VersionInfo>
-						<VersionInfo Name="Release">4</VersionInfo>
-						<VersionInfo Name="Build">0</VersionInfo>
+						<VersionInfo Name="Release">5</VersionInfo>
+						<VersionInfo Name="Build">1</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">True</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -161,13 +161,13 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName">Lorenzo Monti</VersionInfoKeys>
 						<VersionInfoKeys Name="FileDescription">Winprint HylaFAX Reloaded GUI</VersionInfoKeys>
-						<VersionInfoKeys Name="FileVersion">0.4.4.0</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">0.4.5.1</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName">wphfgui.exe</VersionInfoKeys>
 						<VersionInfoKeys Name="LegalCopyright">Copyright © 2011-2013 Lorenzo Monti. Based on the Winprint HylaFAX project by Michael Stowe. Release under the terms of the GNU GPL license.</VersionInfoKeys>
 						<VersionInfoKeys Name="LegalTrademarks"/>
 						<VersionInfoKeys Name="OriginalFilename"/>
 						<VersionInfoKeys Name="ProductName">Winprint HylaFAX Reloaded</VersionInfoKeys>
-						<VersionInfoKeys Name="ProductVersion">0.4.4</VersionInfoKeys>
+						<VersionInfoKeys Name="ProductVersion">0.4.5</VersionInfoKeys>
 						<VersionInfoKeys Name="Comments">Original project by Michael Stowe. Enhanced by Lorenzo Monti.</VersionInfoKeys>
 					</VersionInfoKeys>
 					<Debugging>
