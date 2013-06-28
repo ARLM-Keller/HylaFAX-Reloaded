@@ -26,6 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include "Config.h"
 #include "ConfIni.h"
+#include "Utils.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "Spin"
@@ -34,8 +35,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #pragma resource "*.dfm"
 
 TConfigForm *ConfigForm;
-
 //---------------------------------------------------------------------------
+
 __fastcall TConfigForm::TConfigForm(TComponent* Owner)
 	: TForm(Owner),
 	Pattern(NULL),
@@ -79,14 +80,14 @@ void __fastcall TConfigForm::btnBrowseClick(TObject *Sender)
 	}
 	CoUninitialize();
 }
-
 //---------------------------------------------------------------------------
+
 void __fastcall TConfigForm::btnDefaultClick(TObject *Sender)
 {
 	hAddressBook->Text = ConfigIni->DefaultAddrBookPath;
 }
-
 //---------------------------------------------------------------------------
+
 void __fastcall TConfigForm::FormCloseQuery(TObject *Sender, bool &CanClose)
 {
 	UnicodeString Path = Trim(hAddressBook->Text);
@@ -111,6 +112,8 @@ void __fastcall TConfigForm::FormCreate(TObject *Sender)
 {
 	TranslateComponent(this, L"wphfgui");
 
+	lblVersion->Caption = _("rel. ") + GetVersionDescription(NULL);
+
 	TStringList *langs = new TStringList();
 	try {
 		DefaultInstance->GetListOfLanguages(L"wphfgui", langs);
@@ -125,7 +128,6 @@ void __fastcall TConfigForm::FormCreate(TObject *Sender)
 	DefaultInstance->TranslateProperties(hLanguage, L"languages");
 }
 //---------------------------------------------------------------------------
-
 
 void __fastcall TConfigForm::hMAPIProfileChange(TObject *Sender)
 {

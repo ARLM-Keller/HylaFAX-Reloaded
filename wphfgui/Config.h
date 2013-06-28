@@ -67,7 +67,7 @@ __published:	// IDE-managed Components
 	TEdit *hAddressBook;
 	TButton *btnBrowse;
 	TButton *btnDefault;
-	TLabel *Label9;
+	TLabel *lblVersion;
 	TLabel *Label11;
 	TComboBox *hLanguage;
 	TLabel *Label12;

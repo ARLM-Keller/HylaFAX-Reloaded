@@ -37,6 +37,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "AddrBookWC.h"
 #include "AddrBookODBC.h"
 #include "Select.h"
+#include "Utils.h"
 #include "ipc.h"
 #include "iapi.h"
 //---------------------------------------------------------------------------
@@ -56,6 +57,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #pragma resource "*.dfm"
 
 #pragma link "gsdll32.lib"
+
+#define COUNTOF(x) (sizeof(x)/sizeof((x)[0]))
 
 TFAXSend *FAXSend;
 
@@ -331,6 +334,72 @@ static DWORD WINAPI PipeProc(void *param) {
 }
 //---------------------------------------------------------------------------
 
+/*
+static DWORD WINAPI PipeProcAnsi(void *param) {
+	LPGSDATA data = (LPGSDATA)param;
+	const unsigned int bufsize = 8192;
+	char *buf;
+	DWORD dwRead;
+	UnicodeString line;
+
+	if ((buf = (char *)VirtualAlloc(NULL, bufsize, MEM_RESERVE | MEM_COMMIT,
+	PAGE_READWRITE)) == NULL)
+		return 1;
+
+	try {
+		for (;;) {
+			BOOL bRes = ReadFile(data->hPipe, buf, bufsize - 1, &dwRead, NULL);
+
+			if (!bRes || dwRead == 0) {
+				//is there any data pending?
+				if (line.Length() > 0)
+					data->pLines->Add(line);
+				break; //done with reading
+			}
+
+			char *ptr = buf;
+			DWORD n;
+			DWORD len = dwRead;
+
+			//copy data line by line
+			for (n = 0; n < len; n++) {
+				if (buf[n] == '\n') {
+					//strip (\r)\n
+					buf[n] = '\0';
+					if (n > 0 && buf[n - 1] == '\r')
+						buf[n - 1] = '\0';
+					//append data
+					line += ptr;
+					line = line.Trim();
+					if (line.Length() > 0)
+						data->pLines->Add(line);
+					//reset and start from next byte
+					line = L"";
+					ptr = &(buf[n + 1]);
+				}
+			}
+
+			//did we reach the end of file and still have data aside?
+			if (n == len - 1) {
+				//strip (\r)\n
+				if (buf[n - 1] == '\r')
+					buf[n - 1] = '\0';
+				buf[len - 1] = '\0';
+				//append data
+				line += ptr;
+				line = line.Trim();
+			}
+		}
+	}
+	__finally {
+		VirtualFree(buf, 0, MEM_RELEASE);
+	}
+
+	return 0;
+}
+//---------------------------------------------------------------------------
+*/
+
 bool __fastcall TFAXSend::FindMatches(const UnicodeString& Line, UnicodeString& Numbers)
 {
 	int offsets[10];
@@ -400,7 +469,11 @@ bool __fastcall TFAXSend::RegExProcessDocument(const UnicodeString& FileName,
 			//so we avoid deadlocks that may be caused by
 			//ghostscript waiting for us to read its output, while we're
 			//waiting for ghostscript to finish :)
+#if 1
 			hThread = CreateThread(NULL, 0, PipeProc, &data, 0, NULL);
+#else
+			hThread = CreateThread(NULL, 0, PipeProcAnsi, &data, 0, NULL);
+#endif
 
 			if (hThread == NULL)
 				return false;
@@ -414,6 +487,7 @@ bool __fastcall TFAXSend::RegExProcessDocument(const UnicodeString& FileName,
 					sExePath
 				};
 				AnsiString sPath = Ansistrings::Format("-I\"%s\"", rec, 1);
+#if 1
 				char *args[] = {
 					"",
 					"-q",
@@ -424,11 +498,29 @@ bool __fastcall TFAXSend::RegExProcessDocument(const UnicodeString& FileName,
 					"-dTextFormat=2",
 					sPath.c_str(),
 					sPipe.c_str(),
-					sFile.c_str()
+					sFile.c_str(),
 				};
+#else
+				char *args[] = {
+					"",
+					"-q",
+					"-dNODISPLAY",
+					"-P-",
+					"-dSAFER",
+					"-dDELAYBIND",
+					"-dWRITESYSTEMDICT",
+					"-dSIMPLE",
+					sPath.c_str(),
+					sPipe.c_str(),
+					"ps2ascii.ps",
+					sFile.c_str(),
+					"-c",
+					"quit",
+				};
+#endif
 
 				//go, ghostscript, go!!!
-				int gscode = gsapi_init_with_args(Fgsinst, 10, args);
+				int gscode = gsapi_init_with_args(Fgsinst, COUNTOF(args), args);
 				gsapi_exit(Fgsinst);
 
 				//wait for our thread
@@ -741,6 +833,8 @@ void __fastcall TFAXSend::CleanupRE()
 
 void __fastcall TFAXSend::FormCreate(TObject *Sender)
 {
+	lblVersion->Caption = _("rel. ") + GetVersionDescription(NULL);
+
 	int i, n;
 
 	hDate->Date = Today();

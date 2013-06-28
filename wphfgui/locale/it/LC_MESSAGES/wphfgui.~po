@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Winprint HylaFAX Reloaded\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-07 09:36+0100\n"
-"PO-Revision-Date: 2013-02-07 09:41+0100\n"
+"POT-Creation-Date: 2013-05-10 11:31+0200\n"
+"PO-Revision-Date: 2013-05-10 11:33+0100\n"
 "Last-Translator: Lorenzo Monti <lomo74@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -42,7 +42,7 @@ msgstr ""
 #. ConfigForm..Panel1..Label9..Caption
 #. FAXSend..Panel1..Label8..Caption
 #: Config.dfm:125
-msgid "rel. 0.4.3"
+msgid "rel. 0.4.5"
 msgstr ""
 
 #. ConfigForm..Panel1..Label12..Caption
@@ -556,6 +556,11 @@ msgstr "Stringa di input:"
 #: Config.dfm:822
 msgid "Captured text:"
 msgstr "Testo catturato:"
+
+#. ConfigForm..tabs..tsAutoNumber..hRegExEnabled..Caption
+#: Config.dfm:848
+msgid "Enabled"
+msgstr "Abilita"
 
 #. RecipientName..Caption
 #: Recipient.dfm:5

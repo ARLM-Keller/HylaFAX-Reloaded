@@ -116,13 +116,14 @@ object ConfigForm: TConfigForm
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object Label9: TLabel
+    object lblVersion: TLabel
       Left = 395
       Top = 76
       Width = 45
       Height = 13
+      Alignment = taRightJustify
       Anchors = [akTop, akRight]
-      Caption = 'rel. 0.4.5'
+      Caption = 'rel. X.X.X'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clGray
       Font.Height = -11

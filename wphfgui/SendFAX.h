@@ -88,7 +88,7 @@ __published:	// IDE-managed Components
 	TIdAntiFreeze *AntiFreeze;
 	TAction *actConfigure;
 	TAction *actClose;
-	TLabel *Label8;
+	TLabel *lblVersion;
 	TJvAppInstances *AppInst;
 	TPopupMenu *popup;
 	TMenuItem *mnuAddfile;
