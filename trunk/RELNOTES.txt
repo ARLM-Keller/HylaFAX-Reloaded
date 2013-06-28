@@ -1,3 +1,7 @@
+Version 0.4.6 (2013-06-28)
+# a bug in Ghostscript caused the GUI to hang in some circumstances
+
+
 Version 0.4.5 (2013-05-10)
 # auto capture can be disabled if not needed
 
