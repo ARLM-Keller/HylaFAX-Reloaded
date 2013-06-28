@@ -125,7 +125,7 @@ Source: "..\Dell\x64\*"; DestDir: "{app}\Dell"; MinVersion: 0.0,6.0; Flags: prom
 ; language files
 Source: "..\wphfgui\locale\*.mo"; DestDir: "{app}\locale"; Flags: recursesubdirs
 ; Ghostscript
-Source: "..\ghostscript\gsdll32.dll"; DestDir: "{app}"; Flags: promptifolder replacesameversion
+Source: "..\ghostscript\bin\gsdll32.dll"; DestDir: "{app}"; Flags: promptifolder replacesameversion
 Source: "..\ghostscript\lib\*"; DestDir: "{app}\lib"; Flags: promptifolder replacesameversion
 
 [Tasks]
