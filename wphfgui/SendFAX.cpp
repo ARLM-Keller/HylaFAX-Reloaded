@@ -1193,9 +1193,14 @@ void __fastcall TFAXSend::actSendExecute(TObject *Sender)
 
 								TFileData *data = static_cast<TFileData *>(lbDocuments->Items->Objects[nrdoc]);
 
-								Numbers->DelimitedText = rbSendTogether->Checked
-									? hFAXNumber->Text
-									: data->FaxNumber;
+								Numbers->DelimitedText = StringReplace(
+									rbSendTogether->Checked
+										? hFAXNumber->Text
+										: data->FaxNumber,
+									L"\"",
+									L"",
+									TReplaceFlags() << rfReplaceAll << rfIgnoreCase
+								);
 
 								//setup FAX
 								for (nrdest = 0; nrdest < Numbers->Count; nrdest++) {
