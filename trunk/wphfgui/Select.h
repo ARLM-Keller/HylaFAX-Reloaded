@@ -50,6 +50,7 @@ private:	// User declarations
 	UnicodeString __fastcall GetNumbers();
 	void __fastcall SetNumbers(const UnicodeString& Value);
 	void __fastcall ToggleNumber(int Index, bool Selected);
+	void __fastcall SplitNumbers(const UnicodeString& Text, TStrings *Dest);
 public:		// User declarations
 	__fastcall TSelectRcpt(TComponent* Owner);
 	__fastcall virtual ~TSelectRcpt();

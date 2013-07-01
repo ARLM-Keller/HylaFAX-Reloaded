@@ -168,9 +168,9 @@ void __fastcall TAddressBookCSV::Load()
 
 		for (i = 0; i < AddrBook->Count; i++) {
 			Temp->DelimitedText = AddrBook->Strings[i];
-			if (Temp->Count >= 2)
-				FNames->AddObject(Trim(Temp->Strings[0]),
-				new TFaxNumber(Trim(Temp->Strings[1])));
+			if (Temp->Count >= 2) {
+				Add(Temp->Strings[0], Temp->Strings[1]);
+			}
 		}
 
 		FIsOnLine = true;

@@ -28,55 +28,74 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
+
 TSelectRcpt *SelectRcpt;
 //---------------------------------------------------------------------------
+
 __fastcall TSelectRcpt::TSelectRcpt(TComponent* Owner)
 	: TForm(Owner)
 {
 	TranslateComponent(this, L"wphfgui");
 
 	FNumbers = new TStringList();
-	FNumbers->Delimiter = L';';
-	FNumbers->StrictDelimiter = true;
 
 	lbNames->Items->Assign(AddressBook);
 }
-
 //---------------------------------------------------------------------------
+
 __fastcall TSelectRcpt::~TSelectRcpt()
 {
 	delete FNumbers;
 }
-
 //---------------------------------------------------------------------------
+
 UnicodeString __fastcall TSelectRcpt::GetNumbers()
 {
-	return FNumbers->DelimitedText;
-}
+	UnicodeString Result;
 
+	for (int i = 0; i < FNumbers->Count; i++)
+		Result += FNumbers->Strings[i] + L";";
+
+	return Result;
+}
 //---------------------------------------------------------------------------
+
+void __fastcall TSelectRcpt::SplitNumbers(const UnicodeString& Text, TStrings *Dest)
+{
+	UnicodeString Temp;
+	bool bInQuotes = false;
+
+	Dest->Clear();
+
+	for (int i = 1; i <= Text.Length(); i++) {
+		if (Text[i] == L';') {
+			if (bInQuotes) {
+				Temp += Text[i];
+			} else {
+				Temp = Temp.Trim();
+				if (Temp.Length() > 0)
+					Dest->Add(Temp);
+				Temp = L"";
+			}
+		} else if (Text[i] == L'"') {
+			bInQuotes = !bInQuotes;
+			Temp += Text[i];
+		} else {
+			Temp += Text[i];
+		}
+	}
+
+	Temp = Temp.Trim();
+	if (Temp.Length() > 0)
+		Dest->Add(Temp);
+}
+//---------------------------------------------------------------------------
+
 void __fastcall TSelectRcpt::SetNumbers(const UnicodeString& Value)
 {
 	int i, pos;
-	TStringList *Temp = new TStringList();
 
-	try {
-		FNumbers->Clear();
-
-		Temp->Delimiter = L';';
-		Temp->StrictDelimiter = true;
-		Temp->DelimitedText = Value;
-
-		for (i = 0; i < Temp->Count; i++) {
-			UnicodeString Number = Trim(Temp->Strings[i]);
-			if (Number.Length() > 0) {
-				FNumbers->Add(Number);
-			}
-		}
-	}
-	__finally {
-		delete Temp;
-	}
+	SplitNumbers(Value, FNumbers);
 
 	lbNames->CheckAll(cbUnchecked, false, false);
 
@@ -85,16 +104,16 @@ void __fastcall TSelectRcpt::SetNumbers(const UnicodeString& Value)
 			lbNames->Checked[pos] = true;
     }
 }
-
 //---------------------------------------------------------------------------
+
 void __fastcall TSelectRcpt::FormConstrainedResize(TObject *Sender, int &MinWidth,
 		  int &MinHeight, int &MaxWidth, int &MaxHeight)
 {
 	MinHeight = 150;
 	MinWidth = 400;
 }
-
 //---------------------------------------------------------------------------
+
 void __fastcall TSelectRcpt::ToggleNumber(int Index, bool Selected)
 {
 	UnicodeString Number = AddressBook->Numbers[Index];
@@ -108,14 +127,14 @@ void __fastcall TSelectRcpt::ToggleNumber(int Index, bool Selected)
 			FNumbers->Delete(pos);
 	}
 }
-
 //---------------------------------------------------------------------------
+
 void __fastcall TSelectRcpt::lbNamesClickCheck(TObject *Sender)
 {
 	ToggleNumber(lbNames->ItemIndex, lbNames->Checked[lbNames->ItemIndex]);
 }
-
 //---------------------------------------------------------------------------
+
 void __fastcall TSelectRcpt::mnuSelectAllClick(TObject *Sender)
 {
 	int i;
