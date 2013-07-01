@@ -25,10 +25,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <tchar.h>
 #include "IdHTTP.hpp"
 //---------------------------------------------------------------------------
+USEFORM("Recipient.cpp", RecipientName);
+USEFORM("Config.cpp", ConfigForm);
 USEFORM("Select.cpp", SelectRcpt);
 USEFORM("SendFAX.cpp", FAXSend);
-USEFORM("Config.cpp", ConfigForm);
-USEFORM("Recipient.cpp", RecipientName);
+USEFORM("Confirm.cpp", Confirmation);
 //---------------------------------------------------------------------------
 #pragma link "gnugettext.lib"
 #pragma link "odbc32.lib"
