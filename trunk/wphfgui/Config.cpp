@@ -110,6 +110,7 @@ void __fastcall TConfigForm::FormConstrainedResize(TObject *Sender, int &MinWidt
 
 void __fastcall TConfigForm::FormCreate(TObject *Sender)
 {
+	TP_Ignore(this, L"lblVersion.Caption"); // version label excluded
 	TranslateComponent(this, L"wphfgui");
 
 	lblVersion->Caption = _("rel. ") + GetVersionDescription(NULL);

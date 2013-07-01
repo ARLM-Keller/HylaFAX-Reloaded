@@ -642,6 +642,7 @@ __fastcall TFAXSend::TFAXSend(TComponent* Owner)
 	InitializeCriticalSection(&CSUserInterface);
 
 	//first translate the form
+	TP_Ignore(this, L"lblVersion.Caption"); // version label excluded
 	TranslateComponent(this, L"wphfgui");
 
 	//create config ini
