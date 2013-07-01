@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Winprint HylaFAX Reloaded\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-06 11:24+0100\n"
-"PO-Revision-Date: 2013-02-06 22:58+0100\n"
+"POT-Creation-Date: 2013-02-07 09:36+0100\n"
+"PO-Revision-Date: 2013-02-07 20:51+0100\n"
 "Last-Translator: Bodo Meissner <bomm@users.sourceforge.net>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 #. ConfigForm..Caption
 #. ConfigForm..Panel1..Label5..Caption
-#: Config.dfm:7
+#: Config.dfm:7  Config.dfm:111
 msgid "Configure HylaFAX Client"
 msgstr "Konfiguriere HylaFAX-Client"
 
@@ -34,40 +34,41 @@ msgstr "Konfiguriere HylaFAX-Client"
 #. FAXSend..Panel1..Label8..Font.Name
 #. FAXSend..Panel1..Label12..Font.Name
 #. FAXSend..Panel2..Panel4..Label7..Font.Name
-#: Config.dfm:14 Recipient.dfm:12 Select.dfm:11 SendFAX.dfm:13 SendFAX.dfm:109
+#: Config.dfm:14  Config.dfm:115 Config.dfm:129 Config.dfm:143 Config.dfm:157
+#: Recipient.dfm:12 Select.dfm:11 SendFAX.dfm:13 SendFAX.dfm:109
 #: SendFAX.dfm:123 SendFAX.dfm:137 SendFAX.dfm:151 SendFAX.dfm:193
 msgid "Tahoma"
 msgstr ""
 
 #. ConfigForm..Panel1..Label9..Caption
 #. FAXSend..Panel1..Label8..Caption
-#: Config.dfm:125
+#: Config.dfm:125  SendFAX.dfm:133
 msgid "rel. 0.4.3"
 msgstr ""
 
 #. ConfigForm..Panel1..Label12..Caption
 #. FAXSend..Panel1..Label12..Caption
-#: Config.dfm:139
+#: Config.dfm:139  SendFAX.dfm:147
 msgid "Winprint HylaFAX Reloaded"
 msgstr ""
 
 #. ConfigForm..Panel1..Label6..Caption
 #. FAXSend..Panel1..Label2..Caption
-#: Config.dfm:153
+#: Config.dfm:153  SendFAX.dfm:119
 msgid "Enhanced by Lorenzo Monti"
 msgstr "Erweitert durch Lorenzo Monti"
 
 #. ConfigForm..Panel3..btnOK..Caption
 #. RecipientName..OK..Caption
 #. SelectRcpt..OK..Caption
-#: Config.dfm:174
+#: Config.dfm:174  Recipient.dfm:60 Select.dfm:41
 msgid "OK"
 msgstr ""
 
 #. ConfigForm..Panel3..btnCancel..Caption
 #. RecipientName..Cancel..Caption
 #. SelectRcpt..Cancel..Caption
-#: Config.dfm:185
+#: Config.dfm:185  Recipient.dfm:71 Select.dfm:53
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -108,13 +109,13 @@ msgstr "Standard-Benachrichtigung"
 
 #. ConfigForm..tabs..tsMain..Label3..Caption
 #. ConfigForm..tabs..tsAddrBook..gbODBC..Label17..Caption
-#: Config.dfm:259
+#: Config.dfm:259  Config.dfm:653
 msgid "Password"
 msgstr "Passwort"
 
 #. ConfigForm..tabs..tsMain..Label2..Caption
 #. ConfigForm..tabs..tsAddrBook..gbODBC..Label16..Caption
-#: Config.dfm:267
+#: Config.dfm:267  Config.dfm:646
 msgid "Username"
 msgstr "Benutzername"
 
@@ -125,7 +126,7 @@ msgstr "HylaFAX-Server-Adresse"
 
 #. ConfigForm..tabs..tsMain..Label21..Caption
 #. FAXSend..Panel2..PageControl1..tsSchedule..Label13..Caption
-#: Config.dfm:283
+#: Config.dfm:283  SendFAX.dfm:646
 msgid "Max dials"
 msgstr "Wahlversuche"
 
@@ -136,7 +137,7 @@ msgstr "Auswahl der Auflösung. \"Fein\" sollte normalerweise ausreichen."
 
 #. ConfigForm..tabs..tsMain..hResolution..Text
 #. ConfigForm..tabs..tsMain..hResolution....Items.Strings
-#: Config.dfm:302
+#: Config.dfm:302  Config.dfm:305
 msgid "Fine"
 msgstr "Fein"
 
@@ -167,7 +168,7 @@ msgstr "Auswahl der Ereignisse, bei denen eine Benachrichtigung gesendet wird."
 
 #. ConfigForm..tabs..tsMain..hNotificationType..Text
 #. ConfigForm..tabs..tsMain..hNotificationType....Items.Strings
-#: Config.dfm:319
+#: Config.dfm:319  Config.dfm:321
 msgid "Failure and Success"
 msgstr "Bei Fehler und Erfolg"
 
@@ -182,11 +183,9 @@ msgid "Failure Only"
 msgstr "Nur bei Fehlern"
 
 #. ConfigForm..tabs..tsMain..hNotificationType....Items.Strings
-#. ConfigForm..tabs..tsAddrBook..hAddrBookType..Text
-#. ConfigForm..tabs..tsAddrBook..hAddrBookType....Items.Strings
 #: Config.dfm:324
-msgid "None"
-msgstr "Keine"
+msgid "Never"
+msgstr "Nie"
 
 #. ConfigForm..tabs..tsMain..hPageSize..Hint
 #: Config.dfm:331
@@ -195,7 +194,7 @@ msgstr "Auswahl der Seitengröße."
 
 #. ConfigForm..tabs..tsMain..hPageSize..Text
 #. ConfigForm..tabs..tsMain..hPageSize....Items.Strings
-#: Config.dfm:336
+#: Config.dfm:336  Config.dfm:338
 msgid "US Letter"
 msgstr ""
 
@@ -213,7 +212,7 @@ msgstr ""
 
 #. ConfigForm..tabs..tsMain..hDefaultEmail..Hint
 #. FAXSend..Panel2..PageControl1..tsFax..hNotifyEmail..Hint
-#: Config.dfm:355
+#: Config.dfm:355  SendFAX.dfm:580
 msgid "Events will be notified to this email address."
 msgstr "Benachrichtigungen werden an diese E-Mail-Adresse gesendet."
 
@@ -229,7 +228,7 @@ msgstr "HylaFAX-Passwort. (Einrichten mit faxadduser auf dem Server.)"
 
 #. ConfigForm..tabs..tsMain..hPassword..PasswordChar
 #. ConfigForm..tabs..tsAddrBook..gbODBC..hODBCPassword..PasswordChar
-#: Config.dfm:367
+#: Config.dfm:367  Config.dfm:700
 msgid "●"
 msgstr ""
 
@@ -258,7 +257,7 @@ msgstr ""
 
 #. ConfigForm..tabs..tsMain..hDials..Hint
 #. FAXSend..Panel2..PageControl1..tsSchedule..hDials..Hint
-#: Config.dfm:397
+#: Config.dfm:397  SendFAX.dfm:716
 msgid "0 = use server default"
 msgstr "0 = Standardeinstellung des Servers"
 
@@ -287,7 +286,7 @@ msgstr ""
 msgid "If flagged, IP address returned by PASV command is ignored."
 msgstr ""
 "Falls gewählt, wird die vom PASV-Kommando gelieferte IP-Adresse ignoriert. "
-"Dies kann bei Servern hinter einem Router mit NAT erfrórderlich sein."
+"Dies kann bei Servern hinter einem Router mit NAT erforderlich sein."
 
 #. ConfigForm..tabs..tsMain..gbFTP..hPassiveIPIgnore..Caption
 #: Config.dfm:438
@@ -338,7 +337,7 @@ msgstr "Adressbuch-Typ"
 
 #. ConfigForm..tabs..tsAddrBook..gbAddressBook..Caption
 #. ConfigForm..tabs..tsAddrBook..hAddrBookType....Items.Strings
-#: Config.dfm:526
+#: Config.dfm:526  Config.dfm:584
 msgid "CSV"
 msgstr ""
 
@@ -384,9 +383,15 @@ msgstr "Standard"
 msgid "Choose the type of address book."
 msgstr "Wählen Sie die Art des Adressbuchs."
 
+#. ConfigForm..tabs..tsAddrBook..hAddrBookType..Text
+#. ConfigForm..tabs..tsAddrBook..hAddrBookType....Items.Strings
+#: Config.dfm:581  Config.dfm:583
+msgid "None"
+msgstr "Kein Adressbuch"
+
 #. ConfigForm..tabs..tsAddrBook..hAddrBookType....Items.Strings
 #. ConfigForm..tabs..tsAddrBook..gbMAPI..Caption
-#: Config.dfm:585
+#: Config.dfm:585  Config.dfm:595
 msgid "Extended MAPI"
 msgstr "Erweitertes MAPI"
 
@@ -397,7 +402,7 @@ msgstr "Windows-Kontakte"
 
 #. ConfigForm..tabs..tsAddrBook..hAddrBookType....Items.Strings
 #. ConfigForm..tabs..tsAddrBook..gbODBC..Caption
-#: Config.dfm:587
+#: Config.dfm:587  Config.dfm:632
 msgid "ODBC"
 msgstr ""
 
@@ -443,17 +448,17 @@ msgstr ""
 #. ConfigForm..tabs..tsAddrBook..gbODBC..hODBCUser..Hint
 #: Config.dfm:691
 msgid "Optional. User name for the ODBC connection."
-msgstr "Optional. Benutzername für die ODBC-Verbindung."
+msgstr "Benutzername für die ODBC-Verbindung, falls erforderlich."
 
 #. ConfigForm..tabs..tsAddrBook..gbODBC..hODBCPassword..Hint
 #: Config.dfm:699
 msgid "Optional. Password for the ODBC connection."
-msgstr "Optional. Passwort für die ODBC-Verbindung."
+msgstr "Passwort für die ODBC-Verbindung, falls erforderlich."
 
 #. ConfigForm..tabs..tsAddrBook..gbODBC..hODBCFax..Hint
 #: Config.dfm:708
 msgid "Name of the field containing the \"Fax number\"."
-msgstr "Name des Felds, das die Faxnummer enthält."
+msgstr "Name des Feldes, das die Faxnummer enthält."
 
 #. ConfigForm..tabs..tsAddrBook..gbODBC..hODBCTable..Hint
 #: Config.dfm:716
@@ -463,7 +468,7 @@ msgstr "Name der Tabelle mit den Daten."
 #. ConfigForm..tabs..tsAddrBook..gbODBC..hODBCName..Hint
 #: Config.dfm:724
 msgid "Name of the field containing the \"Recipient\"."
-msgstr "Name des Feld, das den Empfängernamen enthält."
+msgstr "Name des Feldes, das den Empfängernamen enthält."
 
 #. ConfigForm..tabs..tsAddrBook..gbODBC..hODBCAuth....Hint
 #: Config.dfm:734
@@ -514,8 +519,8 @@ msgid ""
 msgstr ""
 "<b>HINWEIS:</b> Der reguläre Ausdruck zum Heraussuchen der Faxnummer "
 "<b>MUSS</b> eine<br>\n"
-"Gruppierung mit Rückwärts-Referenz (capturing group) enthalten. Dies ist "
-"eine Gruppierung mit runden Klammern.<br>\n"
+"Gruppierung mit Rückwärts-Referenz (capturing group) enthalten.<br>\n"
+"Dies ist eine Gruppierung mit runden Klammern.<br>\n"
 "Als Faxnummer wird der Inhalt der ersten Gruppe verwendet.<br>\n"
 "Beispiel:<br>\n"
 "regex = XXX<b><font color=\"clBlack\" bgcolor=\"clYellow\">(\\d+)</font></"
@@ -587,13 +592,13 @@ msgstr "Empfänger auswählen"
 
 #. SelectRcpt..popup..mnuSelectAll..Caption
 #. FAXSend..popup..mnuSelectAll..Caption
-#: Select.dfm:62
+#: Select.dfm:62  SendFAX.dfm:830
 msgid "Select All"
 msgstr "Alle auswählen"
 
 #. SelectRcpt..popup..mnuSelectNone..Caption
 #. FAXSend..popup..mnuSelectNone..Caption
-#: Select.dfm:66
+#: Select.dfm:66  SendFAX.dfm:834
 msgid "Select None"
 msgstr "Keine auswählen"
 
@@ -615,8 +620,7 @@ msgstr "Zu sendende Dokumente:"
 #. FAXSend..Panel2..Panel4..Label7..Caption
 #: SendFAX.dfm:189
 msgid "You can append new pages, or send selected documents now."
-msgstr ""
-"Sie können neue Seiten anfügen oder die ausgewählten Dokumente jetzt senden."
+msgstr "Sie können Seiten hinzufügen oder ausgewählte Dokumente jetzt senden."
 
 #. FAXSend..Panel2..Panel4..lbDocuments....Hint
 #: SendFAX.dfm:206
@@ -627,43 +631,43 @@ msgstr ""
 
 #. FAXSend..Panel2..Panel4..btnUp..Caption
 #. FAXSend..actions..actUp..Caption
-#: SendFAX.dfm:227
+#: SendFAX.dfm:226  SendFAX.dfm:768
 msgid "Up"
 msgstr "Hoch"
 
 #. FAXSend..Panel2..Panel4..btnDown..Caption
 #. FAXSend..actions..actDown..Caption
-#: SendFAX.dfm:369
+#: SendFAX.dfm:368  SendFAX.dfm:772
 msgid "Down"
 msgstr "Runter"
 
 #. FAXSend..Panel2..PageControl1..tsFax..Caption
-#: SendFAX.dfm:516
+#: SendFAX.dfm:514
 msgid "Fax"
 msgstr ""
 
 #. FAXSend..Panel2..PageControl1..tsFax..Label1..Caption
-#: SendFAX.dfm:529
+#: SendFAX.dfm:524
 msgid "FAX numbers"
 msgstr "Fax-Nummern"
 
 #. FAXSend..Panel2..PageControl1..tsFax..Label3..Caption
-#: SendFAX.dfm:537
+#: SendFAX.dfm:532
 msgid "Notify E-Mail"
 msgstr "Benachrichtigungs-E-Mail"
 
 #. FAXSend..Panel2..PageControl1..tsFax..rbSendTogether..Caption
-#: SendFAX.dfm:544
+#: SendFAX.dfm:539
 msgid "Send as a single fax"
 msgstr "Zusammen als ein Fax senden"
 
 #. FAXSend..Panel2..PageControl1..tsFax..rbSendIndividually..Caption
-#: SendFAX.dfm:555
+#: SendFAX.dfm:550
 msgid "Send individually"
 msgstr "Einzeln senden"
 
 #. FAXSend..Panel2..PageControl1..tsFax..hFAXNumber..Hint
-#: SendFAX.dfm:564
+#: SendFAX.dfm:559
 msgid "Enter multiple recipients separated by semicolons."
 msgstr "Mehrere Empfänger getrennt durch Semikolon [;] eintragen."
 
@@ -674,94 +678,94 @@ msgstr "Mehrere Empfänger getrennt durch Semikolon [;] eintragen."
 # D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:275
 # D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:828
 #. FAXSend..Panel2..PageControl1..tsFax..ABNames..Text
-#: SendFAX.dfm:577
+#: SendFAX.dfm:572
 msgid "Select from address book"
 msgstr "Wählen Sie aus dem Adressbuch"
 
 #. FAXSend..Panel2..PageControl1..tsSchedule..Caption
-#: SendFAX.dfm:619
+#: SendFAX.dfm:614
 msgid "Schedule"
 msgstr "Zeitplan"
 
 #. FAXSend..Panel2..PageControl1..tsSchedule..Label9..Caption
-#: SendFAX.dfm:629
+#: SendFAX.dfm:622
 msgid "Keep retrying for"
 msgstr "Wiederhole bis zu"
 
 #. FAXSend..Panel2..PageControl1..tsSchedule..Label11..Caption
-#: SendFAX.dfm:637
+#: SendFAX.dfm:630
 msgid "days"
 msgstr "Tage"
 
 #. FAXSend..Panel2..PageControl1..tsSchedule..Label10..Caption
-#: SendFAX.dfm:645
+#: SendFAX.dfm:638
 msgid "hours"
 msgstr "Stunden"
 
 #. FAXSend..Panel2..PageControl1..tsSchedule..rbSendNow..Caption
-#: SendFAX.dfm:661
+#: SendFAX.dfm:653
 msgid "Send immediately"
 msgstr "Sofort senden"
 
 #. FAXSend..Panel2..PageControl1..tsSchedule..rbPostpone..Caption
-#: SendFAX.dfm:672
+#: SendFAX.dfm:664
 msgid "Postpone to"
 msgstr "Senden am"
 
 #. FAXSend..Panel2..PageControl1..tsSchedule..hTime..Format
 #. FAXSend..Panel2..PageControl1..tsSchedule..hHours..Format
-#: SendFAX.dfm:692
+#: SendFAX.dfm:684  SendFAX.dfm:706
 msgid "HH:mm"
 msgstr ""
 
 #. FAXSend..actions..actSend..Caption
-#: SendFAX.dfm:772
+#: SendFAX.dfm:764
 msgid "Send"
 msgstr "Senden"
 
 #. FAXSend..actions..actSave..Caption
-#: SendFAX.dfm:784
+#: SendFAX.dfm:776
 msgid "Save Number"
 msgstr "Nummer speichern"
 
 #. FAXSend..actions..actDelete..Caption
-#: SendFAX.dfm:788
+#: SendFAX.dfm:780
 msgid "Delete Entry"
 msgstr "Eintrag löschen"
 
 #. FAXSend..actions..actConfigure..Caption
-#: SendFAX.dfm:792
+#: SendFAX.dfm:784
 msgid "Configure"
 msgstr "Konfigurieren"
 
 #. FAXSend..actions..actClose..Caption
-#: SendFAX.dfm:796
+#: SendFAX.dfm:788
 msgid "Close"
-msgstr "Schliessen"
+msgstr "Schließen"
 
 #. FAXSend..actions..actSelect..Caption
-#: SendFAX.dfm:800
+#: SendFAX.dfm:792
 msgid "Select..."
 msgstr "Auswahl..."
 
 #. FAXSend..popup..mnuAddfile..Caption
-#: SendFAX.dfm:834
+#: SendFAX.dfm:826
 msgid "Add file..."
 msgstr "Datei hinzufügen..."
 
 #. FAXSend..opendlg..Filter
-#: SendFAX.dfm:847
+#: SendFAX.dfm:839
 msgid "All supported files|*.ps;*.pdf;*.tif;*.tiff;*.pcl|All files|*.*"
 msgstr ""
 "Unterstütze Dateiformate|*.ps;*.pdf;*.tif;*.tiff;*.pcl|Alle Dateien|*.*"
 
 #. FAXSend..checkip..Request.Accept
-#: SendFAX.dfm:863
+#: SendFAX.dfm:855
 msgid "text/html, */*"
 msgstr ""
 
 #. FAXSend..checkip..Request.UserAgent
-#: SendFAX.dfm:865
+#: SendFAX.dfm:857
 msgid "Mozilla/3.0 (compatible; Indy Library)"
 msgstr ""
 
