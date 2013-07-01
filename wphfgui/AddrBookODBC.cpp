@@ -169,7 +169,7 @@ void __fastcall TAddressBookODBC::Load()
 				throw new EAddressBookException(_(L"Unable to fetch ODBC data: ") +
 				GetSQLMessages(SQL_HANDLE_STMT, hStmt));
 			} else if (rc == SQL_SUCCESS || rc == SQL_SUCCESS_WITH_INFO) {
-				FNames->AddObject(szName, new TFaxNumber(szPhone));
+				Add(szName, szPhone);
 			}
 		} while (rc != SQL_NO_DATA);
 

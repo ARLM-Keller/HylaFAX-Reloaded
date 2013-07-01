@@ -125,8 +125,7 @@ void __fastcall TAddressBookMAPI::GetContents(LPMAPICONTAINER pContainer,
 
 						//add number to our address book
 						if (PV_mail && *PV_mail->Value.lpszW)
-							FNames->AddObject(disp,
-							new TFaxNumber(PV_mail->Value.lpszW));
+							Add(disp, PV_mail->Value.lpszW);
 
 #ifdef MAPIDEBUG
 						if (PV_mail && *PV_mail->Value.lpszW)

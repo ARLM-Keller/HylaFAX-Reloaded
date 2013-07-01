@@ -25,6 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #pragma hdrstop
 
 #include "AddressBook.h"
+#include "Utils.h"
 #include "ConfIni.h"
 
 #pragma package(smart_init)
@@ -117,8 +118,18 @@ void __fastcall TAddressBook::AssignTo(TPersistent* Dest)
 		}
 	}
 }
-
 //---------------------------------------------------------------------------
+
+void __fastcall TAddressBook::Add(const UnicodeString& AName,
+	UnicodeString ANumber)
+{
+	FNames->AddObject(
+		AName.Trim(),
+		new TFaxNumber(PurgeNumber(ANumber))
+	);
+}
+//---------------------------------------------------------------------------
+
 int __fastcall TAddressBook::IndexOfName(const UnicodeString& Name)
 {
 	return FNames->IndexOf(Name);
@@ -130,7 +141,8 @@ int __fastcall TAddressBook::IndexOfNumber(const UnicodeString& Number)
 	int i;
 
 	for (i = 0; i < FNames->Count; i++) {
-		if (static_cast<TFaxNumber *>(FNames->Objects[i])->Number == Number) {
+		TFaxNumber *obj = static_cast<TFaxNumber *>(FNames->Objects[i]);
+		if (obj->Number == Number) {
 			return i;
 		}
 	}

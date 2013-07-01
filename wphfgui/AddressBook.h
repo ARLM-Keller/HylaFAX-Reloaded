@@ -60,6 +60,8 @@ protected:
 	TAddressBookChangeEvent FOnAddressBookChanged;
 	TAddressBookDuplicateEvent FOnAddressBookDuplicate;
 	virtual void __fastcall AssignTo(TPersistent* Dest);
+	virtual void __fastcall Add(const UnicodeString& AName,
+		UnicodeString ANumber);
 
 public:
 	__fastcall TAddressBook();

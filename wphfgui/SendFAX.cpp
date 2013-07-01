@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <vcl.h>
 #include <JclDateTime.hpp>
 #include <DateUtils.hpp>
+#include <StrUtils.hpp>
 #include <Ansistrings.hpp>
 #include <shlobj.h>
 #include <gnugettext.hpp>
@@ -58,6 +59,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #pragma resource "*.dfm"
 
 #pragma link "gsdll32.lib"
+
+//see QC #86394
+#pragma alias "@Strutils@ReplaceTextW$qqrx20System@UnicodeStringt1t1"="@Strutils@ReplaceText$qqrx20System@UnicodeStringt1t1"
 
 #define COUNTOF(x) (sizeof(x)/sizeof((x)[0]))
 
@@ -1193,13 +1197,12 @@ void __fastcall TFAXSend::actSendExecute(TObject *Sender)
 
 								TFileData *data = static_cast<TFileData *>(lbDocuments->Items->Objects[nrdoc]);
 
-								Numbers->DelimitedText = StringReplace(
+								Numbers->DelimitedText = ReplaceText(
 									rbSendTogether->Checked
 										? hFAXNumber->Text
 										: data->FaxNumber,
 									L"\"",
-									L"",
-									TReplaceFlags() << rfReplaceAll << rfIgnoreCase
+									L""
 								);
 
 								//setup FAX
@@ -1525,10 +1528,7 @@ void __fastcall TFAXSend::actSaveExecute(TObject *Sender)
 	if (!AddressBook || !FHasNumber || FHasManyNumbers)
 		return;
 
-	UnicodeString Number = ReplaceStr(hFAXNumber->Text, L";", L"").Trim();
-
-	if (Number.Length() == 0)
-		return;
+	UnicodeString Number = PurgeNumber(hFAXNumber->Text);
 
 	UnicodeString RecipientName;
 
@@ -1698,6 +1698,7 @@ int __fastcall TFAXSend::GetNumbersCount(const UnicodeString& Numbers)
 	int i, count = 0;
 	bool bSemicolonSaw = false;
 	bool bDigitSaw = false;
+	bool bInQuotes = false;
 
 	for (i = 1; i <= Numbers.Length(); i++) {
 		if (Numbers[i] >= L'0' && Numbers[i] <= L'9') {
@@ -1710,10 +1711,16 @@ int __fastcall TFAXSend::GetNumbersCount(const UnicodeString& Numbers)
 				count++;
 				bDigitSaw = true;
 			}
-		} else if (Numbers[i] == L';') {
+		} else if (Numbers[i] == L';' && !bInQuotes) {
 			bDigitSaw = false;
 			bSemicolonSaw = true;
-		}
+		} else if (Numbers[i] == L'"') {
+			bInQuotes = !bInQuotes;
+			if (bInQuotes) {
+				bSemicolonSaw = false;
+				bDigitSaw = false;
+			}
+        }
 	}
 
 	return count;
