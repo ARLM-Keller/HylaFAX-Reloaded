@@ -31,6 +31,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include "SendFAX.h"
 #include "Recipient.h"
+#include "Confirm.h"
 #include "ConfIni.h"
 #include "AddrBookCSV.h"
 #include "AddrBookMAPI.h"
@@ -1037,6 +1038,8 @@ void __fastcall TFAXSend::actSendExecute(TObject *Sender)
 							FTPActivedata->Active = true;
 						}
 
+						int submitted = 0;
+
 						try {
 							//discard greetings
 							do {
@@ -1184,8 +1187,6 @@ void __fastcall TFAXSend::actSendExecute(TObject *Sender)
 								FTPctrl->GetResponse(226, TEncoding::ASCII); // Discard
 							} // end for loop upload documents
 
-							bool first = true;
-
 							for (nrdoc = 0; nrdoc < lbDocuments->Items->Count; nrdoc++) {
 								if (!lbDocuments->Checked[nrdoc])
 									continue;
@@ -1228,7 +1229,7 @@ void __fastcall TFAXSend::actSendExecute(TObject *Sender)
 									if (Number.Length() == 0)
 										continue;
 
-									if (!first)
+									if (submitted > 0)
 										FTPctrl->SendCmd(L"JOB DEFAULT", 200, TEncoding::ASCII);
 
 									FTPctrl->SendCmd(L"JNEW", 200, TEncoding::ASCII);
@@ -1344,9 +1345,9 @@ void __fastcall TFAXSend::actSendExecute(TObject *Sender)
 									//go!
 									FTPctrl->SendCmd(L"JSUBM", 200, TEncoding::ASCII);
 
-									JobConfirm += (first ? L"" : L"\r\n") + FTPctrl->LastCmdResult->Text->Strings[0];
+									JobConfirm += (submitted == 0 ? L"" : L"\r\n") + FTPctrl->LastCmdResult->Text->Strings[0];
 
-									first = false;
+									submitted++;
 								} // end for loop numbers
 
 								// if all documents sent as a single fax, exit loop,
@@ -1362,8 +1363,21 @@ void __fastcall TFAXSend::actSendExecute(TObject *Sender)
 						}
 
 						//all fine
-						if (!FAutoClose)
-							MessageDlg(JobConfirm, mtInformation, TMsgDlgButtons() << mbOK, 0);
+						if (!FAutoClose) {
+							//MessageDlg(JobConfirm, mtInformation, TMsgDlgButtons() << mbOK, 0);
+							UnicodeString fmt = ngettext(L"%d fax job submitted.", L"%d fax jobs submitted.", submitted);
+							TConfirmation *form = new TConfirmation(this);
+							try {
+								TVarRec args[] = {
+									submitted
+								};
+								form->Result->Caption = Format(fmt, args, 1);
+								form->Messages->Lines->Text = JobConfirm;
+								form->ShowModal();
+							} __finally {
+								delete form;
+							}
+						}
 					}
 					__finally
 					{

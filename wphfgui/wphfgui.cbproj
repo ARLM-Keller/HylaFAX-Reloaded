@@ -122,10 +122,16 @@
 				<DependentOn>AddrBookCSV.h</DependentOn>
 				<BuildOrder>9</BuildOrder>
 			</CppCompile>
+			<CppCompile Include="Confirm.cpp">
+				<Form>Confirmation</Form>
+				<DependentOn>Confirm.h</DependentOn>
+				<BuildOrder>15</BuildOrder>
+			</CppCompile>
 			<FormResources Include="Recipient.dfm"/>
 			<FormResources Include="Config.dfm"/>
 			<FormResources Include="Select.dfm"/>
 			<FormResources Include="SendFAX.dfm"/>
+			<FormResources Include="Confirm.dfm"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>

@@ -4,5 +4,8 @@
     <Transaction>2012/11/17 17:09:39.224.lib,D:\proj\wphf-reloaded\wphfgui\libpcre.lib=</Transaction>
     <Transaction>2013/06/28 14:25:40.659.cpp,D:\proj\wphf-reloaded\trunk\wphfgui\Unit1.cpp=D:\proj\wphf-reloaded\trunk\wphfgui\Utils.cpp</Transaction>
     <Transaction>2013/06/28 14:25:40.659.h,D:\proj\wphf-reloaded\trunk\wphfgui\Unit1.h=D:\proj\wphf-reloaded\trunk\wphfgui\Utils.h</Transaction>
+    <Transaction>2013/07/01 10:31:55.130.cpp,D:\proj\wphf-reloaded\trunk\wphfgui\Unit1.cpp=D:\proj\wphf-reloaded\trunk\wphfgui\Confirm.cpp</Transaction>
+    <Transaction>2013/07/01 10:31:55.130.h,D:\proj\wphf-reloaded\trunk\wphfgui\Unit1.h=D:\proj\wphf-reloaded\trunk\wphfgui\Confirm.h</Transaction>
+    <Transaction>2013/07/01 10:31:55.130.dfm,D:\proj\wphf-reloaded\trunk\wphfgui\Unit1.dfm=D:\proj\wphf-reloaded\trunk\wphfgui\Confirm.dfm</Transaction>
   </Transactions>
 </BorlandProject>
