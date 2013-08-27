@@ -99,6 +99,7 @@ void __fastcall TFAXSend::ParseCommandLine(TStrings* pArgs)
 	bool bNotifySaw = false;
 	bool bRetrySaw = false;
 	bool bDialsSaw = false;
+	bool bRegExSaw = false;
 	bool bMMSaw = false;
 	bool bFileSaw = false;
 	UnicodeString filename, arg, rcpt;
@@ -172,6 +173,12 @@ void __fastcall TFAXSend::ParseCommandLine(TStrings* pArgs)
 			} else if (bDialsSaw) {
 				hDials->Value = StrToIntDef(arg, 0);
 				bDialsSaw = false;
+			} else if (bRegExSaw) {
+				//the "default" keyword means "use regex provided by configuration"
+				if (!SameText(arg, L"default"))
+					ConfigIni->NumberRegEx = arg;
+				ConfigIni->RegExEnabled = true;
+				bRegExSaw = false;
 			} else if (!bMMSaw && SameText(arg, L"-to"))
 				bToSaw = true;
 			else if (!bMMSaw && SameText(arg, L"-addrcpt"))
@@ -190,6 +197,10 @@ void __fastcall TFAXSend::ParseCommandLine(TStrings* pArgs)
 				FImmediateSend = true;
 			else if (!bMMSaw && SameText(arg, L"-autoclose"))
 				FAutoClose = true;
+			else if (!bMMSaw && SameText(arg, L"-regex"))
+				bRegExSaw = true;
+			else if (!bMMSaw && SameText(arg, L"-noregex"))
+				ConfigIni->RegExEnabled = false;
 			else if (bFileSaw) {
 				AddFileToList(arg, filename, rcpt);
 				bFileSaw = false;
