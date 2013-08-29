@@ -23,7 +23,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <JclDateTime.hpp>
 #include <DateUtils.hpp>
 #include <StrUtils.hpp>
-#include <Ansistrings.hpp>
 #include <shlobj.h>
 #include <gnugettext.hpp>
 #include <stdio.h>
@@ -59,6 +58,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #pragma resource "*.dfm"
 
 #pragma link "gsdll32.lib"
+#pragma link "libpcre16.lib"
 
 //see QC #86394
 #pragma alias "@Strutils@ReplaceTextW$qqrx20System@UnicodeStringt1t1"="@Strutils@ReplaceText$qqrx20System@UnicodeStringt1t1"
@@ -455,11 +455,16 @@ bool __fastcall TFAXSend::RegExProcessDocument(const UnicodeString& FileName,
 		return false;
 
 	//start ghostscript if needed
-	if (!Fgsinitialized)
-		Fgsinitialized = (gsapi_new_instance(&Fgsinst, NULL) >= 0);
+	if (!Fgsinitialized) {
+		if (!(Fgsinitialized = (gsapi_new_instance(&Fgsinst, NULL) >= 0)))
+			return false;
 
-	if (!Fgsinitialized)
-		return false;
+		if (gsapi_set_arg_encoding(Fgsinst, GS_ARG_ENCODING_UTF8) != 0) {
+			gsapi_exit(Fgsinst);
+			Fgsinitialized = false;
+			return false;
+		}
+	}
 
 	int ff = GetFileFormat(FileName);
 	if (ff != FORM_PS &&
@@ -495,14 +500,13 @@ bool __fastcall TFAXSend::RegExProcessDocument(const UnicodeString& FileName,
 				return false;
 
 			try {
-				AnsiString sPipe;
+				UTF8String sPipe;
 				sPipe.sprintf("-sOutputFile=%%handle%%%08x", hWrite);
-				AnsiString sFile = FileName;
-				AnsiString sExePath = ExtractFilePath(Application->ExeName);
+				UTF8String sFile = FileName;
 				TVarRec rec[] = {
-					sExePath
+					ExtractFilePath(Application->ExeName)
 				};
-				AnsiString sPath = Ansistrings::Format("-I\"%s\"", rec, 1);
+				UTF8String sPath = Format(L"-I\"%s\"", rec, 1);
 #if 1
 				char *args[] = {
 					"",
