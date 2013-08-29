@@ -1,2 +1,0 @@
-nmake -f psi/msvc32.mak DEVSTUDIO= DEBUG=0 TDEBUG=0 GS_LIB_DEFAULT="./lib/;./fonts;$(GSROOTDIR)/lib;$(AROOTDIR)/fonts"
-nmake -f psi/msvc32.mak DEVSTUDIO= DEBUG=1 TDEBUG=1 GS_LIB_DEFAULT="./lib/;./fonts;$(GSROOTDIR)/lib;$(AROOTDIR)/fonts"

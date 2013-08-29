@@ -7,6 +7,7 @@ Version 0.4.7 (under development)
 	  - a regular expression, overriding the one set in configuration, or
 		- the word "default" which means "just turn number capture on, and use whatever regex is set in the configuration"
   the -noregex switch merely turns number capture off.
+# reverted to the official version 9.09 of Ghostscript
 
 
 Version 0.4.6 (2013-06-28)
