@@ -29,13 +29,15 @@ where:
 <file> = full path to the file you want to send (PostScript, PDF, TIFF and PCL5 are supported, unless you have a server side script that can translate other types of document)
 <title> = mandatory after <file> (not to break existing code): this is the title displayed in the GUI for the preceding <file>
 available options:
--to <number>             add number to recipient list (this option can be specified multiple times)
--at <datetime | time>    postpone send at given date / time - parsing follows current locale settings. Time is optional; if a time is specified, seconds are optional.
--notify <email>          success/failure notification address
+-to <number>                         add number to recipient list (this option can be specified multiple times)
+-at <datetime | time>                postpone send at given date / time - parsing follows current locale settings. Time is optional; if a time is specified, seconds are optional.
+-notify <email>                      success/failure notification address
 -retry <days,hh:mm | days | hh:mm>   keep retrying for the specified number of days / hours
--dials <max>             maximum number of dials
--send                    send data to the server
--autoclose               close after sending data to the server
+-dials <max>                         maximum number of dials
+-send                                send data to the server
+-autoclose                           close after sending data to the server
+-regex <expression | "default">      override the "Number caption enabled" configuration option setting it to TRUE, either using the provided expression or the default
+-noregex                             override the "Number caption enabled" configuration option setting it to FALSE
 Parameters that contain spaces MUST be enclosed in double quotes.
 The -retry param is interpreted this way: if a comma is found, it is treated as days,hours; otherwise, if a colon is found, it is treated as hours (days=0); otherwise it is treated as days (hours=0).
 Example:
