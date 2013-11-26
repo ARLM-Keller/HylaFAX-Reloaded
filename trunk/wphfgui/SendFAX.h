@@ -163,7 +163,6 @@ __published:	// IDE-managed Components
 	void __fastcall FormResize(TObject *Sender);
 	void __fastcall rbSendModeClick(TObject *Sender);
 
-
 private:	// User declarations
 	CRITICAL_SECTION CSUserInterface;
 	UnicodeString SelectFromAB;
@@ -202,9 +201,11 @@ private:	// User declarations
 		const UnicodeString& FileName);
 	MESSAGE void __fastcall HandleWMAddFax(TMessage& Message);
 	MESSAGE void __fastcall HandleWMImmediateSend(TMessage& Message);
+	MESSAGE void __fastcall HandleWMDropFiles(TWMDropFiles& Message);
 	BEGIN_MESSAGE_MAP
 	MESSAGE_HANDLER(WM_ADDFAX, TMessage, HandleWMAddFax);
 	MESSAGE_HANDLER(WM_IMMEDIATESEND, TMessage, HandleWMImmediateSend);
+	MESSAGE_HANDLER(WM_DROPFILES, TWMDropFiles, HandleWMDropFiles);
 	END_MESSAGE_MAP(TForm);
 
 public:		// User declarations

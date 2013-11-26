@@ -617,6 +617,23 @@ MESSAGE void __fastcall TFAXSend::HandleWMImmediateSend(TMessage& Message)
 }
 //---------------------------------------------------------------------------
 
+MESSAGE void __fastcall TFAXSend::HandleWMDropFiles(TWMDropFiles& Message)
+{
+	wchar_t fileName[MAX_PATH];
+	UINT nFiles = DragQueryFile(reinterpret_cast<HDROP>(Message.Drop), 0xFFFFFFFF, fileName, MAX_PATH);
+
+	for (UINT n = 0; n < nFiles; n++) {
+		if (DragQueryFile(reinterpret_cast<HDROP>(Message.Drop), n, fileName, MAX_PATH) == MAX_PATH)
+			continue; //filename too long, MAX_PATH reached
+
+		AddFileToList(fileName, fileName);
+	}
+
+	//release memory
+	DragFinish(reinterpret_cast<HDROP>(Message.Drop));
+}
+//---------------------------------------------------------------------------
+
 __fastcall TFAXSend::TFAXSend(TComponent* Owner)
 	: TForm(Owner),
 	FHasNumber(false),
@@ -903,6 +920,8 @@ void __fastcall TFAXSend::FormCreate(TObject *Sender)
 		Top = rect.bottom + 100;
 #endif
 	}
+
+	DragAcceptFiles(Handle, TRUE);
 }
 //---------------------------------------------------------------------------
 
