@@ -96,18 +96,31 @@ de.InstallVirtualPrinter=Virtuellen HylaFAX-Drucker installieren
 ;es
 es.InstallVirtualPrinter=Instale la impresora virtual HylaFAX
 ;earthquake
-de.earthquake=Spenden Sie 10 Euro für Emilia Romagna
-de.appeal=Ist Winprint HylaFAX Reloaded für Ihre Organisation 10 Euro wert? Der Autor möchte kein Geld für sich selbst, aber er bittet um eine Spende für die Region Emilia Romagna, die vom Erdbeben zerstört wurde.
-de.donate=JETZT SPENDEN
-de.url=http://www.protezionecivile.gov.it/jcms/en/donazioni.wp
-en.earthquake=Donate 10 euros for Emilia Romagna
-en.appeal=Is Winprint HylaFAX Reloaded worth 10 euros for your organization? The author doesn't ask money for himself, but asks you to donate for Emilia Romagna, devastated by the earthquake.
-en.donate=DONATE NOW!
-en.url=http://www.protezionecivile.gov.it/jcms/en/donazioni.wp
-it.earthquake=Dona 10 euro per l'Emilia Romagna
-it.appeal=Winprint HylaFAX Reloaded vale 10 euro per la tua organizzazione? L'autore del software non li chiede per sé, ma ti chiede di donarli per la ricostruzione dell'Emilia Romagna, distrutta dal terremoto.
-it.donate=DONA ORA!
-it.url=http://www.protezionecivile.gov.it/jcms/it/donazioni.wp
+;2013-11-26: it's time to get back some reward for my work.
+;de.earthquake=Spenden Sie 10 Euro für Emilia Romagna
+;de.appeal=Ist Winprint HylaFAX Reloaded für Ihre Organisation 10 Euro wert? Der Autor möchte kein Geld für sich selbst, aber er bittet um eine Spende für die Region Emilia Romagna, die vom Erdbeben zerstört wurde.
+;de.donate=JETZT SPENDEN
+;de.url=http://www.protezionecivile.gov.it/jcms/en/donazioni.wp
+;en.earthquake=Donate 10 euros for Emilia Romagna
+;en.appeal=Is Winprint HylaFAX Reloaded worth 10 euros for your organization? The author doesn't ask money for himself, but asks you to donate for Emilia Romagna, devastated by the earthquake.
+;en.donate=DONATE NOW!
+;en.url=http://www.protezionecivile.gov.it/jcms/en/donazioni.wp
+;it.earthquake=Dona 10 euro per l'Emilia Romagna
+;it.appeal=Winprint HylaFAX Reloaded vale 10 euro per la tua organizzazione? L'autore del software non li chiede per sé, ma ti chiede di donarli per la ricostruzione dell'Emilia Romagna, distrutta dal terremoto.
+;it.donate=DONA ORA!
+;it.url=http://www.protezionecivile.gov.it/jcms/it/donazioni.wp
+en.donatetitle=Do you like Winprint HylaFAX Reloaded?
+en.appeal=If you like Winprint HylaFAX Reloaded you can consider making a donation to help keeping the good work up. Developer tools cost money, and developing software requires much time. Alternatively, you can show your appreciation by choosing a gift for me or my children from my wish list on Amazon. Thank you!
+en.donate=Donate
+en.gift=Choose a gift
+en.donateurl=http://sourceforge.net/p/wphf-reloaded/donate/
+en.gifturl=http://www.amazon.it/registry/wishlist/2L11VD62U0NZT
+it.donatetitle=Apprezzi Winprint HylaFAX Reloaded?
+it.appeal=Se apprezzi Winprint HylaFAX Reloaded potresti fare una donazione per aiutarmi a portare avanti il progetto. I tool per programmare costano, e la programmazione richiede molto tempo. In alternativa, puoi mostrare il tuo gradimento scegliendo un regalo per me o per le mie bimbe dalla mia lista desideri su Amazon. Grazie!
+it.donate=Dona ora
+it.gift=Scegli un regalo
+it.donateurl=http://sourceforge.net/p/wphf-reloaded/donate/
+it.gifturl=http://www.amazon.it/registry/wishlist/2L11VD62U0NZT
 
 [Files]
 ; x64 files
@@ -156,13 +169,23 @@ var
   DonatePage: TWizardPage;
   lblMessage: TLabel;
   btnDonate: TNewButton;
+  btnGift: TNewButton;
 
 {----------------------------------------------------------------------------------------}
 procedure btnDonateOnClick(Sender: TObject);
 var
   err: Integer;
 begin
-  ShellExecAsOriginalUser('', CustomMessage('url'), '', '',
+  ShellExecAsOriginalUser('', CustomMessage('donateurl'), '', '',
+    SW_SHOW, ewNoWait, err);
+end;
+
+{----------------------------------------------------------------------------------------}
+procedure btnGiftOnClick(Sender: TObject);
+var
+  err: Integer;
+begin
+  ShellExecAsOriginalUser('', CustomMessage('gifturl'), '', '',
     SW_SHOW, ewNoWait, err);
 end;
 
@@ -170,7 +193,7 @@ end;
 procedure CreateWizardPages;
 begin
   //Donate please!
-  DonatePage := CreateCustomPage(wpInstalling, CustomMessage('earthquake'), '');
+  DonatePage := CreateCustomPage(wpInstalling, CustomMessage('donatetitle'), '');
   
   lblMessage := TLabel.Create(DonatePage);
   lblMessage.Font.Size := 10;
@@ -185,12 +208,23 @@ begin
   btnDonate.Font.Size := 10;
   btnDonate.Font.Style := [fsBold];
   btnDonate.Top := lblMessage.Top + lblMessage.Height + ScaleY(4);
-  btnDonate.Left := DonatePage.SurfaceWidth div 2 - ScaleX(64);
+  btnDonate.Left := (DonatePage.SurfaceWidth div 3) * 1 - ScaleX(64);
   btnDonate.Width := ScaleX(128);
   btnDonate.Height := ScaleY(32);
   btnDonate.Caption := CustomMessage('donate');
   btnDonate.Parent := DonatePage.Surface;
   btnDonate.OnClick := @btnDonateOnClick;
+	
+  btnGift := TNewButton.Create(DonatePage);
+  btnGift.Font.Size := 10;
+  btnGift.Font.Style := [fsBold];
+  btnGift.Top := lblMessage.Top + lblMessage.Height + ScaleY(4);
+  btnGift.Left := (DonatePage.SurfaceWidth div 3) * 2 - ScaleX(64);
+  btnGift.Width := ScaleX(128);
+  btnGift.Height := ScaleY(32);
+  btnGift.Caption := CustomMessage('gift');
+  btnGift.Parent := DonatePage.Surface;
+  btnGift.OnClick := @btnGiftOnClick;
 end;
 
 {----------------------------------------------------------------------------------------}
