@@ -91,6 +91,7 @@ private:
 	UnicodeString FODBCPwd;
 	UnicodeString FNumberRegEx;
 	bool FRegExEnabled;
+	bool FFirstPageOnly;
 	TAddressBookType FAddrBookType;
 	bool FAddrBookLocationChanged, FAddrBookTypeChanged, FLanguageChanged, FRegExChanged;
 	bool FMAPIUseDefProfile;
@@ -161,6 +162,7 @@ public:
 	__property UnicodeString ODBCPwd = { read = FODBCPwd, write = SetODBCPwd };
 	__property UnicodeString NumberRegEx = { read = FNumberRegEx, write = SetRegEx };
 	__property bool RegExEnabled = { read = FRegExEnabled, write = FRegExEnabled };
+	__property bool FirstPageOnly = { read = FFirstPageOnly, write = FFirstPageOnly };
 };
 
 extern TConfigIni *ConfigIni;

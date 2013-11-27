@@ -174,8 +174,8 @@ private:	// User declarations
 	pcre16 *Fpattern;
 	pcre16_extra *Fhints;
 	const unsigned char *Fchartable;
-	void *Fgsinst;
-	bool Fgsinitialized;
+	//void *Fgsinst;
+	//bool Fgsinitialized;
 	void __fastcall AddressBookChanged(TObject *Sender);
 	void __fastcall AddressBookDuplicate(TObject *Sender, const UnicodeString& Name,
 		bool& ChangeNumber);

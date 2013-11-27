@@ -138,8 +138,9 @@ Source: "..\Dell\x64\*"; DestDir: "{app}\Dell"; MinVersion: 0.0,6.0; Flags: prom
 ; language files
 Source: "..\wphfgui\locale\*.mo"; DestDir: "{app}\locale"; Flags: recursesubdirs
 ; Ghostscript
-Source: "..\ghostscript\bin\gsdll32.dll"; DestDir: "{app}"; Flags: promptifolder replacesameversion
-Source: "..\ghostscript\lib\*"; DestDir: "{app}\lib"; Flags: promptifolder replacesameversion
+Source: "..\ghostscript\bin\gsdll32.dll"; DestDir: "{app}\gs\bin"; Flags: promptifolder replacesameversion
+Source: "..\ghostscript\bin\gswin32c.exe"; DestDir: "{app}\gs\bin"; Flags: promptifolder replacesameversion
+Source: "..\ghostscript\lib\*"; DestDir: "{app}\gs\lib"; Flags: promptifolder replacesameversion
 
 [Tasks]
 Name: printer; Description: "{cm:InstallVirtualPrinter}"; Flags: checkedonce
@@ -162,6 +163,10 @@ Filename: "{sys}\net.exe"; Parameters: "start spooler"; Flags: RunHidden; Status
 
 [UninstallDelete]
 Type: filesandordirs; Name: "{commonappdata}\Winprint HylaFAX Reloaded\faxtmp"
+
+[InstallDelete]
+Type: files; Name: "{app}\gsdll32.dll"
+Type: filesandordirs; Name: "{app}\lib"
 
 [Code]
 var

@@ -61,6 +61,7 @@ static const UnicodeString ODBCUidIdent = L"ODBCUid";
 static const UnicodeString ODBCPwdIdent = L"ODBCPwd";
 static const UnicodeString NumberRegExIdent = L"NumberRegEx";
 static const UnicodeString RegExEnabledIdent = L"RegExEnabled";
+static const UnicodeString FirstPageOnlyIdent = L"FirstPageOnly";
 bool TConfigIni::MovingConfigFiles = false;
 UnicodeString TConfigIni::WPHFUserDir = L"";
 UnicodeString TConfigIni::WPHFTempDir = L"";
@@ -75,7 +76,8 @@ __fastcall TConfigIni::TConfigIni(const UnicodeString& IniFile)
 	FRegExChanged(false),
 	FAddrBookType(abNone),
 	FODBCAuth(false),
-	FRegExEnabled(true)
+	FRegExEnabled(true),
+    FFirstPageOnly(true)
 {
 	FIniFile = IniFile;
 }
@@ -127,6 +129,7 @@ void __fastcall TConfigIni::Load()
 		NumberRegEx = Ini->ReadString(Section, NumberRegExIdent,
 			L"#{3}((?:[^#]|#(?!##))+)#{3}");
 		RegExEnabled = Ini->ReadBool(Section, RegExEnabledIdent, true);
+		FirstPageOnly = Ini->ReadBool(Section, FirstPageOnlyIdent, true);
 		FireEvents();
 	}
 	__finally {
@@ -195,6 +198,7 @@ void __fastcall TConfigIni::Configure()
 		ConfForm->hODBCPassword->ReadOnly = !ODBCAuth;
 		ConfForm->hRegEx->Text = NumberRegEx;
 		ConfForm->hRegExEnabled->Checked = RegExEnabled;
+		ConfForm->hFirstPageOnly->Checked = FirstPageOnly;
 
 		if (ConfForm->ShowModal() == mrOk) {
 			try {
@@ -236,6 +240,7 @@ void __fastcall TConfigIni::Configure()
 				ODBCFaxField = ConfForm->hODBCFax->Text;
 				NumberRegEx = ConfForm->hRegEx->Text;
 				RegExEnabled = ConfForm->hRegExEnabled->Checked;
+				FirstPageOnly = ConfForm->hFirstPageOnly->Checked;
 
 				FireEvents();
 			}
@@ -285,6 +290,7 @@ void __fastcall TConfigIni::Save()
 		Ini->WriteString(Section, ODBCPwdIdent, ODBCPwd);
 		Ini->WriteString(Section, NumberRegExIdent, NumberRegEx);
 		Ini->WriteBool(Section, RegExEnabledIdent, RegExEnabled);
+		Ini->WriteBool(Section, FirstPageOnlyIdent, FirstPageOnly);
 	}
 	__finally {
 		delete Ini;

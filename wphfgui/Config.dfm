@@ -794,7 +794,7 @@ object ConfigForm: TConfigForm
           'The regular expression to capture the fax number inside the subm' +
           'itted documents.'
         Anchors = [akLeft, akTop, akRight]
-        TabOrder = 1
+        TabOrder = 2
         OnChange = hRegExChange
       end
       object gbReTest: TGroupBox
@@ -804,7 +804,7 @@ object ConfigForm: TConfigForm
         Height = 91
         Anchors = [akLeft, akTop, akRight]
         Caption = 'Test'
-        TabOrder = 2
+        TabOrder = 3
         DesignSize = (
           424
           91)
@@ -848,6 +848,14 @@ object ConfigForm: TConfigForm
         Height = 17
         Caption = 'Enabled'
         TabOrder = 0
+      end
+      object hFirstPageOnly: TCheckBox
+        Left = 207
+        Top = 19
+        Width = 226
+        Height = 17
+        Caption = 'Look at the first page only'
+        TabOrder = 1
       end
     end
   end

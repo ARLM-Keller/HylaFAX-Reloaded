@@ -40,7 +40,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "Select.h"
 #include "Utils.h"
 #include "ipc.h"
-#include "iapi.h"
+//#include "iapi.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "IdBaseComponent"
@@ -57,7 +57,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #pragma link "IdHTTP"
 #pragma resource "*.dfm"
 
-#pragma link "gsdll32.lib"
+//#pragma link "gsdll32.lib"
 #pragma link "libpcre16.lib"
 
 //see QC #86394
@@ -454,7 +454,14 @@ bool __fastcall TFAXSend::RegExProcessDocument(const UnicodeString& FileName,
 	if (!Fpattern)
 		return false;
 
+	//2013-11-27 Ghostscript txtwriter driver is far too buggy to rely upon it.
+	//Unfortunately, there's no other easy solution to extract text data either
+	//from a PostScript or a PDF stream.
+	//For this reason, I switch to gswin32c.exe to do the hard work.
+	//Should it crash, at least it does not affect our GUI instance.
+
 	//start ghostscript if needed
+	/*
 	if (!Fgsinitialized) {
 		if (!(Fgsinitialized = (gsapi_new_instance(&Fgsinst, NULL) >= 0)))
 			return false;
@@ -465,6 +472,7 @@ bool __fastcall TFAXSend::RegExProcessDocument(const UnicodeString& FileName,
 			return false;
 		}
 	}
+	*/
 
 	int ff = GetFileFormat(FileName);
 	if (ff != FORM_PS &&
@@ -474,12 +482,122 @@ bool __fastcall TFAXSend::RegExProcessDocument(const UnicodeString& FileName,
 
 	bool ret = false;
 
-	HANDLE hRead, hWrite, hThread;
+	//pipe to read gswin32c's stdout
+	HANDLE hStdinRead, hStdinWrite;
+	HANDLE hStdoutRead, hStdoutWrite;
+	HANDLE hThread;
+	SECURITY_ATTRIBUTES saAttr;
+
+	saAttr.nLength = sizeof(SECURITY_ATTRIBUTES);
+	saAttr.bInheritHandle = TRUE;
+	saAttr.lpSecurityDescriptor = NULL;
 
 	//create the pipe; ghostscript will write data to it
-	if (!CreatePipe(&hRead, &hWrite, NULL, 0))
+	if (!CreatePipe(&hStdinRead, &hStdinWrite, &saAttr, 0) ||
+	!CreatePipe(&hStdoutRead, &hStdoutWrite, &saAttr, 0))
 		return false;
 
+	//don't inherit our end of the pipe
+	if (!SetHandleInformation(hStdinWrite, HANDLE_FLAG_INHERIT, 0) ||
+	!SetHandleInformation(hStdoutRead, HANDLE_FLAG_INHERIT, 0)) {
+		CloseHandle(hStdinRead);
+		CloseHandle(hStdinWrite);
+		CloseHandle(hStdoutRead);
+		CloseHandle(hStdoutWrite);
+		return false;
+	}
+
+	//we must pass handles to the process
+	STARTUPINFOW si;
+	ZeroMemory(&si, sizeof(si));
+	si.cb = sizeof(si);
+	#ifdef _DEBUG
+	si.wShowWindow = SW_SHOW;
+	#else
+	si.wShowWindow = SW_HIDE;
+	#endif
+	si.hStdInput = hStdinRead;
+	si.hStdOutput = hStdoutWrite;
+	si.hStdError = NULL;
+	si.dwFlags |= STARTF_USESTDHANDLES | STARTF_USESHOWWINDOW;
+
+	PROCESS_INFORMATION pi;
+	ZeroMemory(&pi, sizeof(pi));
+
+	//prepare the command line
+	UnicodeString cmdLine;
+	UnicodeString path = ExtractFilePath(Application->ExeName) +
+	#ifdef _DEBUG
+	L"..\\..\\ghostscript\\bin\\";	// debug ghostscript is in ..\..\ghostscript\bin
+	#else
+	L"gs\\bin\\";					// release ghostscript will be in {app}\gs\bin
+	#endif
+	UnicodeString gs = ChangeFilePath(L"gswin32c.exe", path);
+	//note the -sstdout=nul to *really* redirect PostScript stdout to nul
+	//otherwise we get %%[ ProductName: GPL Ghostscript ]%%
+	//and varius %%[garbage]%% messages from the PostScript processor
+	//on stdout and this garbles our reading algorithm
+	cmdLine.sprintf(L"\"%s\" -q -dNOPAUSE -dBATCH -dSAFER -sDEVICE=txtwrite -dTextFormat=2 "
+		L"-sOutputFile=- -sstdout=nul -I\"..\\lib\" %s \"%s\"",
+		gs.c_str(),
+		ConfigIni->FirstPageOnly
+			? L"-dFirstPage=1 -dLastPage=1"
+			: L"",
+		FileName.c_str());
+	//start gswin32c.exe in suspended mode
+	BOOL bRes = CreateProcessW(NULL, cmdLine.c_str(), NULL, NULL, TRUE,
+		0, NULL, path.c_str(), &si, &pi);
+	//close handles after process has inherited them
+	CloseHandle(hStdinRead);
+	CloseHandle(hStdoutWrite);
+
+	if (bRes) {
+		//close process handles
+		CloseHandle(pi.hThread);
+		CloseHandle(pi.hProcess);
+	} else {
+		//failure, close our end of pipes and give up
+		CloseHandle(hStdinWrite);
+		CloseHandle(hStdoutRead);
+		return false;
+	}
+
+	try {
+		GSDATA data;
+		data.hPipe = hStdoutRead;
+		data.pLines = new TStringList();
+
+		try {
+			//read gs output from a separate thread
+			hThread = CreateThread(NULL, 0, PipeProc, &data, 0, NULL);
+
+			if (hThread == NULL)
+				return false;
+
+			try {
+				//wait for thread to finish
+				WaitForSingleObject(hThread, INFINITE);
+
+				//check lines of text against regex
+				for (int n = 0; n < data.pLines->Count; n++)
+					ret = FindMatches(data.pLines->Strings[n], Numbers) || ret;
+			}
+			__finally {
+				CloseHandle(hThread);
+			}
+		}
+		__finally {
+			delete data.pLines;
+		}
+	}
+	__finally {
+		CloseHandle(hStdinWrite);
+		CloseHandle(hStdoutRead);
+		if (bRes) {
+		}
+	}
+
+	/*
 	try {
 		GSDATA data;
 		data.hPipe = hRead;
@@ -573,6 +691,7 @@ bool __fastcall TFAXSend::RegExProcessDocument(const UnicodeString& FileName,
 	__finally {
 		CloseHandle(hRead);
 	}
+	*/
 
 	return ret;
 }
@@ -642,9 +761,9 @@ __fastcall TFAXSend::TFAXSend(TComponent* Owner)
 	FAutoClose(false),
 	Fpattern(NULL),
 	Fhints(NULL),
-	Fchartable(NULL),
-	Fgsinst(NULL),
-	Fgsinitialized(false)
+	Fchartable(NULL)
+	//Fgsinst(NULL),
+	//Fgsinitialized(false)
 {
 	WCHAR buf[MAX_PATH] = { 0 };
 
@@ -700,6 +819,9 @@ __fastcall TFAXSend::TFAXSend(TComponent* Owner)
 	mtWarning, TMsgDlgButtons() << mbYes << mbNo, 0) == mrYes) {
 		ConfigIni->Configure();
 	}
+
+	//disable WER so Ghostscript can eventually crash silently
+	SetErrorMode(GetErrorMode() | SEM_NOGPFAULTERRORBOX);
 }
 //---------------------------------------------------------------------------
 
@@ -731,8 +853,10 @@ __fastcall TFAXSend::~TFAXSend()
 		pcre16_free(Fpattern);
 	if (Fhints)
 		pcre16_free(Fhints);
+	/*
 	if (Fgsinitialized)
 		gsapi_delete_instance(Fgsinst);
+	*/
 }
 //---------------------------------------------------------------------------
 
