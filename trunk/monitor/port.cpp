@@ -1139,11 +1139,13 @@ BOOL CPort::EndJob()
 		DWORD len;
 		LPWSTR szCmdLine = NULL;
 
-		len = (DWORD)wcslen(m_szFileName) + (DWORD)wcslen(JobTitle()) + 6;
+		len = (DWORD)wcslen(m_szFileName) + (DWORD)wcslen(JobTitle()) + 19;
 		szCmdLine = new WCHAR[len];
 
 		//componiamo la linea di comando
-		swprintf_s(szCmdLine, len, L"\"%s\" \"%s\"", m_szFileName, JobTitle());
+		//2013-12-02 inviamo anche lo switch -fromspooler per distinguere i job inviati dallo spooler
+		//da quelli aggiunti manualmente o da riga di comando
+		swprintf_s(szCmdLine, len, L"-fromspooler \"%s\" \"%s\"", m_szFileName, JobTitle());
 
 		//esecuzione
 		StartExe(GUIPath(), ExecPath(), szCmdLine, bTSEnabled, dwSessionId);

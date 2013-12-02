@@ -155,7 +155,7 @@
 						<VersionInfo Name="MajorVer">0</VersionInfo>
 						<VersionInfo Name="MinorVer">4</VersionInfo>
 						<VersionInfo Name="Release">8</VersionInfo>
-						<VersionInfo Name="Build">12</VersionInfo>
+						<VersionInfo Name="Build">14</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">True</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -167,7 +167,7 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName">Lorenzo Monti</VersionInfoKeys>
 						<VersionInfoKeys Name="FileDescription">Winprint HylaFAX Reloaded GUI</VersionInfoKeys>
-						<VersionInfoKeys Name="FileVersion">0.4.8.12</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">0.4.8.14</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName">wphfgui.exe</VersionInfoKeys>
 						<VersionInfoKeys Name="LegalCopyright">Copyright © 2011-2013 Lorenzo Monti. Based on the Winprint HylaFAX project by Michael Stowe. Release under the terms of the GNU GPL license.</VersionInfoKeys>
 						<VersionInfoKeys Name="LegalTrademarks"/>

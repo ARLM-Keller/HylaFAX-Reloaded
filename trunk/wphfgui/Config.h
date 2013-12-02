@@ -124,6 +124,7 @@ __published:	// IDE-managed Components
 	TJvHTLabel *JvHTLabel2;
 	TCheckBox *hRegExEnabled;
 	TCheckBox *hFirstPageOnly;
+	TCheckBox *hSendSilently;
 	void __fastcall btnBrowseClick(TObject *Sender);
 	void __fastcall btnDefaultClick(TObject *Sender);
 	void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);

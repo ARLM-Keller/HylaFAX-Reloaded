@@ -747,14 +747,14 @@ object ConfigForm: TConfigForm
         457)
       object Label25: TLabel
         Left = 9
-        Top = 49
+        Top = 70
         Width = 143
         Height = 13
         Caption = 'Capturing regular expression:'
       end
       object REhelp: TJvHTLabel
         Left = 9
-        Top = 95
+        Top = 116
         Width = 296
         Height = 14
         Caption = 
@@ -763,7 +763,7 @@ object ConfigForm: TConfigForm
       end
       object JvHTLabel1: TJvHTLabel
         Left = 9
-        Top = 115
+        Top = 136
         Width = 382
         Height = 92
         Anchors = [akLeft, akTop, akRight]
@@ -778,7 +778,7 @@ object ConfigForm: TConfigForm
       end
       object JvHTLabel2: TJvHTLabel
         Left = 9
-        Top = 232
+        Top = 253
         Width = 157
         Height = 53
         Caption = 
@@ -787,24 +787,24 @@ object ConfigForm: TConfigForm
       end
       object hRegEx: TEdit
         Left = 9
-        Top = 68
+        Top = 89
         Width = 424
         Height = 21
         Hint = 
           'The regular expression to capture the fax number inside the subm' +
           'itted documents.'
         Anchors = [akLeft, akTop, akRight]
-        TabOrder = 2
+        TabOrder = 3
         OnChange = hRegExChange
       end
       object gbReTest: TGroupBox
         Left = 9
-        Top = 308
+        Top = 329
         Width = 424
         Height = 91
         Anchors = [akLeft, akTop, akRight]
         Caption = 'Test'
-        TabOrder = 3
+        TabOrder = 4
         DesignSize = (
           424
           91)
@@ -856,6 +856,14 @@ object ConfigForm: TConfigForm
         Height = 17
         Caption = 'Look at the first page only'
         TabOrder = 1
+      end
+      object hSendSilently: TCheckBox
+        Left = 9
+        Top = 42
+        Width = 424
+        Height = 17
+        Caption = 'Send silently upon successful number detection'
+        TabOrder = 2
       end
     end
   end
