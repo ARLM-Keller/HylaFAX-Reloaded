@@ -170,7 +170,7 @@ private:	// User declarations
 	UnicodeString FFileBeingSent;
 	bool FSending, FSettingNumberEdit;
 	bool FHasNumber, FHasManyNumbers;
-	bool FImmediateSend, FAutoClose;
+	bool FImmediateSend, FAutoClose, FFromSpooler;
 	pcre16 *Fpattern;
 	pcre16_extra *Fhints;
 	const unsigned char *Fchartable;

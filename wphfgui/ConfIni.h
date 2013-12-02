@@ -92,6 +92,7 @@ private:
 	UnicodeString FNumberRegEx;
 	bool FRegExEnabled;
 	bool FFirstPageOnly;
+	bool FSendSilently;
 	TAddressBookType FAddrBookType;
 	bool FAddrBookLocationChanged, FAddrBookTypeChanged, FLanguageChanged, FRegExChanged;
 	bool FMAPIUseDefProfile;
@@ -163,6 +164,7 @@ public:
 	__property UnicodeString NumberRegEx = { read = FNumberRegEx, write = SetRegEx };
 	__property bool RegExEnabled = { read = FRegExEnabled, write = FRegExEnabled };
 	__property bool FirstPageOnly = { read = FFirstPageOnly, write = FFirstPageOnly };
+	__property bool SendSilently = { read = FSendSilently, write = FSendSilently };
 };
 
 extern TConfigIni *ConfigIni;

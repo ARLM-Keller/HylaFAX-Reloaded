@@ -201,6 +201,12 @@ void __fastcall TFAXSend::ParseCommandLine(TStrings* pArgs)
 				bRegExSaw = true;
 			else if (!bMMSaw && SameText(arg, L"-noregex"))
 				ConfigIni->RegExEnabled = false;
+			else if (!bMMSaw && SameText(arg, L"-firstpage"))
+				ConfigIni->FirstPageOnly = true;
+			else if (!bMMSaw && SameText(arg, L"-wholedoc"))
+				ConfigIni->FirstPageOnly = false;
+			else if (!bMMSaw && SameText(arg, L"-fromspooler"))
+				FFromSpooler = true;
 			else if (bFileSaw) {
 				AddFileToList(arg, filename, rcpt);
 				bFileSaw = false;
@@ -262,6 +268,18 @@ void __fastcall TFAXSend::AddFileToList(const UnicodeString& Title,
 		}
 		__finally {
 			lbDocuments->Items->EndUpdate();
+		}
+
+		//send immediately and silently upon successful number detection
+		//only if the job is coming from the spooler
+		if (FFromSpooler && ConfigIni->SendSilently && data->HasNumber) {
+			//set FAutoClose = true temporarily
+			//if the send succeeds, we won't need setting it back
+			//to its previous value, since we'll be closing ourselves
+			bool temp = FAutoClose;
+			FAutoClose = true;
+			PostMessage(Handle, WM_IMMEDIATESEND, 0, 0);
+			FAutoClose = temp;
 		}
 	}
 	__finally
@@ -723,6 +741,15 @@ MESSAGE void __fastcall TFAXSend::HandleWMAddFax(TMessage& Message)
 	if (!Sysutils::FileExists(filename))
 		return;
 
+	//set FFromSpooler if this is the FIRST document coming in
+	LockUI();
+	try {
+		FFromSpooler = (lbDocuments->Count == 0);
+	}
+	__finally {
+        UnlockUI();
+    }
+
 	//ok add file to list of files to send
 	AddFileToList(title, filename);
 
@@ -759,6 +786,7 @@ __fastcall TFAXSend::TFAXSend(TComponent* Owner)
 	FHasManyNumbers(false),
 	FImmediateSend(false),
 	FAutoClose(false),
+	FFromSpooler(false),
 	Fpattern(NULL),
 	Fhints(NULL),
 	Fchartable(NULL)

@@ -62,6 +62,7 @@ static const UnicodeString ODBCPwdIdent = L"ODBCPwd";
 static const UnicodeString NumberRegExIdent = L"NumberRegEx";
 static const UnicodeString RegExEnabledIdent = L"RegExEnabled";
 static const UnicodeString FirstPageOnlyIdent = L"FirstPageOnly";
+static const UnicodeString SendSilentlyIdent = L"SendSilently";
 bool TConfigIni::MovingConfigFiles = false;
 UnicodeString TConfigIni::WPHFUserDir = L"";
 UnicodeString TConfigIni::WPHFTempDir = L"";
@@ -77,7 +78,8 @@ __fastcall TConfigIni::TConfigIni(const UnicodeString& IniFile)
 	FAddrBookType(abNone),
 	FODBCAuth(false),
 	FRegExEnabled(true),
-    FFirstPageOnly(true)
+	FFirstPageOnly(true),
+	FSendSilently(false)
 {
 	FIniFile = IniFile;
 }
@@ -130,6 +132,7 @@ void __fastcall TConfigIni::Load()
 			L"#{3}((?:[^#]|#(?!##))+)#{3}");
 		RegExEnabled = Ini->ReadBool(Section, RegExEnabledIdent, true);
 		FirstPageOnly = Ini->ReadBool(Section, FirstPageOnlyIdent, true);
+		SendSilently = Ini->ReadBool(Section, SendSilentlyIdent, false);
 		FireEvents();
 	}
 	__finally {
@@ -199,6 +202,7 @@ void __fastcall TConfigIni::Configure()
 		ConfForm->hRegEx->Text = NumberRegEx;
 		ConfForm->hRegExEnabled->Checked = RegExEnabled;
 		ConfForm->hFirstPageOnly->Checked = FirstPageOnly;
+		ConfForm->hSendSilently->Checked = SendSilently;
 
 		if (ConfForm->ShowModal() == mrOk) {
 			try {
@@ -241,6 +245,7 @@ void __fastcall TConfigIni::Configure()
 				NumberRegEx = ConfForm->hRegEx->Text;
 				RegExEnabled = ConfForm->hRegExEnabled->Checked;
 				FirstPageOnly = ConfForm->hFirstPageOnly->Checked;
+				SendSilently = ConfForm->hSendSilently->Checked;
 
 				FireEvents();
 			}
@@ -291,6 +296,7 @@ void __fastcall TConfigIni::Save()
 		Ini->WriteString(Section, NumberRegExIdent, NumberRegEx);
 		Ini->WriteBool(Section, RegExEnabledIdent, RegExEnabled);
 		Ini->WriteBool(Section, FirstPageOnlyIdent, FirstPageOnly);
+		Ini->WriteBool(Section, SendSilentlyIdent, SendSilently);
 	}
 	__finally {
 		delete Ini;

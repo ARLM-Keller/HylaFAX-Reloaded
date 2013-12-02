@@ -38,6 +38,8 @@ available options:
 -autoclose                           close after sending data to the server
 -regex <expression | "default">      override the "Number caption enabled" configuration option setting it to TRUE, either using the provided expression or the default
 -noregex                             override the "Number caption enabled" configuration option setting it to FALSE
+-firstpage                           override the "Look at the first page only" configuration option setting it to TRUE
+-wholedoc                            override the "Look at the first page only" configuration option setting it to FALSE
 Parameters that contain spaces MUST be enclosed in double quotes.
 The -retry param is interpreted this way: if a comma is found, it is treated as days,hours; otherwise, if a colon is found, it is treated as hours (days=0); otherwise it is treated as days (hours=0).
 Example:
