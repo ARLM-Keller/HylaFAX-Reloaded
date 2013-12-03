@@ -168,7 +168,7 @@ private:	// User declarations
 	UnicodeString SelectFromAB;
 	TPoint DragPoint;
 	UnicodeString FFileBeingSent;
-	bool FSending, FSettingNumberEdit;
+	bool FSending, FSettingNumberEdit, FSuccess;
 	bool FHasNumber, FHasManyNumbers;
 	bool FImmediateSend, FAutoClose, FFromSpooler;
 	pcre16 *Fpattern;
@@ -199,6 +199,8 @@ private:	// User declarations
 		const UnicodeString& FileName, const UnicodeString& Number);
 	void __fastcall AddFileToList(const UnicodeString& Title,
 		const UnicodeString& FileName);
+	void __fastcall MoveWindowAway();
+	void __fastcall MoveWindowToCorner();
 	MESSAGE void __fastcall HandleWMAddFax(TMessage& Message);
 	MESSAGE void __fastcall HandleWMImmediateSend(TMessage& Message);
 	MESSAGE void __fastcall HandleWMDropFiles(TWMDropFiles& Message);
