@@ -278,7 +278,13 @@ void __fastcall TFAXSend::AddFileToList(const UnicodeString& Title,
 			//to its previous value, since we'll be closing ourselves
 			bool temp = FAutoClose;
 			FAutoClose = true;
-			PostMessage(Handle, WM_IMMEDIATESEND, 0, 0);
+			//trick: if we're not visible, then we're coming here from
+			//OnCreate. Move window out of sight, so it doesn't
+			//blink (unless an error occurs, that will make the
+			//window reappear in place).
+			if (!Visible)
+				MoveWindowAway();
+			actSendExecute(NULL);
 			FAutoClose = temp;
 		}
 	}
@@ -787,6 +793,7 @@ __fastcall TFAXSend::TFAXSend(TComponent* Owner)
 	FImmediateSend(false),
 	FAutoClose(false),
 	FFromSpooler(false),
+	FSuccess(false),
 	Fpattern(NULL),
 	Fhints(NULL),
 	Fchartable(NULL)
@@ -1049,31 +1056,49 @@ void __fastcall TFAXSend::FormCreate(TObject *Sender)
 	//activate single instance only if this is not a "send and forget" process
 	AppInst->Active = !FAutoClose;
 
-	if (FImmediateSend)
-		PostMessage(Handle, WM_IMMEDIATESEND, 0, 0);
+	//only do window placement if we haven't successfully sent something yet
+	if (!FSuccess) {
+		if (FImmediateSend)
+			PostMessage(Handle, WM_IMMEDIATESEND, 0, 0);
 
-	//put window on bottom-right of the screen
-	RECT rect;
-	SystemParametersInfo(SPI_GETWORKAREA, 0, &rect, 0);
+		if (!FAutoClose) {
+			//put window on bottom-right of the screen
+			MoveWindowToCorner();
 
-	if (!FAutoClose) {
-		Left = rect.right - Width - 8;
-		Top = rect.bottom - Height - 8;
+			//start pipe
+			StartIpc(IpcCallback, this);
 
-		//start pipe
-		StartIpc(IpcCallback, this);
-
-		BringFaxWndToFront();
-	} else {
+			BringFaxWndToFront();
+		} else {
 #ifndef _DEBUG
-		//trick to avoid the window blink
-		//if autoclose is true, we put the window outside our desktop area
-		Left = rect.right + 100;
-		Top = rect.bottom + 100;
+			//trick to avoid the window blink
+			//if autoclose is true, we put the window outside our desktop area
+			MoveWindowAway();
 #endif
+		}
 	}
 
 	DragAcceptFiles(Handle, TRUE);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFAXSend::MoveWindowAway()
+{
+	RECT rect;
+	SystemParametersInfo(SPI_GETWORKAREA, 0, &rect, 0);
+
+	Left = rect.right + 100;
+	Top = rect.bottom + 100;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFAXSend::MoveWindowToCorner()
+{
+	RECT rect;
+	SystemParametersInfo(SPI_GETWORKAREA, 0, &rect, 0);
+
+	Left = rect.right - Width - 8;
+	Top = rect.bottom - Height - 8;
 }
 //---------------------------------------------------------------------------
 
@@ -1149,6 +1174,8 @@ void __fastcall TFAXSend::actSendExecute(TObject *Sender)
 
 	bool hasDoc = false;
 	bool numbersOk = true;
+
+	FSuccess = false;
 
 	//lock documents list
 	LockUI();
@@ -1557,6 +1584,8 @@ void __fastcall TFAXSend::actSendExecute(TObject *Sender)
 						}
 
 						//all fine
+						FSuccess = true;
+
 						if (!FAutoClose) {
 							//MessageDlg(JobConfirm, mtInformation, TMsgDlgButtons() << mbOK, 0);
 							UnicodeString fmt = ngettext(L"%d fax job submitted.", L"%d fax jobs submitted.", submitted);
@@ -1602,7 +1631,7 @@ void __fastcall TFAXSend::actSendExecute(TObject *Sender)
 				}
 			}
 			catch(...) {
-				if (!FAutoClose)
+				if (!FAutoClose || FFromSpooler)
 					throw;
 				else
 					ExitCode = 1;
@@ -1610,8 +1639,19 @@ void __fastcall TFAXSend::actSendExecute(TObject *Sender)
 		}
 		__finally {
 			if (FAutoClose) {
-				Close();
-				Application->Terminate();
+				if (FFromSpooler && !FSuccess) {
+					//if we're in semiautomatic mode, there is an error and the
+					//window is out of sight, let's restore it
+					RECT rect;
+					SystemParametersInfo(SPI_GETWORKAREA, 0, &rect, 0);
+
+					if (Left > rect.right &&
+					Top > rect.bottom)
+						MoveWindowToCorner();
+				} else {
+					Close();
+					Application->Terminate();
+                }
 			}
 			FImmediateSend = false;
 		}
