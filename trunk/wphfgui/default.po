@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-02 19:02+0100\n"
+"POT-Creation-Date: 2013-12-05 11:19+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,6 +31,9 @@ msgstr ""
 #. ConfigForm..Panel1..Label6..Font.Name
 #. Confirmation..Font.Name
 #. Confirmation..Panel1..Result..Font.Name
+#. FormNotify..Font.Name
+#. FormNotify..Panel1..Label1..Font.Name
+#. FormNotify..Panel1..lblNumber..Font.Name
 #. RecipientName..Font.Name
 #. SelectRcpt..Font.Name
 #. FAXSend..Font.Name
@@ -40,9 +43,10 @@ msgstr ""
 #. FAXSend..Panel1..Label12..Font.Name
 #. FAXSend..Panel2..Panel4..Label7..Font.Name
 #: Config.dfm:14 Config.dfm:115 Config.dfm:130 Config.dfm:144
-#: Config.dfm:158 Confirm.dfm:11 Confirm.dfm:45 Recipient.dfm:12
-#: Select.dfm:11 SendFAX.dfm:13 SendFAX.dfm:109 SendFAX.dfm:123
-#: SendFAX.dfm:138 SendFAX.dfm:152 SendFAX.dfm:194
+#: Config.dfm:158 Confirm.dfm:11 Confirm.dfm:45 Main.dfm:13 Main.dfm:50
+#: Main.dfm:62 Recipient.dfm:12 Select.dfm:11 SendFAX.dfm:13
+#: SendFAX.dfm:109 SendFAX.dfm:123 SendFAX.dfm:138 SendFAX.dfm:152
+#: SendFAX.dfm:194
 msgid "Tahoma"
 msgstr ""
 
@@ -571,6 +575,26 @@ msgstr ""
 msgid "Ok"
 msgstr ""
 
+#. FormNotify..Caption
+#: Main.dfm:6
+msgid "FormNotify"
+msgstr ""
+
+#. FormNotify..Panel1..Label1..Caption
+#: Main.dfm:46
+msgid "Fax sent to:"
+msgstr ""
+
+#. FormNotify..Panel1..btnClose..Caption
+#: Main.dfm:247
+msgid "X"
+msgstr ""
+
+#. FormNotify..Panel1..btnClose..Font.Name
+#: Main.dfm:251
+msgid "Verdana"
+msgstr ""
+
 #. RecipientName..Caption
 #: Recipient.dfm:5
 msgid "Recipient's name"
@@ -677,9 +701,9 @@ msgstr ""
 
 #. FAXSend..Panel2..PageControl1..tsFax..ABNames..Text
 #: SendFAX.dfm:573
-#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:809
-#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:968
-#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1752
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:816
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:975
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1820
 msgid "Select from address book"
 msgstr ""
 
@@ -852,7 +876,7 @@ msgid "Specify a valid path for the Address Book"
 msgstr ""
 
 #: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/Config.cpp:116
-#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1026
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1033
 msgid "rel. "
 msgstr ""
 
@@ -860,36 +884,36 @@ msgstr ""
 msgid "No match!"
 msgstr ""
 
-#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:821
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:828
 msgid "Configuration files have been moved to the user profile."
 msgstr ""
 
-#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:846
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:853
 msgid "Client is not configured. Would you like to configure it now?"
 msgstr ""
 
-#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:959
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:966
 msgid ""
 " is already present in the address book.\n"
 "Do you want to modify the associated number?"
 msgstr ""
 
-#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1000
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1007
 #, c-format
 msgid "PCRE error @ position %d: %s"
 msgstr ""
 
-#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1562
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1593
 #, c-format
 msgid "%d fax job submitted."
 msgid_plural "%d fax jobs submitted."
 msgstr[0] ""
 msgstr[1] ""
 
-#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1688
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1756
 msgid "Unsent faxes will be lost. Are you sure you want to exit?"
 msgstr ""
 
-#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1748
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1816
 msgid "Delete recipient?"
 msgstr ""

@@ -131,6 +131,7 @@ Source: "..\win32\release\wphfmon.dll"; DestDir: "{sys}"; Flags: promptifolder r
 Source: "..\win32\release\wphfmonUI.dll"; DestDir: "{sys}"; Flags: promptifolder replacesameversion; Check: Is_x86
 ; files common to both architectures
 Source: "..\wphfgui\Release\wphfgui.exe"; DestDir: "{app}"; Flags: promptifolder replacesameversion
+Source: "..\wphfgui\Release\traynotif.exe"; DestDir: "{app}"; Flags: promptifolder replacesameversion
 Source: "..\win32\release\regmon.exe"; DestDir: "{app}"; Flags: promptifolder replacesameversion
 ; Dell printer drivers
 Source: "..\Dell\x86\*"; DestDir: "{app}\Dell"; MinVersion: 0.0,6.0; Flags: promptifolder replacesameversion recursesubdirs; Check: Is_x86

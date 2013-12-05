@@ -2,6 +2,7 @@ Version 0.4.8 (under development)
 # Ghostscript is now invoked as a separate process. The txtwriter is still unstable and in some circumstances it crashes. This way, the GUI survives to the crash.
 # added a new option to look for numbers only on the first page of a submitted document (-firstpage and -wholedoc command line switches control this behaviour from the command line)
 # added "send silently upon successful number detection" option
+# a tray notification window pops up when the fax is silently sent
 
 
 Version 0.4.7 (2013-11-26)

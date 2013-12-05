@@ -1164,7 +1164,7 @@ int __fastcall TFAXSend::GetFileFormat(const UnicodeString& FileName)
 
 void __fastcall TFAXSend::actSendExecute(TObject *Sender)
 {
-	UnicodeString Cmd, JobConfirm;
+	UnicodeString Cmd, JobConfirm, SentNumbers;
 	TStringList *RemoteFileNames, *Numbers;
 	int LineCode, pos;
 	unsigned int PassivePort;
@@ -1482,6 +1482,8 @@ void __fastcall TFAXSend::actSendExecute(TObject *Sender)
 									Cmd = L"JPARM DIALSTRING \"" + Number + L"\"";
 									FTPctrl->SendCmd(Cmd, 213, TEncoding::ASCII);
 
+									SentNumbers += Number + L";";
+
 									if (Recipient.Length() > 0) {
 										Cmd = L"JPARM TOUSER \"" + Recipient + L"\"";
 										//FTPctrl->SendCmd(Cmd, 213, TEncoding::ASCII);
@@ -1639,15 +1641,41 @@ void __fastcall TFAXSend::actSendExecute(TObject *Sender)
 		}
 		__finally {
 			if (FAutoClose) {
-				if (FFromSpooler && !FSuccess) {
-					//if we're in semiautomatic mode, there is an error and the
-					//window is out of sight, let's restore it
-					RECT rect;
-					SystemParametersInfo(SPI_GETWORKAREA, 0, &rect, 0);
+				if (FFromSpooler) {
+					if (FSuccess) {
+						PROCESS_INFORMATION pi;
+						ZeroMemory(&pi, sizeof(pi));
 
-					if (Left > rect.right &&
-					Top > rect.bottom)
-						MoveWindowToCorner();
+						STARTUPINFOW si;
+						ZeroMemory(&si, sizeof(si));
+
+						UnicodeString pgm = ChangeFilePath(L"traynotif.exe",
+							ExtractFilePath(Application->ExeName));
+
+						SentNumbers = ReplaceText(SentNumbers, L"\"", L"");
+						SentNumbers = SentNumbers.SubString(1, SentNumbers.Length() - 1);
+
+						UnicodeString cmdLine;
+						cmdLine.sprintf(L"\"%s\" \"%s\"", pgm.c_str(), SentNumbers.c_str());
+
+						if (CreateProcessW(NULL, cmdLine.c_str(), NULL, NULL, TRUE,
+						0, NULL, NULL, &si, &pi)) {
+							CloseHandle(pi.hProcess);
+							CloseHandle(pi.hThread);
+						}
+
+						Close();
+						Application->Terminate();
+					} else {
+						//if we're in semiautomatic mode, there is an error and the
+						//window is out of sight, let's restore it
+						RECT rect;
+						SystemParametersInfo(SPI_GETWORKAREA, 0, &rect, 0);
+
+						if (Left > rect.right &&
+						Top > rect.bottom)
+							MoveWindowToCorner();
+                    }
 				} else {
 					Close();
 					Application->Terminate();
