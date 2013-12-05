@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Winprint HylaFAX Reloaded\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-02 19:02+0100\n"
-"PO-Revision-Date: 2013-12-02 19:04+0100\n"
+"POT-Creation-Date: 2013-12-05 11:19+0100\n"
+"PO-Revision-Date: 2013-12-05 11:20+0100\n"
 "Last-Translator: Lorenzo Monti <lomo74@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -30,6 +30,9 @@ msgstr "Configura il client HylaFAX"
 #. ConfigForm..Panel1..Label6..Font.Name
 #. Confirmation..Font.Name
 #. Confirmation..Panel1..Result..Font.Name
+#. FormNotify..Font.Name
+#. FormNotify..Panel1..Label1..Font.Name
+#. FormNotify..Panel1..lblNumber..Font.Name
 #. RecipientName..Font.Name
 #. SelectRcpt..Font.Name
 #. FAXSend..Font.Name
@@ -38,7 +41,7 @@ msgstr "Configura il client HylaFAX"
 #. FAXSend..Panel1..lblVersion..Font.Name
 #. FAXSend..Panel1..Label12..Font.Name
 #. FAXSend..Panel2..Panel4..Label7..Font.Name
-#: Config.dfm:14 Config.dfm:158 Select.dfm:11 SendFAX.dfm:138
+#: Config.dfm:14 Config.dfm:158 Main.dfm:62 SendFAX.dfm:109 SendFAX.dfm:194
 msgid "Tahoma"
 msgstr ""
 
@@ -596,6 +599,26 @@ msgstr "Dettagli:"
 msgid "Ok"
 msgstr ""
 
+#. FormNotify..Caption
+#: Main.dfm:6
+msgid "FormNotify"
+msgstr ""
+
+#. FormNotify..Panel1..Label1..Caption
+#: Main.dfm:46
+msgid "Fax sent to:"
+msgstr "Fax inviato a:"
+
+#. FormNotify..Panel1..btnClose..Caption
+#: Main.dfm:247
+msgid "X"
+msgstr ""
+
+#. FormNotify..Panel1..btnClose..Font.Name
+#: Main.dfm:251
+msgid "Verdana"
+msgstr ""
+
 #. RecipientName..Caption
 #: Recipient.dfm:5
 msgid "Recipient's name"
@@ -707,9 +730,9 @@ msgstr "Inserisci più destinatari separandoli con punto e virgola."
 # D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:828
 #. FAXSend..Panel2..PageControl1..tsFax..ABNames..Text
 #: SendFAX.dfm:573
-#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:809
-#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:968
-#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1752
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:816
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:975
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1820
 msgid "Select from address book"
 msgstr "Seleziona dalla rubrica"
 
@@ -906,7 +929,7 @@ msgstr "Specificare un percorso valido per la rubrica"
 # D:\proj\wphf-reloaded\trunk\wphfgui\Config.cpp:115
 # D:\proj\wphf-reloaded\trunk\wphfgui\SendFAX.cpp:836
 #: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/Config.cpp:116
-#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1026
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1033
 msgid "rel. "
 msgstr "ver. "
 
@@ -916,17 +939,17 @@ msgid "No match!"
 msgstr "Nessuna corrispondenza!"
 
 # D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:149
-#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:821
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:828
 msgid "Configuration files have been moved to the user profile."
 msgstr "I file di configurazione sono stati spostati nel profilo utente."
 
 # D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:172
-#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:846
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:853
 msgid "Client is not configured. Would you like to configure it now?"
 msgstr "Il client non è configurato. Vuoi configurarlo ora?"
 
 # D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:266
-#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:959
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:966
 msgid ""
 " is already present in the address book.\n"
 "Do you want to modify the associated number?"
@@ -935,13 +958,13 @@ msgstr ""
 "Vuoi modificare il numero associato?"
 
 # D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:426
-#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1000
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1007
 #, c-format
 msgid "PCRE error @ position %d: %s"
 msgstr "Errore PCRE @ posizione %d: %s"
 
 # D:\proj\wphf-reloaded\trunk\wphfgui\SendFAX.cpp:1368
-#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1562
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1593
 #, c-format
 msgid "%d fax job submitted."
 msgid_plural "%d fax jobs submitted."
@@ -949,12 +972,12 @@ msgstr[0] "%d fax inoltrato."
 msgstr[1] "%d fax inoltrati."
 
 # D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:761
-#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1688
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1756
 msgid "Unsent faxes will be lost. Are you sure you want to exit?"
 msgstr "I fax non inviati andranno persi. Sei sicuro di voler uscire?"
 
 # D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:824
-#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1748
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1816
 msgid "Delete recipient?"
 msgstr "Cancellare il nominativo?"
 

@@ -1,0 +1,48 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{B28B454E-0DAC-4E84-86AE-955859ADA890}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="wphfgui\wphfgui.cbproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="wphfgui\traynotif.cbproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="wphfgui">
+			<MSBuild Projects="wphfgui\wphfgui.cbproj"/>
+		</Target>
+		<Target Name="wphfgui:Clean">
+			<MSBuild Targets="Clean" Projects="wphfgui\wphfgui.cbproj"/>
+		</Target>
+		<Target Name="wphfgui:Make">
+			<MSBuild Targets="Make" Projects="wphfgui\wphfgui.cbproj"/>
+		</Target>
+		<Target Name="traynotif">
+			<MSBuild Projects="wphfgui\traynotif.cbproj"/>
+		</Target>
+		<Target Name="traynotif:Clean">
+			<MSBuild Targets="Clean" Projects="wphfgui\traynotif.cbproj"/>
+		</Target>
+		<Target Name="traynotif:Make">
+			<MSBuild Targets="Make" Projects="wphfgui\traynotif.cbproj"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="wphfgui;traynotif"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="wphfgui:Clean;traynotif:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="wphfgui:Make;traynotif:Make"/>
+		</Target>
+		<Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+	</Project>
