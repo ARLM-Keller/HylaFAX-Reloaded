@@ -24,7 +24,7 @@ WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		textdomain(L"wphfgui");
 
 		Application->Initialize();
-		Application->MainFormOnTaskBar = true;
+		Application->MainFormOnTaskBar = false;
 		Application->CreateForm(__classid(TFormNotify), &FormNotify);
 		Application->Run();
 	}

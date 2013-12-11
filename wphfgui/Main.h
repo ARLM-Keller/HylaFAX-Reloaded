@@ -24,15 +24,18 @@ __published:	// IDE-managed Components
 	TLabel *Label1;
 	TLabel *lblNumber;
 	TSpeedButton *btnClose;
-	TPanel *Panel1;
 	void __fastcall btnCloseClick(TObject *Sender);
 	void __fastcall FormCreate(TObject *Sender);
+	void __fastcall FormActivate(TObject *Sender);
+	void __fastcall FormShow(TObject *Sender);
 private:	// User declarations
 	RECT FDesktop;
 	MESSAGE void __fastcall HandleWMFadein(TMessage& Message);
 	BEGIN_MESSAGE_MAP
 	MESSAGE_HANDLER(WM_FADEIN, TMessage, HandleWMFadein);
 	END_MESSAGE_MAP(TForm);
+protected:
+	virtual void __fastcall CreateParams(Controls::TCreateParams &Params);
 public:		// User declarations
 	__fastcall TFormNotify(TComponent* Owner);
 	virtual __fastcall ~TFormNotify();
