@@ -34,8 +34,18 @@ void __fastcall TFormNotify::btnCloseClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TFormNotify::CreateParams(Controls::TCreateParams &Params)
+{
+	TForm::CreateParams(Params);
+
+	Params.Style |= WS_BORDER;
+}
+//---------------------------------------------------------------------------
+
 void __fastcall TFormNotify::FormCreate(TObject *Sender)
 {
+	ShowWindow(Application->Handle, SW_HIDE);
+
 	TranslateComponent(this);
 
 	if (ParamCount() > 0)
@@ -44,7 +54,7 @@ void __fastcall TFormNotify::FormCreate(TObject *Sender)
 	SystemParametersInfo(SPI_GETWORKAREA, 0, &FDesktop, 0);
 
 	Left = FDesktop.right + 4;
-	Top = FDesktop.bottom - Height - 8;
+	Top = FDesktop.bottom - Height - 4;
 
 	new TFadeinThread(Handle);
 }
@@ -53,7 +63,7 @@ void __fastcall TFormNotify::FormCreate(TObject *Sender)
 void __fastcall TFormNotify::HandleWMFadein(TMessage& Message)
 {
 	if (Message.WParam > 0)
-		Left = FDesktop.right - 8 - (Width * Message.WParam / STEPS);
+		Left = FDesktop.right - 4 - (Width * Message.WParam / STEPS);
 	else
 		AlphaBlendValue = 255 + (255 * Message.WParam / STEPS);
 }
@@ -85,6 +95,18 @@ void __fastcall TFadeinThread::Execute()
 	}
 
 	PostMessage(FWnd, WM_CLOSE, 0, 0);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormNotify::FormActivate(TObject *Sender)
+{
+	ShowWindow(Application->Handle, SW_HIDE);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormNotify::FormShow(TObject *Sender)
+{
+	ShowWindow(Application->Handle, SW_HIDE);
 }
 //---------------------------------------------------------------------------
 
