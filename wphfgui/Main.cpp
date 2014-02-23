@@ -10,6 +10,9 @@
 #pragma link "JvExControls"
 #pragma link "JvGradient"
 #pragma resource "*.dfm"
+
+#pragma link "psapi.lib"
+
 TFormNotify *FormNotify;
 static HANDLE hClose;
 //---------------------------------------------------------------------------

@@ -513,6 +513,10 @@ object FAXSend: TFAXSend
       TabOrder = 1
       object tsFax: TTabSheet
         Caption = 'Fax'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         DesignSize = (
           420
           137)

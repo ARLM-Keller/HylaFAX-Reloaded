@@ -59,6 +59,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 //#pragma link "gsdll32.lib"
 #pragma link "libpcre16.lib"
+#pragma link "psapi.lib"
 
 //see QC #86394
 #pragma alias "@Strutils@ReplaceTextW$qqrx20System@UnicodeStringt1t1"="@Strutils@ReplaceText$qqrx20System@UnicodeStringt1t1"
