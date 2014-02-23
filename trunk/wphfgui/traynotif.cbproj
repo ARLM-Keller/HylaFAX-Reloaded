@@ -58,16 +58,16 @@
 			<TASM_Debugging>None</TASM_Debugging>
 		</PropertyGroup>
 		<ItemGroup>
-			<CppCompile Include="Main.cpp">
-				<Form>FormNotify</Form>
-				<DependentOn>Main.h</DependentOn>
-				<BuildOrder>2</BuildOrder>
+			<CppCompile Include="traynotif.cpp">
+				<BuildOrder>0</BuildOrder>
 			</CppCompile>
 			<ResFiles Include="traynotif.res">
 				<BuildOrder>1</BuildOrder>
 			</ResFiles>
-			<CppCompile Include="traynotif.cpp">
-				<BuildOrder>0</BuildOrder>
+			<CppCompile Include="Main.cpp">
+				<Form>FormNotify</Form>
+				<DependentOn>Main.h</DependentOn>
+				<BuildOrder>2</BuildOrder>
 			</CppCompile>
 			<FormResources Include="Main.dfm"/>
 			<BuildConfiguration Include="Base">
@@ -100,7 +100,7 @@
 						<VersionInfo Name="MajorVer">0</VersionInfo>
 						<VersionInfo Name="MinorVer">1</VersionInfo>
 						<VersionInfo Name="Release">0</VersionInfo>
-						<VersionInfo Name="Build">1</VersionInfo>
+						<VersionInfo Name="Build">2</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -112,7 +112,7 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName">Lorenzo Monti</VersionInfoKeys>
 						<VersionInfoKeys Name="FileDescription">Winprint HylaFAX Reloaded notification popup</VersionInfoKeys>
-						<VersionInfoKeys Name="FileVersion">0.1.0.1</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">0.1.0.2</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName">traynotif.exe</VersionInfoKeys>
 						<VersionInfoKeys Name="LegalCopyright">Copyright © 2011-2013 Lorenzo Monti.</VersionInfoKeys>
 						<VersionInfoKeys Name="LegalTrademarks"/>
