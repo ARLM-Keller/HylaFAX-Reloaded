@@ -134,7 +134,8 @@ void __fastcall TConfigForm::FormCreate(TObject *Sender)
 				status = U_ZERO_ERROR;
 				uloc_getDisplayLanguage(lang.c_str(), lang.c_str(),
 					name.c_str(), len, &status);
-				hLanguage->Items->Add(name);
+				if (status == U_ZERO_ERROR)
+					hLanguage->Items->Add(name);
 			}
 		}
 	}
