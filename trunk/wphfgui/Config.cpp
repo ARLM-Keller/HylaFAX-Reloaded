@@ -118,15 +118,31 @@ void __fastcall TConfigForm::FormCreate(TObject *Sender)
 	TStringList *langs = new TStringList();
 	try {
 		DefaultInstance->GetListOfLanguages(L"wphfgui", langs);
+		langs->Insert(0, L"en");
+
 		hLanguage->Items->Add(L"<auto>");
-		hLanguage->Items->Add(L"en");
-		hLanguage->Items->AddStrings(langs);
+
+		for (int i = 0; i < langs->Count; i++)
+		{
+			UErrorCode status = U_ZERO_ERROR;
+			AnsiString lang = langs->Strings[i];
+			int32_t len = uloc_getDisplayLanguage(lang.c_str(), lang.c_str(),
+				NULL, 0, &status);
+			if (status == U_BUFFER_OVERFLOW_ERROR) {
+				UnicodeString name;
+				name.SetLength(len);
+				status = U_ZERO_ERROR;
+				uloc_getDisplayLanguage(lang.c_str(), lang.c_str(),
+					name.c_str(), len, &status);
+				hLanguage->Items->Add(name);
+			}
+		}
 	}
 	__finally {
 		delete langs;
 	}
 
-	DefaultInstance->TranslateProperties(hLanguage, L"languages");
+	//DefaultInstance->TranslateProperties(hLanguage, L"languages");
 }
 //---------------------------------------------------------------------------
 

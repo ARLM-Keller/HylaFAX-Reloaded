@@ -33,6 +33,7 @@ USEFORM("Config.cpp", ConfigForm);
 //---------------------------------------------------------------------------
 #pragma link "gnugettext.lib"
 #pragma link "odbc32.lib"
+#pragma link "icuuc.lib"
 //---------------------------------------------------------------------------
 WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 {
@@ -53,7 +54,7 @@ WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		UnicodeString path = ExtractFilePath(ParamStr(0)) + L"locale";
 	#endif
 		bindtextdomain(L"wphfgui", path);
-		bindtextdomain(L"languages", path);
+		//bindtextdomain(L"languages", path);
 		bindtextdomain(L"delphi", path);
 		//Delphi strings translation
 		AddDomainForResourceString(L"delphi");

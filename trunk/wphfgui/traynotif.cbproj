@@ -3,7 +3,7 @@
 			<ProjectGuid>{DBF88A9F-FAE0-4C55-9532-329A75142A74}</ProjectGuid>
 			<ProjectVersion>12.0</ProjectVersion>
 			<MainSource>traynotif.cpp</MainSource>
-			<Config Condition="'$(Config)'==''">Debug</Config>
+			<Config Condition="'$(Config)'==''">Release</Config>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
 			<Base>true</Base>
@@ -58,16 +58,16 @@
 			<TASM_Debugging>None</TASM_Debugging>
 		</PropertyGroup>
 		<ItemGroup>
-			<CppCompile Include="traynotif.cpp">
-				<BuildOrder>0</BuildOrder>
-			</CppCompile>
-			<ResFiles Include="traynotif.res">
-				<BuildOrder>1</BuildOrder>
-			</ResFiles>
 			<CppCompile Include="Main.cpp">
 				<Form>FormNotify</Form>
 				<DependentOn>Main.h</DependentOn>
 				<BuildOrder>2</BuildOrder>
+			</CppCompile>
+			<ResFiles Include="traynotif.res">
+				<BuildOrder>1</BuildOrder>
+			</ResFiles>
+			<CppCompile Include="traynotif.cpp">
+				<BuildOrder>0</BuildOrder>
 			</CppCompile>
 			<FormResources Include="Main.dfm"/>
 			<BuildConfiguration Include="Base">
@@ -84,7 +84,7 @@
 		</ItemGroup>
 		<Import Project="$(BDS)\Bin\CodeGear.Cpp.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Cpp.Targets')"/>
 		<PropertyGroup Condition="'$(FileToCompile)'==''">
-			<PostBuildEvent><![CDATA["C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Bin\signtool.exe" sign /f S:\OSD_Lorenzo_Monti.pfx /p $(PFXPWD) /d "Winprint HylaFAX Reloaded" /t http://time.certum.pl/ /v $(OUTPUTPATH)]]></PostBuildEvent>
+			<PostBuildEvent><![CDATA["C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Bin\signtool.exe" sign /f S:\Lorenzo_Monti.pfx /p $(PFXPWD) /d "Winprint HylaFAX Reloaded" /t http://time.certum.pl/ /v $(OUTPUTPATH)]]></PostBuildEvent>
 		</PropertyGroup>
 		<ProjectExtensions>
 			<Borland.Personality>CPlusPlusBuilder.Personality.12</Borland.Personality>
@@ -114,7 +114,7 @@
 						<VersionInfoKeys Name="FileDescription">Winprint HylaFAX Reloaded notification popup</VersionInfoKeys>
 						<VersionInfoKeys Name="FileVersion">0.1.0.2</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName">traynotif.exe</VersionInfoKeys>
-						<VersionInfoKeys Name="LegalCopyright">Copyright © 2011-2013 Lorenzo Monti.</VersionInfoKeys>
+						<VersionInfoKeys Name="LegalCopyright">Copyright © 2011-2014 Lorenzo Monti.</VersionInfoKeys>
 						<VersionInfoKeys Name="LegalTrademarks"/>
 						<VersionInfoKeys Name="OriginalFilename"/>
 						<VersionInfoKeys Name="ProductName">Winprint HylaFAX Reloaded</VersionInfoKeys>

@@ -37,6 +37,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "pcre.h"
 #include "JvExStdCtrls.hpp"
 #include "JvHtControls.hpp"
+#include <unicode/utypes.h>
 //---------------------------------------------------------------------------
 class TConfigForm : public TForm
 {
@@ -148,4 +149,23 @@ public:		// User declarations
 //---------------------------------------------------------------------------
 extern PACKAGE TConfigForm *ConfigForm;
 //---------------------------------------------------------------------------
+
+//declare ICU function locally...
+//including <unicode/uloc.h> results in a bloat of errors
+//caused by symbol names collision
+#define U_EXPORT
+#define U_CFUNC extern "C"
+#define U_CAPI U_CFUNC U_EXPORT
+#define U_STABLE U_CAPI
+#define U_EXPORT2
+
+typedef wchar_t UChar;
+
+U_STABLE int32_t U_EXPORT2
+uloc_getDisplayLanguage_52(const char* locale,
+			const char* displayLocale,
+			UChar* language,
+			int32_t languageCapacity,
+			UErrorCode* status);
+
 #endif

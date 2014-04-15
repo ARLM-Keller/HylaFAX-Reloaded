@@ -200,6 +200,10 @@ object ConfigForm: TConfigForm
     TabOrder = 1
     object tsMain: TTabSheet
       Caption = 'Main'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         442
         457)
@@ -507,6 +511,10 @@ object ConfigForm: TConfigForm
     object tsAddrBook: TTabSheet
       Caption = 'Address book'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         442
         457)
@@ -742,6 +750,10 @@ object ConfigForm: TConfigForm
     object tsAutoNumber: TTabSheet
       Caption = 'Number capture'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         442
         457)
