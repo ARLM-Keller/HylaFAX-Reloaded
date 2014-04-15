@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Winprint HylaFAX Reloaded\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-28 15:27+0200\n"
+"POT-Creation-Date: 2013-07-01 10:57+0200\n"
 "PO-Revision-Date: 2013-07-01 11:08+0100\n"
 "Last-Translator: Lorenzo Monti <lomo74@gmail.com>\n"
 "Language-Team: \n"
@@ -28,6 +28,7 @@ msgstr "Konfiguriere HylaFAX-Client"
 #. ConfigForm..Panel1..lblVersion..Font.Name
 #. ConfigForm..Panel1..Label12..Font.Name
 #. ConfigForm..Panel1..Label6..Font.Name
+#. Confirmation..Font.Name
 #. RecipientName..Font.Name
 #. SelectRcpt..Font.Name
 #. FAXSend..Font.Name
@@ -36,8 +37,9 @@ msgstr "Konfiguriere HylaFAX-Client"
 #. FAXSend..Panel1..lblVersion..Font.Name
 #. FAXSend..Panel1..Label12..Font.Name
 #. FAXSend..Panel2..Panel4..Label7..Font.Name
-#: Config.dfm:14 Recipient.dfm:12 Select.dfm:11 SendFAX.dfm:13 SendFAX.dfm:109
-#: SendFAX.dfm:123 SendFAX.dfm:138 SendFAX.dfm:152 SendFAX.dfm:194
+#: Config.dfm:14 Confirm.dfm:11 Recipient.dfm:12 Select.dfm:11 SendFAX.dfm:13
+#: SendFAX.dfm:109 SendFAX.dfm:123 SendFAX.dfm:138 SendFAX.dfm:152
+#: SendFAX.dfm:194
 msgid "Tahoma"
 msgstr ""
 
@@ -571,6 +573,26 @@ msgstr "Ermittelte Nummer:"
 msgid "Enabled"
 msgstr "Aktiviert"
 
+#. Confirmation..Caption
+#: Confirm.dfm:4
+msgid "Job submission"
+msgstr ""
+
+#. Confirmation..Panel1..Result..Caption
+#: Confirm.dfm:41
+msgid "Result"
+msgstr ""
+
+#. Confirmation..Panel1..Label2..Caption
+#: Confirm.dfm:48
+msgid "Details:"
+msgstr ""
+
+#. Confirmation..Panel2..Close..Caption
+#: Confirm.dfm:66
+msgid "Ok"
+msgstr ""
+
 #. RecipientName..Caption
 #: Recipient.dfm:5
 msgid "Recipient's name"
@@ -902,6 +924,13 @@ msgstr ""
 #, c-format
 msgid "PCRE error @ position %d: %s"
 msgstr "PCRE-Fehler @ Position %d: %s"
+
+# D:\proj\wphf-reloaded\trunk\wphfgui\SendFAX.cpp:1368
+#, c-format
+msgid "%d fax job submitted."
+msgid_plural "%d fax jobs submitted."
+msgstr[0] ""
+msgstr[1] ""
 
 # D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:761
 # D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:761
