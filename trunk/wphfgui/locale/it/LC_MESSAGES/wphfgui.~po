@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Winprint HylaFAX Reloaded\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-05 10:44+0100\n"
-"PO-Revision-Date: 2013-12-05 10:45+0100\n"
+"POT-Creation-Date: 2013-12-05 11:19+0100\n"
+"PO-Revision-Date: 2013-12-05 11:20+0100\n"
 "Last-Translator: Lorenzo Monti <lomo74@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -41,7 +41,7 @@ msgstr "Configura il client HylaFAX"
 #. FAXSend..Panel1..lblVersion..Font.Name
 #. FAXSend..Panel1..Label12..Font.Name
 #. FAXSend..Panel2..Panel4..Label7..Font.Name
-#: Config.dfm:14 Config.dfm:158 Main.dfm:63 SendFAX.dfm:109 SendFAX.dfm:194
+#: Config.dfm:14 Config.dfm:158 Main.dfm:62 SendFAX.dfm:109 SendFAX.dfm:194
 msgid "Tahoma"
 msgstr ""
 
@@ -604,23 +604,18 @@ msgstr ""
 msgid "FormNotify"
 msgstr ""
 
-#. FormNotify..Panel1..Caption
-#: Main.dfm:27
-msgid "Panel1"
-msgstr ""
-
 #. FormNotify..Panel1..Label1..Caption
-#: Main.dfm:47
+#: Main.dfm:46
 msgid "Fax sent to:"
 msgstr "Fax inviato a:"
 
 #. FormNotify..Panel1..btnClose..Caption
-#: Main.dfm:248
+#: Main.dfm:247
 msgid "X"
 msgstr ""
 
 #. FormNotify..Panel1..btnClose..Font.Name
-#: Main.dfm:252
+#: Main.dfm:251
 msgid "Verdana"
 msgstr ""
 
@@ -737,7 +732,7 @@ msgstr "Inserisci più destinatari separandoli con punto e virgola."
 #: SendFAX.dfm:573
 #: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:816
 #: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:975
-#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1792
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1820
 msgid "Select from address book"
 msgstr "Seleziona dalla rubrica"
 
@@ -747,83 +742,83 @@ msgid "Schedule"
 msgstr "Pianificazione"
 
 #. FAXSend..Panel2..PageControl1..tsSchedule..Label9..Caption
-#: SendFAX.dfm:623
+#: SendFAX.dfm:627
 msgid "Keep retrying for"
 msgstr "Ritenta l'invio per"
 
 #. FAXSend..Panel2..PageControl1..tsSchedule..Label11..Caption
-#: SendFAX.dfm:631
+#: SendFAX.dfm:635
 msgid "days"
 msgstr "giorni"
 
 #. FAXSend..Panel2..PageControl1..tsSchedule..Label10..Caption
-#: SendFAX.dfm:639
+#: SendFAX.dfm:643
 msgid "hours"
 msgstr "ore"
 
 #. FAXSend..Panel2..PageControl1..tsSchedule..rbSendNow..Caption
-#: SendFAX.dfm:654
+#: SendFAX.dfm:658
 msgid "Send immediately"
 msgstr "Invia subito"
 
 #. FAXSend..Panel2..PageControl1..tsSchedule..rbPostpone..Caption
-#: SendFAX.dfm:665
+#: SendFAX.dfm:669
 msgid "Postpone to"
 msgstr "Posponi l'invio al"
 
 #. FAXSend..Panel2..PageControl1..tsSchedule..hTime..Format
 #. FAXSend..Panel2..PageControl1..tsSchedule..hHours..Format
-#: SendFAX.dfm:685
+#: SendFAX.dfm:689
 msgid "HH:mm"
 msgstr ""
 
 #. FAXSend..actions..actSend..Caption
-#: SendFAX.dfm:765
+#: SendFAX.dfm:769
 msgid "Send"
 msgstr "Invia"
 
 #. FAXSend..actions..actSave..Caption
-#: SendFAX.dfm:777
+#: SendFAX.dfm:781
 msgid "Save Number"
 msgstr "Salva numero"
 
 #. FAXSend..actions..actDelete..Caption
-#: SendFAX.dfm:781
+#: SendFAX.dfm:785
 msgid "Delete Entry"
 msgstr "Elimina numero"
 
 #. FAXSend..actions..actConfigure..Caption
-#: SendFAX.dfm:785
+#: SendFAX.dfm:789
 msgid "Configure"
 msgstr "Configura"
 
 #. FAXSend..actions..actClose..Caption
-#: SendFAX.dfm:789
+#: SendFAX.dfm:793
 msgid "Close"
 msgstr "Chiudi"
 
 #. FAXSend..actions..actSelect..Caption
-#: SendFAX.dfm:793
+#: SendFAX.dfm:797
 msgid "Select..."
 msgstr "Seleziona..."
 
 #. FAXSend..popup..mnuAddfile..Caption
-#: SendFAX.dfm:827
+#: SendFAX.dfm:831
 msgid "Add file..."
 msgstr "Aggiungi file..."
 
 #. FAXSend..opendlg..Filter
-#: SendFAX.dfm:840
+#: SendFAX.dfm:844
 msgid "All supported files|*.ps;*.pdf;*.tif;*.tiff;*.pcl|All files|*.*"
 msgstr "Tutti i file supportati|*.ps;*.pdf;*.tif;*.tiff;*.pcl|Tutti i file|*.*"
 
 #. FAXSend..checkip..Request.Accept
-#: SendFAX.dfm:856
+#: SendFAX.dfm:860
 msgid "text/html, */*"
 msgstr ""
 
 #. FAXSend..checkip..Request.UserAgent
-#: SendFAX.dfm:858
+#: SendFAX.dfm:862
 msgid "Mozilla/3.0 (compatible; Indy Library)"
 msgstr ""
 
@@ -969,7 +964,7 @@ msgid "PCRE error @ position %d: %s"
 msgstr "Errore PCRE @ posizione %d: %s"
 
 # D:\proj\wphf-reloaded\trunk\wphfgui\SendFAX.cpp:1368
-#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1591
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1593
 #, c-format
 msgid "%d fax job submitted."
 msgid_plural "%d fax jobs submitted."
@@ -977,12 +972,12 @@ msgstr[0] "%d fax inoltrato."
 msgstr[1] "%d fax inoltrati."
 
 # D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:761
-#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1728
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1756
 msgid "Unsent faxes will be lost. Are you sure you want to exit?"
 msgstr "I fax non inviati andranno persi. Sei sicuro di voler uscire?"
 
 # D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:824
-#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1788
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1816
 msgid "Delete recipient?"
 msgstr "Cancellare il nominativo?"
 

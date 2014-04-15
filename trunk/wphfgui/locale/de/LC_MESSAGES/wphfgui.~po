@@ -6,16 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Winprint HylaFAX Reloaded\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-01 10:57+0200\n"
-"PO-Revision-Date: 2013-07-01 11:08+0100\n"
+"POT-Creation-Date: 2013-12-05 11:19+0100\n"
+"PO-Revision-Date: 2014-04-15 14:31+0100\n"
 "Last-Translator: Lorenzo Monti <lomo74@gmail.com>\n"
 "Language-Team: \n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.6.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: de\n"
 
 #. ConfigForm..Caption
 #. ConfigForm..Panel1..Label5..Caption
@@ -29,6 +29,10 @@ msgstr "Konfiguriere HylaFAX-Client"
 #. ConfigForm..Panel1..Label12..Font.Name
 #. ConfigForm..Panel1..Label6..Font.Name
 #. Confirmation..Font.Name
+#. Confirmation..Panel1..Result..Font.Name
+#. FormNotify..Font.Name
+#. FormNotify..Panel1..Label1..Font.Name
+#. FormNotify..Panel1..lblNumber..Font.Name
 #. RecipientName..Font.Name
 #. SelectRcpt..Font.Name
 #. FAXSend..Font.Name
@@ -37,9 +41,7 @@ msgstr "Konfiguriere HylaFAX-Client"
 #. FAXSend..Panel1..lblVersion..Font.Name
 #. FAXSend..Panel1..Label12..Font.Name
 #. FAXSend..Panel2..Panel4..Label7..Font.Name
-#: Config.dfm:14 Confirm.dfm:11 Recipient.dfm:12 Select.dfm:11 SendFAX.dfm:13
-#: SendFAX.dfm:109 SendFAX.dfm:123 SendFAX.dfm:138 SendFAX.dfm:152
-#: SendFAX.dfm:194
+#: Config.dfm:14 Config.dfm:158 Main.dfm:62 SendFAX.dfm:109 SendFAX.dfm:194
 msgid "Tahoma"
 msgstr ""
 
@@ -367,6 +369,7 @@ msgstr ""
 
 #. ConfigForm..tabs..tsAddrBook..gbAddressBook..btnDefault..Hint
 #: Config.dfm:566
+#, no-object-pascal-format
 msgid "Set to default location (%APPDATA%\\Winprint HylaFAX Reloaded)"
 msgstr "Setze auf Standard-Pfad (%APPDATA%\\Winprint HylaFAX Reloaded)"
 
@@ -573,24 +576,54 @@ msgstr "Ermittelte Nummer:"
 msgid "Enabled"
 msgstr "Aktiviert"
 
+#. ConfigForm..tabs..tsAutoNumber..hFirstPageOnly..Caption
+#: Config.dfm:857
+msgid "Look at the first page only"
+msgstr "Nur die erste Seite untersuchen"
+
+#. ConfigForm..tabs..tsAutoNumber..hSendSilently..Caption
+#: Config.dfm:865
+msgid "Send silently upon successful number detection"
+msgstr "Bei erkannter Nummer ohne Nachfrage senden"
+
 #. Confirmation..Caption
 #: Confirm.dfm:4
 msgid "Job submission"
-msgstr ""
+msgstr "Auftragsannahme"
 
 #. Confirmation..Panel1..Result..Caption
 #: Confirm.dfm:41
 msgid "Result"
-msgstr ""
+msgstr "Ergebnis"
 
 #. Confirmation..Panel1..Label2..Caption
-#: Confirm.dfm:48
+#: Confirm.dfm:54
 msgid "Details:"
 msgstr ""
 
 #. Confirmation..Panel2..Close..Caption
-#: Confirm.dfm:66
+#: Confirm.dfm:70
 msgid "Ok"
+msgstr ""
+
+#. FormNotify..Caption
+#: Main.dfm:6
+msgid "FormNotify"
+msgstr ""
+
+#. FormNotify..Panel1..Label1..Caption
+#: Main.dfm:46
+msgid "Fax sent to:"
+msgstr "Fax gesendet an:"
+
+#. FormNotify..Panel1..btnClose..Caption
+#: Main.dfm:247
+msgid "X"
+msgstr ""
+
+#. FormNotify..Panel1..btnClose..Font.Name
+#: Main.dfm:251
+msgid "Verdana"
 msgstr ""
 
 #. RecipientName..Caption
@@ -707,6 +740,9 @@ msgstr "Mehrere Empfänger getrennt durch Semikolon [;] eintragen."
 # D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:828
 #. FAXSend..Panel2..PageControl1..tsFax..ABNames..Text
 #: SendFAX.dfm:573
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:816
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:975
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1820
 msgid "Select from address book"
 msgstr "Wählen Sie aus dem Adressbuch"
 
@@ -716,203 +752,231 @@ msgid "Schedule"
 msgstr "Zeitplan"
 
 #. FAXSend..Panel2..PageControl1..tsSchedule..Label9..Caption
-#: SendFAX.dfm:623
+#: SendFAX.dfm:627
 msgid "Keep retrying for"
 msgstr "Wiederhole bis zu"
 
 #. FAXSend..Panel2..PageControl1..tsSchedule..Label11..Caption
-#: SendFAX.dfm:631
+#: SendFAX.dfm:635
 msgid "days"
 msgstr "Tage"
 
 #. FAXSend..Panel2..PageControl1..tsSchedule..Label10..Caption
-#: SendFAX.dfm:639
+#: SendFAX.dfm:643
 msgid "hours"
 msgstr "Stunden"
 
 #. FAXSend..Panel2..PageControl1..tsSchedule..rbSendNow..Caption
-#: SendFAX.dfm:654
+#: SendFAX.dfm:658
 msgid "Send immediately"
 msgstr "Sofort senden"
 
 #. FAXSend..Panel2..PageControl1..tsSchedule..rbPostpone..Caption
-#: SendFAX.dfm:665
+#: SendFAX.dfm:669
 msgid "Postpone to"
 msgstr "Senden am"
 
 #. FAXSend..Panel2..PageControl1..tsSchedule..hTime..Format
 #. FAXSend..Panel2..PageControl1..tsSchedule..hHours..Format
-#: SendFAX.dfm:685
+#: SendFAX.dfm:689
 msgid "HH:mm"
 msgstr ""
 
 #. FAXSend..actions..actSend..Caption
-#: SendFAX.dfm:765
+#: SendFAX.dfm:769
 msgid "Send"
 msgstr "Senden"
 
 #. FAXSend..actions..actSave..Caption
-#: SendFAX.dfm:777
+#: SendFAX.dfm:781
 msgid "Save Number"
 msgstr "Nummer speichern"
 
 #. FAXSend..actions..actDelete..Caption
-#: SendFAX.dfm:781
+#: SendFAX.dfm:785
 msgid "Delete Entry"
 msgstr "Eintrag löschen"
 
 #. FAXSend..actions..actConfigure..Caption
-#: SendFAX.dfm:785
+#: SendFAX.dfm:789
 msgid "Configure"
 msgstr "Konfigurieren"
 
 #. FAXSend..actions..actClose..Caption
-#: SendFAX.dfm:789
+#: SendFAX.dfm:793
 msgid "Close"
 msgstr "Schließen"
 
 #. FAXSend..actions..actSelect..Caption
-#: SendFAX.dfm:793
+#: SendFAX.dfm:797
 msgid "Select..."
 msgstr "Auswahl..."
 
 #. FAXSend..popup..mnuAddfile..Caption
-#: SendFAX.dfm:827
+#: SendFAX.dfm:831
 msgid "Add file..."
 msgstr "Datei hinzufügen..."
 
 #. FAXSend..opendlg..Filter
-#: SendFAX.dfm:840
+#: SendFAX.dfm:844
 msgid "All supported files|*.ps;*.pdf;*.tif;*.tiff;*.pcl|All files|*.*"
 msgstr ""
 "Unterstütze Dateiformate|*.ps;*.pdf;*.tif;*.tiff;*.pcl|Alle Dateien|*.*"
 
 #. FAXSend..checkip..Request.Accept
-#: SendFAX.dfm:856
+#: SendFAX.dfm:860
 msgid "text/html, */*"
 msgstr ""
 
 #. FAXSend..checkip..Request.UserAgent
-#: SendFAX.dfm:858
+#: SendFAX.dfm:862
 msgid "Mozilla/3.0 (compatible; Indy Library)"
 msgstr ""
 
 # D:\proj\wphf-reloaded\wphfgui\AddrBookCSV.cpp:53
 # D:\proj\wphf-reloaded\wphfgui\AddrBookCSV.cpp:53
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/AddrBookCSV.cpp:54
 msgid "Unable to lock addressbook.csv!"
 msgstr "Kann addressbook.csv nicht sperren!"
 
 # D:\proj\wphf-reloaded\wphfgui\AddrBookCSV.cpp:187
 # D:\proj\wphf-reloaded\wphfgui\AddrBookCSV.cpp:187
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/AddrBookCSV.cpp:199
 msgid "Unable to create addressbook.csv!"
 msgstr "Kann addressbook.csv nicht öffnen!"
 
 # D:\proj\wphf-reloaded\wphfgui\AddrBookMAPI.cpp:98
 # D:\proj\wphf-reloaded\wphfgui\AddrBookMAPI.cpp:98
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/AddrBookMAPI.cpp:98
 msgid "Unable to query address book contents table: 0x"
 msgstr "Kann die Tabelle des Adressbuchs nicht abfragen: 0x"
 
 # D:\proj\wphf-reloaded\wphfgui\AddrBookMAPI.cpp:205
 # D:\proj\wphf-reloaded\wphfgui\AddrBookMAPI.cpp:205
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/AddrBookMAPI.cpp:204
 msgid "Unable to query address book hierarchy table: 0x"
 msgstr "Kann die Tabellenstruktur des Adressbuchs nicht abfragen: 0x"
 
 # D:\proj\wphf-reloaded\wphfgui\AddrBookMAPI.cpp:239
 # D:\proj\wphf-reloaded\wphfgui\AddrBookMAPI.cpp:239
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/AddrBookMAPI.cpp:238
 msgid "Unable to open address book sub container: 0x"
 msgstr "Kann den Untercontainers des Adressbuchs nicht öffnen: 0x"
 
 # D:\proj\wphf-reloaded\wphfgui\AddrBookMAPI.cpp:296
 # D:\proj\wphf-reloaded\wphfgui\AddrBookMAPI.cpp:296
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/AddrBookMAPI.cpp:295
 msgid "Unable to initialize MAPI: 0x"
 msgstr "Fehler bei der MAPI-Initialisierung: 0x"
 
 # D:\proj\wphf-reloaded\wphfgui\AddrBookMAPI.cpp:317
 # D:\proj\wphf-reloaded\wphfgui\AddrBookMAPI.cpp:317
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/AddrBookMAPI.cpp:316
 msgid "Unable to logon to MAPI: 0x"
 msgstr "Fehler bei der MAPI-Anmeldung: 0x"
 
 # D:\proj\wphf-reloaded\wphfgui\AddrBookMAPI.cpp:322
 # D:\proj\wphf-reloaded\wphfgui\AddrBookMAPI.cpp:322
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/AddrBookMAPI.cpp:321
 msgid "Unable to open MAPI address book: 0x"
 msgstr "Kann das MAPI-Adressbuch nicht öffnen: 0x"
 
 # D:\proj\wphf-reloaded\wphfgui\AddrBookMAPI.cpp:327
 # D:\proj\wphf-reloaded\wphfgui\AddrBookMAPI.cpp:327
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/AddrBookMAPI.cpp:326
 msgid "Unable to open MAPI address book container: 0x"
 msgstr "Kann den MAPI-Adressbuch-Container nicht öffnen: 0x"
 
 # D:\proj\wphf-reloaded\wphfgui\AddrBookMAPI.cpp:296
 # D:\proj\wphf-reloaded\wphfgui\AddrBookMAPI.cpp:296
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/AddrBookODBC.cpp:84
 msgid "Unable to initialize ODBC: "
 msgstr "Kann ODBC nicht initialisieren: "
 
 # D:\proj\wphf-reloaded\wphfgui\AddrBookODBC.cpp:89
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/AddrBookODBC.cpp:89
 msgid "Unable to setup ODBC: "
 msgstr "Kann ODBC nicht einrichten: "
 
 # D:\proj\wphf-reloaded\wphfgui\AddrBookODBC.cpp:95
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/AddrBookODBC.cpp:95
 msgid "Unable to create ODBC connection: "
 msgstr "Kann ODBC-Verbindung nicht herstellen: "
 
 # D:\proj\wphf-reloaded\wphfgui\AddrBookODBC.cpp:100
 # D:\proj\wphf-reloaded\wphfgui\AddrBookODBC.cpp:105
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/AddrBookODBC.cpp:100
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/AddrBookODBC.cpp:105
 msgid "Unable to setup ODBC connection: "
 msgstr "Kann ODBC-Verbindung nicht einrichten: "
 
 # D:\proj\wphf-reloaded\wphfgui\AddrBookMAPI.cpp:239
 # D:\proj\wphf-reloaded\wphfgui\AddrBookMAPI.cpp:239
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/AddrBookODBC.cpp:117
 msgid "Unable to open ODBC connection: "
 msgstr "Kann die ODBC-Verbindung nicht öffnen: "
 
 # D:\proj\wphf-reloaded\wphfgui\AddrBookODBC.cpp:132
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/AddrBookODBC.cpp:132
 msgid "Unable to create ODBC statement: "
 msgstr "Kann ODBC-Befehl nicht erzeugen: "
 
 # D:\proj\wphf-reloaded\wphfgui\AddrBookODBC.cpp:151
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/AddrBookODBC.cpp:151
 msgid "Unable to execute ODBC statement: "
 msgstr "Kann ODBC-Befehl nicht ausführen: "
 
 # D:\proj\wphf-reloaded\wphfgui\AddrBookODBC.cpp:157
 # D:\proj\wphf-reloaded\wphfgui\AddrBookODBC.cpp:162
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/AddrBookODBC.cpp:157
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/AddrBookODBC.cpp:162
 msgid "Unable to bind ODBC column: "
 msgstr "Kann ODBC-Spalte nicht verbinden: "
 
 # D:\proj\wphf-reloaded\wphfgui\AddrBookODBC.cpp:169
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/AddrBookODBC.cpp:169
 msgid "Unable to fetch ODBC data: "
 msgstr "Kann ODBC-Daten nicht holen: "
 
 # D:\proj\wphf-reloaded\wphfgui\Config.cpp:53
 # D:\proj\wphf-reloaded\wphfgui\Config.cpp:53
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/Config.cpp:66
 msgid "Choose address book location"
 msgstr "Wählen Sie den Adressbuch-Ort aus"
 
 # D:\proj\wphf-reloaded\wphfgui\Config.cpp:83
 # D:\proj\wphf-reloaded\wphfgui\Config.cpp:83
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/Config.cpp:96
 msgid "Specify a valid path for the Address Book"
 msgstr "Geben Sie einen korrekten Pfad für das Adressbuch an"
 
 # D:\proj\wphf-reloaded\trunk\wphfgui\Config.cpp:115
 # D:\proj\wphf-reloaded\trunk\wphfgui\SendFAX.cpp:836
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/Config.cpp:116
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1033
 msgid "rel. "
 msgstr "ver. "
 
 # D:\proj\wphf-reloaded\wphfgui\Config.cpp:170
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/Config.cpp:173
 msgid "No match!"
 msgstr "Nichts gefunden!"
 
 # D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:149
 # D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:149
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:828
 msgid "Configuration files have been moved to the user profile."
 msgstr "Konfigurationsdateien wurden ins Benutzerprofil verschoben."
 
 # D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:172
 # D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:172
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:853
 msgid "Client is not configured. Would you like to configure it now?"
 msgstr "Das Programm ist nicht konfiguriert. Jetzt konfigurieren?"
 
 # D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:266
 # D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:266
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:966
 msgid ""
 " is already present in the address book.\n"
 "Do you want to modify the associated number?"
@@ -921,24 +985,28 @@ msgstr ""
 "Wollen Sie die zugeordnete Fax-Nummer ändern?"
 
 # D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:675
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1007
 #, c-format
 msgid "PCRE error @ position %d: %s"
 msgstr "PCRE-Fehler @ Position %d: %s"
 
 # D:\proj\wphf-reloaded\trunk\wphfgui\SendFAX.cpp:1368
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1593
 #, c-format
 msgid "%d fax job submitted."
 msgid_plural "%d fax jobs submitted."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Fax-Auftrag angenommen."
+msgstr[1] "%d Fax-Aufträge angenommen."
 
 # D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:761
 # D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:761
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1756
 msgid "Unsent faxes will be lost. Are you sure you want to exit?"
 msgstr "Nicht gesendete Faxe werden gelöscht. Wollen Sie wirklich beenden?"
 
 # D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:824
 # D:\proj\wphf-reloaded\wphfgui\SendFAX.cpp:824
+#: /cygdrive/d/proj/wphf-reloaded/trunk/wphfgui/SendFAX.cpp:1816
 msgid "Delete recipient?"
 msgstr "Empfänger löschen?"
 
