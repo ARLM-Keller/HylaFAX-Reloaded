@@ -56,7 +56,7 @@ MinVersion=0,5.0
 
 LicenseFile=gpl-3.0.rtf
 
-SignTool=lomosign /d "{#AppName}"
+SignTool=lorenzomonti /d "{#AppName}"
 
 [Languages]
 Name: "en"; MessagesFile: "compiler:Default.isl"
@@ -142,6 +142,10 @@ Source: "..\wphfgui\locale\*.mo"; DestDir: "{app}\locale"; Flags: recursesubdirs
 Source: "..\ghostscript\bin\gsdll32.dll"; DestDir: "{app}\gs\bin"; Flags: promptifolder replacesameversion
 Source: "..\ghostscript\bin\gswin32c.exe"; DestDir: "{app}\gs\bin"; Flags: promptifolder replacesameversion
 Source: "..\ghostscript\lib\*"; DestDir: "{app}\gs\lib"; Flags: promptifolder replacesameversion
+; ICU
+Source: "..\icu\icudt52.dll"; DestDir: "{app}"; Flags: promptifolder replacesameversion
+Source: "..\icu\icuuc52.dll"; DestDir: "{app}"; Flags: promptifolder replacesameversion
+Source: "..\icu\msvcr100.dll"; DestDir: "{app}"; Flags: promptifolder replacesameversion
 
 [Tasks]
 Name: printer; Description: "{cm:InstallVirtualPrinter}"; Flags: checkedonce
