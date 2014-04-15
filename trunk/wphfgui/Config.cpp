@@ -127,7 +127,7 @@ void __fastcall TConfigForm::FormCreate(TObject *Sender)
 			UErrorCode status = U_ZERO_ERROR;
 			AnsiString lang = langs->Strings[i];
 			int32_t len = uloc_getDisplayLanguage(lang.c_str(), lang.c_str(),
-				NULL, 0, &status);
+				NULL, 0, &status) + 1;
 			if (status == U_BUFFER_OVERFLOW_ERROR) {
 				UnicodeString name;
 				name.SetLength(len);
