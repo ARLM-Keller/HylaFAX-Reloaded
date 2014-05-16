@@ -129,13 +129,17 @@ void __fastcall TConfigForm::FormCreate(TObject *Sender)
 			int32_t len = uloc_getDisplayLanguage(lang.c_str(), lang.c_str(),
 				NULL, 0, &status) + 1;
 			if (status == U_BUFFER_OVERFLOW_ERROR) {
-				UnicodeString name;
-				name.SetLength(len);
-				status = U_ZERO_ERROR;
-				uloc_getDisplayLanguage(lang.c_str(), lang.c_str(),
-					name.c_str(), len, &status);
-				if (status == U_ZERO_ERROR)
-					hLanguage->Items->Add(name);
+				wchar_t *buf = new wchar_t[len];
+				try {
+					status = U_ZERO_ERROR;
+					uloc_getDisplayLanguage(lang.c_str(), lang.c_str(),
+						buf, len, &status);
+					if (status == U_ZERO_ERROR)
+						hLanguage->Items->Add(buf);
+				}
+				__finally {
+                    delete[] buf;
+                }
 			}
 		}
 	}

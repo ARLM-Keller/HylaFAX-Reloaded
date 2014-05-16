@@ -2,6 +2,6 @@
 <BorlandProject>
 	<Transactions/>
 	<Default.Personality>
-		<Projects ActiveProject="traynotif.exe"/>
+		<Projects ActiveProject="wphfgui.exe"/>
 	</Default.Personality>
 </BorlandProject>
