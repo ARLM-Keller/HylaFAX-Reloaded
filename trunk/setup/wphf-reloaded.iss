@@ -279,7 +279,7 @@ begin
       begin
         //stop spooler since we're going to overwrite DLLs in use
         if bIsAnUpdate then
-          Exec(ExpandConstant('{sys}\net.exe'), 'stop spooler', '', SW_HIDE, ewWaitUntilTerminated, rc);
+          Exec(ExpandConstant('{sys}\net.exe'), 'stop spooler', '', SW_SHOW, ewWaitUntilTerminated, rc);
       end;
   end;
 end;
@@ -293,13 +293,13 @@ begin
     usUninstall:
       begin
         //make sure spooler is running
-        Exec(ExpandConstant('{sys}\net.exe'), 'start spooler', '', SW_HIDE, ewWaitUntilTerminated, rc);
+        Exec(ExpandConstant('{sys}\net.exe'), 'start spooler', '', SW_SHOW, ewWaitUntilTerminated, rc);
         //delete printer
         Exec(ExpandConstant('{sys}\rundll32.exe'), 'PrintUI.dll,PrintUIEntry /dl /n "HylaFAX" /q', '', SW_SHOW, ewWaitUntilTerminated, rc);
         //deregister monitor
-        Exec(ExpandConstant('{app}\regmon.exe'), '-d', '', SW_HIDE, ewWaitUntilTerminated, rc);
+        Exec(ExpandConstant('{app}\regmon.exe'), '-d', '', SW_SHOW, ewWaitUntilTerminated, rc);
         //stop spooler
-        Exec(ExpandConstant('{sys}\net.exe'), 'stop spooler', '', SW_HIDE, ewWaitUntilTerminated, rc);
+        Exec(ExpandConstant('{sys}\net.exe'), 'stop spooler', '', SW_SHOW, ewWaitUntilTerminated, rc);
       end;
   end;
 end;
