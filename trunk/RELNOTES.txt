@@ -1,4 +1,10 @@
-Version 0.4.8 (under development)
+Version 0.4.9 (2014-07-03)
+# unhide sub-processes during setup (they may seat there asking for input, causing the installer to hang)
+# CSV address book is now saved in UTF8 format
+# solved a traynotify.exe crash issue
+
+
+Version 0.4.8 (2014-05-15)
 # Ghostscript is now invoked as a separate process. The txtwriter is still unstable and in some circumstances it crashes. This way, the GUI survives to the crash.
 # added a new option to look for numbers only on the first page of a submitted document (-firstpage and -wholedoc command line switches control this behaviour from the command line)
 # added "send silently upon successful number detection" option
