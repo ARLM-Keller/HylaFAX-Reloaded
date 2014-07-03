@@ -83,7 +83,7 @@ bool __fastcall TAddressBookCSV::ConvertOldAddressBook(const UnicodeString& Path
 		File = LockAddressBook(fmCreate | fmShareExclusive);
 
 		try {
-			AddrBook->SaveToStream(File);
+			AddrBook->SaveToStream(File, TEncoding::UTF8);
 		}
 		__finally {
             delete File;
@@ -158,7 +158,7 @@ void __fastcall TAddressBookCSV::Load()
 
 		//read in data
 		try {
-			AddrBook->LoadFromStream(File);
+			AddrBook->LoadFromStream(File, TEncoding::UTF8);
 		}
 		__finally {
 			delete File;
@@ -213,7 +213,7 @@ void __fastcall TAddressBookCSV::SetRecipient(const UnicodeString& Name,
 
 		//read in data
 		try {
-			AddrBook->LoadFromStream(File);
+			AddrBook->LoadFromStream(File, TEncoding::UTF8);
 
 			FNames->Clear();
 
@@ -255,7 +255,7 @@ void __fastcall TAddressBookCSV::SetRecipient(const UnicodeString& Name,
 
 			File->Position = 0;
 			File->Size = 0;
-			AddrBook->SaveToStream(File);
+			AddrBook->SaveToStream(File, TEncoding::UTF8);
 		}
 		__finally {
 			delete File;

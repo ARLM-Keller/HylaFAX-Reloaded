@@ -19,14 +19,13 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
+			<LinkPackageStatics>rtl.lib;vcl.lib;JvCore.lib;vclimg.lib;dbrtl.lib;vclx.lib;JclVcl.lib;Jcl.lib;JvMM.lib;JvStdCtrls.lib;JvSystem.lib;JvControls.lib</LinkPackageStatics>
 			<OutputExt>exe</OutputExt>
 			<ProjectType>CppVCLApplication</ProjectType>
 			<AllPackageLibs>rtl.lib;vcl.lib;JvCore.lib;vclimg.lib;dbrtl.lib;vclx.lib;JclVcl.lib;Jcl.lib;JvMM.lib;JvStdCtrls.lib;JvSystem.lib;JvControls.lib</AllPackageLibs>
-			<LinkPackageImports>rtl.bpi;vcl.bpi;JvCore.bpi;vclimg.bpi;dbrtl.bpi;vclx.bpi;JclVcl.bpi;Jcl.bpi;JvMM.bpi;JvStdCtrls.bpi;JvSystem.bpi;JvControls.bpi</LinkPackageImports>
 			<PackageImports>vclx.bpi;vcl.bpi;vclimg.bpi;dbrtl.bpi;Rave77VCL.bpi;bdertl.bpi;rtl.bpi;bcbie.bpi;vclactnband.bpi;xmlrtl.bpi;bcbsmp.bpi;vcldb.bpi;vcldbx.bpi;vcltouch.bpi;dsnap.bpi;dsnapcon.bpi;TeeUI.bpi;TeeDB.bpi;Tee.bpi;vclib.bpi;ibxpress.bpi;adortl.bpi;IndyCore.bpi;IndySystem.bpi;IndyProtocols.bpi;inet.bpi;intrawebdb_100_140.bpi;Intraweb_100_140.bpi;VclSmp.bpi;vclie.bpi;inetdb.bpi;webdsnap.bpi;websnap.bpi;inetdbbde.bpi;inetdbxpress.bpi;soaprtl.bpi;vclribbon.bpi;DbxCommonDriver.bpi;DbxClientDriver.bpi;DBXInterBaseDriver.bpi;DBXMySQLDriver.bpi;dbexpress.bpi;dbxcds.bpi;JclVcl.bpi;Jcl.bpi;JvCore.bpi;JvSystem.bpi;JvStdCtrls.bpi;JvAppFrm.bpi;JvBands.bpi;JvDB.bpi;JvDlgs.bpi;JvBDE.bpi;JvControls.bpi;JvCmp.bpi;JvCrypt.bpi;JvCustom.bpi;JvDocking.bpi;JvDotNetCtrls.bpi;JvGlobus.bpi;JvHMI.bpi;JvJans.bpi;JvManagedThreads.bpi;JvMM.bpi;JvNet.bpi;JvPageComps.bpi;JvPascalInterpreter.bpi;JclDeveloperTools.bpi;JvPluginSystem.bpi;JvPrintPreview.bpi;JvRuntimeDesign.bpi;JvTimeFramework.bpi;JvWizards.bpi;JvXPCtrls.bpi;JclContainers.bpi;fs14.bpi;frx14.bpi;fsDB14.bpi;frxDB14.bpi;fsBDE14.bpi;frxBDE14.bpi;fsADO14.bpi;frxADO14.bpi;fsIBX14.bpi;frxIBX14.bpi;frxDBX14.bpi;frxe14.bpi;fsTee14.bpi;frxTee14.bpi</PackageImports>
 			<Multithreaded>true</Multithreaded>
 			<DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
-			<UsePackages>true</UsePackages>
 			<IncludePath>$(CG_BOOST_ROOT)\boost\tr1\tr1;$(BDS)\include;$(BDS)\include\dinkumware;$(BDS)\include\vcl;$(CG_BOOST_ROOT);$(IncludePath)</IncludePath>
 			<ILINK_LibraryPath>$(BDS)\lib;$(BDS)\lib\obj;$(BDS)\lib\psdk;$(ILINK_LibraryPath)</ILINK_LibraryPath>
 			<BCC_wpar>false</BCC_wpar>
@@ -100,7 +99,7 @@
 						<VersionInfo Name="MajorVer">0</VersionInfo>
 						<VersionInfo Name="MinorVer">1</VersionInfo>
 						<VersionInfo Name="Release">0</VersionInfo>
-						<VersionInfo Name="Build">2</VersionInfo>
+						<VersionInfo Name="Build">8</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -112,13 +111,13 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName">Lorenzo Monti</VersionInfoKeys>
 						<VersionInfoKeys Name="FileDescription">Winprint HylaFAX Reloaded notification popup</VersionInfoKeys>
-						<VersionInfoKeys Name="FileVersion">0.1.0.2</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">0.1.0.8</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName">traynotif.exe</VersionInfoKeys>
 						<VersionInfoKeys Name="LegalCopyright">Copyright © 2011-2014 Lorenzo Monti.</VersionInfoKeys>
 						<VersionInfoKeys Name="LegalTrademarks"/>
 						<VersionInfoKeys Name="OriginalFilename"/>
 						<VersionInfoKeys Name="ProductName">Winprint HylaFAX Reloaded</VersionInfoKeys>
-						<VersionInfoKeys Name="ProductVersion">0.4.8</VersionInfoKeys>
+						<VersionInfoKeys Name="ProductVersion">0.4.9</VersionInfoKeys>
 						<VersionInfoKeys Name="Comments"/>
 					</VersionInfoKeys>
 					<Debugging>
@@ -142,13 +141,6 @@
 						<Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
 					</Parameters>
 					<Excluded_Packages>
-						<Excluded_Packages Name="D:\lib\Developer Express.VCL\Library\Delphi14\dcldxCoreD14.bpl">ExpressCoreLibrary by Developer Express Inc.</Excluded_Packages>
-						<Excluded_Packages Name="D:\lib\Developer Express.VCL\Library\Delphi14\dclcxLibraryD14.bpl">Express Cross Platform Library by Developer Express Inc.</Excluded_Packages>
-						<Excluded_Packages Name="D:\lib\Developer Express.VCL\Library\Delphi14\dclcxPageControlD14.bpl">Express Cross Platform PageControl by Developer Express Inc.</Excluded_Packages>
-						<Excluded_Packages Name="D:\lib\Developer Express.VCL\Library\Delphi14\dclcxEditorsD14.bpl">ExpressEditors Library 5 by Developer Express Inc.</Excluded_Packages>
-						<Excluded_Packages Name="D:\lib\Developer Express.VCL\Library\Delphi14\dclcxExtEditorsD14.bpl">ExpressExtendedEditors Library 5 by Developer Express Inc.</Excluded_Packages>
-						<Excluded_Packages Name="D:\lib\Developer Express.VCL\Library\Delphi14\dclcxGridD14.bpl">ExpressQuantumGrid 6 by Developer Express Inc.</Excluded_Packages>
-						<Excluded_Packages Name="D:\lib\Developer Express.VCL\Library\Delphi14\dcldxmdsD14.bpl">ExpressMemData by Developer Express Inc.</Excluded_Packages>
 						<Excluded_Packages Name="$(BDS)\bin\bcboffice2k140.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
 						<Excluded_Packages Name="$(BDS)\bin\bcbofficexp140.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
 						<Excluded_Packages Name="$(BDS)\bin\dcloffice2k140.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
