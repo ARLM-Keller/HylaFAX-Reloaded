@@ -54,7 +54,7 @@ ArchitecturesAllowed=x86 x64
 ArchitecturesInstallIn64BitMode=x64
 MinVersion=0,5.0
 
-LicenseFile=gpl-3.0.rtf
+LicenseFile=gpl-3.0.txt
 
 SignTool=lorenzomonti /d "{#AppName}"
 
