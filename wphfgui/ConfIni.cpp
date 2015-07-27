@@ -237,6 +237,7 @@ void __fastcall TConfigIni::Configure()
 				MAPIUseDefProfile = ConfForm->hMAPIDefProfile->Checked;
 				MAPIProfile = ConfForm->hMAPIProfile->Text;
 				ODBCDSN = ConfForm->hODBCDSN->Text;
+				ODBCAuth = ConfForm->hODBCAuth->Checked;
 				ODBCUid = ConfForm->hODBCUser->Text;
 				ODBCPwd = ConfForm->hODBCPassword->Text;
 				ODBCTable = ConfForm->hODBCTable->Text;

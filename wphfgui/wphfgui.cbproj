@@ -3,7 +3,7 @@
 			<ProjectGuid>{E4241E61-EAF3-4D50-982E-4650F0E469E8}</ProjectGuid>
 			<ProjectVersion>12.0</ProjectVersion>
 			<MainSource>wphfgui.cpp</MainSource>
-			<Config Condition="'$(Config)'==''">Release</Config>
+			<Config Condition="'$(Config)'==''">Debug</Config>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
 			<Base>true</Base>
@@ -61,73 +61,73 @@
 			<TASM_Debugging>None</TASM_Debugging>
 		</PropertyGroup>
 		<ItemGroup>
-			<CppCompile Include="Recipient.cpp">
-				<Form>RecipientName</Form>
-				<DependentOn>Recipient.h</DependentOn>
-				<BuildOrder>5</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="AddrBookMAPI.cpp">
-				<DependentOn>AddrBookMAPI.h</DependentOn>
-				<BuildOrder>11</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="ConfIni.cpp">
-				<DependentOn>ConfIni.h</DependentOn>
-				<BuildOrder>2</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="AddrBookODBC.cpp">
-				<DependentOn>AddrBookODBC.h</DependentOn>
-				<BuildOrder>12</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="Utils.cpp">
-				<DependentOn>Utils.h</DependentOn>
-				<BuildOrder>14</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="Config.cpp">
-				<Form>ConfigForm</Form>
-				<DependentOn>Config.h</DependentOn>
-				<BuildOrder>4</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="AddrBookWC.cpp">
-				<DependentOn>AddrBookWC.h</DependentOn>
-				<BuildOrder>11</BuildOrder>
-			</CppCompile>
-			<ResFiles Include="wphfgui.res">
-				<BuildOrder>1</BuildOrder>
-			</ResFiles>
-			<CppCompile Include="AddressBook.cpp">
-				<DependentOn>AddressBook.h</DependentOn>
-				<BuildOrder>3</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="wphfgui.cpp">
-				<BuildOrder>0</BuildOrder>
-			</CppCompile>
 			<CppCompile Include="Select.cpp">
 				<Form>SelectRcpt</Form>
 				<DependentOn>Select.h</DependentOn>
 				<BuildOrder>8</BuildOrder>
 			</CppCompile>
+			<CppCompile Include="wphfgui.cpp">
+				<BuildOrder>0</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="AddressBook.cpp">
+				<DependentOn>AddressBook.h</DependentOn>
+				<BuildOrder>3</BuildOrder>
+			</CppCompile>
 			<CppCompile Include="ipc.c">
 				<BuildOrder>6</BuildOrder>
 			</CppCompile>
-			<CppCompile Include="SendFAX.cpp">
-				<Form>FAXSend</Form>
-				<DependentOn>SendFAX.h</DependentOn>
-				<BuildOrder>1</BuildOrder>
+			<CppCompile Include="AddrBookCSV.cpp">
+				<DependentOn>AddrBookCSV.h</DependentOn>
+				<BuildOrder>9</BuildOrder>
 			</CppCompile>
 			<CppCompile Include="Confirm.cpp">
 				<Form>Confirmation</Form>
 				<DependentOn>Confirm.h</DependentOn>
 				<BuildOrder>15</BuildOrder>
 			</CppCompile>
-			<CppCompile Include="AddrBookCSV.cpp">
-				<DependentOn>AddrBookCSV.h</DependentOn>
-				<BuildOrder>9</BuildOrder>
+			<CppCompile Include="SendFAX.cpp">
+				<Form>FAXSend</Form>
+				<DependentOn>SendFAX.h</DependentOn>
+				<BuildOrder>1</BuildOrder>
 			</CppCompile>
+			<ResFiles Include="wphfgui.res">
+				<BuildOrder>1</BuildOrder>
+			</ResFiles>
+			<CppCompile Include="ConfIni.cpp">
+				<DependentOn>ConfIni.h</DependentOn>
+				<BuildOrder>2</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="AddrBookMAPI.cpp">
+				<DependentOn>AddrBookMAPI.h</DependentOn>
+				<BuildOrder>11</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="Recipient.cpp">
+				<Form>RecipientName</Form>
+				<DependentOn>Recipient.h</DependentOn>
+				<BuildOrder>5</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="AddrBookODBC.cpp">
+				<DependentOn>AddrBookODBC.h</DependentOn>
+				<BuildOrder>12</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="AddrBookWC.cpp">
+				<DependentOn>AddrBookWC.h</DependentOn>
+				<BuildOrder>11</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="Config.cpp">
+				<Form>ConfigForm</Form>
+				<DependentOn>Config.h</DependentOn>
+				<BuildOrder>4</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="Utils.cpp">
+				<DependentOn>Utils.h</DependentOn>
+				<BuildOrder>14</BuildOrder>
+			</CppCompile>
+			<FormResources Include="Select.dfm"/>
+			<FormResources Include="Confirm.dfm"/>
+			<FormResources Include="SendFAX.dfm"/>
 			<FormResources Include="Recipient.dfm"/>
 			<FormResources Include="Config.dfm"/>
-			<FormResources Include="Select.dfm"/>
-			<FormResources Include="SendFAX.dfm"/>
-			<FormResources Include="Confirm.dfm"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>
@@ -142,7 +142,7 @@
 		</ItemGroup>
 		<Import Project="$(BDS)\Bin\CodeGear.Cpp.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Cpp.Targets')"/>
 		<PropertyGroup Condition="'$(FileToCompile)'==''">
-			<PostBuildEvent><![CDATA["C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Bin\signtool.exe" sign /f S:\Lorenzo_Monti.pfx /p $(PFXPWD) /d "Winprint HylaFAX Reloaded" /t http://time.certum.pl/ /v $(OUTPUTPATH)]]></PostBuildEvent>
+			<PostBuildEvent><![CDATA[D:\Users\lorenzo\Documents\Lorenzo\keys\firma.bat $(OUTPUTPATH) "Winprint HylaFAX Reloaded"]]></PostBuildEvent>
 		</PropertyGroup>
 		<ProjectExtensions>
 			<Borland.Personality>CPlusPlusBuilder.Personality.12</Borland.Personality>
@@ -154,8 +154,8 @@
 						<VersionInfo Name="AutoIncBuild">True</VersionInfo>
 						<VersionInfo Name="MajorVer">0</VersionInfo>
 						<VersionInfo Name="MinorVer">4</VersionInfo>
-						<VersionInfo Name="Release">9</VersionInfo>
-						<VersionInfo Name="Build">1</VersionInfo>
+						<VersionInfo Name="Release">10</VersionInfo>
+						<VersionInfo Name="Build">3</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -167,13 +167,13 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName">Lorenzo Monti</VersionInfoKeys>
 						<VersionInfoKeys Name="FileDescription">Winprint HylaFAX Reloaded GUI</VersionInfoKeys>
-						<VersionInfoKeys Name="FileVersion">0.4.9.1</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">0.4.10.3</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName">wphfgui.exe</VersionInfoKeys>
-						<VersionInfoKeys Name="LegalCopyright">Copyright © 2011-2014 Lorenzo Monti. Based on the Winprint HylaFAX project by Michael Stowe. Release under the terms of the GNU GPL license.</VersionInfoKeys>
+						<VersionInfoKeys Name="LegalCopyright">Copyright © 2011-2015 Lorenzo Monti. Based on the Winprint HylaFAX project by Michael Stowe. Release under the terms of the GNU GPL license.</VersionInfoKeys>
 						<VersionInfoKeys Name="LegalTrademarks"/>
 						<VersionInfoKeys Name="OriginalFilename"/>
 						<VersionInfoKeys Name="ProductName">Winprint HylaFAX Reloaded</VersionInfoKeys>
-						<VersionInfoKeys Name="ProductVersion">0.4.9</VersionInfoKeys>
+						<VersionInfoKeys Name="ProductVersion">0.4.10</VersionInfoKeys>
 						<VersionInfoKeys Name="Comments"/>
 					</VersionInfoKeys>
 					<Debugging>
@@ -200,9 +200,6 @@
 						<Excluded_Packages Name="$(BDS)\bin\bcboffice2k140.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
 						<Excluded_Packages Name="$(BDS)\bin\bcbofficexp140.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
 						<Excluded_Packages Name="$(BDS)\bin\dcloffice2k140.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
-						<Excluded_Packages Name="$(BDS)\bin\dclofficexp140.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
-						<Excluded_Packages Name="C:\Users\Public\Documents\RAD Studio\7.0\BPL\FibPlus_CB2010.bpl">FIBPlus C++</Excluded_Packages>
-						<Excluded_Packages Name="C:\Users\Public\Documents\RAD Studio\7.0\BPL\FibPlusEditors_CB2010.bpl">FIBPlus Property Editors</Excluded_Packages>
 					</Excluded_Packages>
 					<ProjectProperties>
 						<ProjectProperties Name="AutoShowDeps">False</ProjectProperties>
@@ -212,61 +209,68 @@
 					<Source>
 						<Source Name="MainSource">wphfgui.cpp</Source>
 					</Source>
-					<DebugEnvironmentVariables>
-						<DebugEnvironmentVariables Name="Path">%Path%;D:\lib\icu\bin</DebugEnvironmentVariables>
-					</DebugEnvironmentVariables>
+					<DebugEnvironmentVariables/>
 					<DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="__COMPAT_LAYER">ElevateCreateProcess</DebugSysEnvironmentVariables>
+						<DebugSysEnvironmentVariables Name="__CYGWIN">nodosfilewarning</DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="ALLUSERSPROFILE">C:\ProgramData</DebugSysEnvironmentVariables>
+						<DebugSysEnvironmentVariables Name="ANDROID_SDK_HOME">D:\Android</DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="APPDATA">C:\Users\lorenzo\AppData\Roaming</DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="BCB">c:\program files (x86)\embarcadero\rad studio\7.0</DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="BDS">c:\program files (x86)\embarcadero\rad studio\7.0</DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="BDSAppDataBaseDir">BDS</DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="BDSCOMMONDIR">C:\Users\Public\Documents\RAD Studio\7.0</DebugSysEnvironmentVariables>
-						<DebugSysEnvironmentVariables Name="BDSPROJECTSDIR">C:\Users\lorenzo\Documents\RAD Studio\Projects</DebugSysEnvironmentVariables>
-						<DebugSysEnvironmentVariables Name="BDSUSERDIR">C:\Users\lorenzo\Documents\RAD Studio\7.0</DebugSysEnvironmentVariables>
+						<DebugSysEnvironmentVariables Name="BDSPROJECTSDIR">D:\Users\lorenzo\Documents\RAD Studio\Projects</DebugSysEnvironmentVariables>
+						<DebugSysEnvironmentVariables Name="BDSUSERDIR">D:\Users\lorenzo\Documents\RAD Studio\7.0</DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="CG_BOOST_ROOT">C:\Program Files (x86)\Embarcadero\RAD Studio\7.0\include\boost_1_39</DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="CommonProgramFiles(x86)">C:\Program Files (x86)\Common Files</DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="CommonProgramFiles">C:\Program Files (x86)\Common Files</DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="CommonProgramW6432">C:\Program Files\Common Files</DebugSysEnvironmentVariables>
-						<DebugSysEnvironmentVariables Name="COMPUTERNAME">TECRA</DebugSysEnvironmentVariables>
-						<DebugSysEnvironmentVariables Name="ComSpec">C:\windows\system32\cmd.exe</DebugSysEnvironmentVariables>
+						<DebugSysEnvironmentVariables Name="COMPUTERNAME">Z400</DebugSysEnvironmentVariables>
+						<DebugSysEnvironmentVariables Name="ComSpec">C:\Windows\system32\cmd.exe</DebugSysEnvironmentVariables>
+						<DebugSysEnvironmentVariables Name="CSSCRIPT_SHELLEX_DIR">C:\ProgramData\CS-Script\ShellExtension\3.4.0.0\CS-Script</DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="DELPHI">c:\program files (x86)\embarcadero\rad studio\7.0</DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="DXVCL">D:\lib\Developer Express.VCL</DebugSysEnvironmentVariables>
+						<DebugSysEnvironmentVariables Name="EMC_AUTOPLAY">C:\Program Files (x86)\Common Files\Roxio Shared\</DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="FP_NO_HOST_CHECK">NO</DebugSysEnvironmentVariables>
+						<DebugSysEnvironmentVariables Name="FPPUILang">en-US</DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="HOMEDRIVE">C:</DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="HOMEPATH">\Users\lorenzo</DebugSysEnvironmentVariables>
+						<DebugSysEnvironmentVariables Name="JAVA_HOME">C:\Program Files\Java\jdk1.7.0_76</DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="LOCALAPPDATA">C:\Users\lorenzo\AppData\Local</DebugSysEnvironmentVariables>
-						<DebugSysEnvironmentVariables Name="LOGONSERVER">\\TECRA</DebugSysEnvironmentVariables>
-						<DebugSysEnvironmentVariables Name="NUMBER_OF_PROCESSORS">4</DebugSysEnvironmentVariables>
+						<DebugSysEnvironmentVariables Name="LOGONSERVER">\\Z400</DebugSysEnvironmentVariables>
+						<DebugSysEnvironmentVariables Name="NUMBER_OF_PROCESSORS">6</DebugSysEnvironmentVariables>
+						<DebugSysEnvironmentVariables Name="OnlineServices">Online Services</DebugSysEnvironmentVariables>
+						<DebugSysEnvironmentVariables Name="OOBEUILang">it-IT</DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="OPENSSL_CONF">D:\lib\OpenSSL-Win32\bin\openssl.cfg</DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="OS">Windows_NT</DebugSysEnvironmentVariables>
-						<DebugSysEnvironmentVariables Name="PATHEXT">.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC</DebugSysEnvironmentVariables>
-						<DebugSysEnvironmentVariables Name="PFXPWD">Gufetti88.</DebugSysEnvironmentVariables>
+						<DebugSysEnvironmentVariables Name="Path">C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;C:\Perl64\site\bin;C:\Perl64\bin;C:\Program Files (x86)\dxgettext;C:\Program Files (x86)\Embarcadero\RAD Studio\7.0\bin;C:\Users\Public\Documents\RAD Studio\7.0\Bpl;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Common Files\Roxio Shared\DLLShared\;C:\Program Files (x86)\Common Files\Roxio Shared\10.0\DLLShared\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files\lame;C:\Program Files (x86)\putty;C:\Program Files (x86)\FLAC;C:\Program Files (x86)\nasm-2.09.10;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files\Java\jdk1.7.0_76\bin;C:\Program Files\MySQL\MySQL Server 5.5\bin;D:\lib\Developer Express.VCL\Library\Delphi14;C:\Program Files\gs\gs9.10\bin;C:\Program Files (x86)\gs\gs9.10\bin;D:\lib\OpenSSL-Win64\bin;D:\lib\OpenSSL-Win32\bin;C:\UnxUtils\usr\local\wbin;C:\Program Files (x86)\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files\Microsoft SQL Server\110\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\110\Tools\Binn\ManagementStudio\;C:\Program Files (x86)\Microsoft SQL Server\110\DTS\Binn\;C:\Android\android-sdk\tools\lib;C:\PHP;C:\ProgramData\ComposerSetup\bin;C:\Program Files (x86)\Common Files\Acronis\SnapAPI\;C:\Program Files\OpenVPN\bin;C:\Program Files\TortoiseSVN\bin;C:\Program Files\nodejs\;C:\Program Files (x86)\Skype\Phone\;C:\Program Files\Microsoft\Web Platform Installer\;C:\CooCox\CoIDE\gcc\bin;C:\MentorGraphics\Sourcery_CodeBench_Lite_for_ARM_EABI\bin;%APPDATA%\Python\Scripts;C:\Android\android-sdk\tools\lib;C:\Program Files (x86)\Nmap;C:\Users\lorenzo\AppData\Roaming\npm;C:\Program Files (x86)\CMake\bin;C:\Program Files (x86)\Common Files\Acronis\TibMounter64</DebugSysEnvironmentVariables>
+						<DebugSysEnvironmentVariables Name="PATHEXT">.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.py;.pyw</DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="PROCESSOR_ARCHITECTURE">x86</DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="PROCESSOR_ARCHITEW6432">AMD64</DebugSysEnvironmentVariables>
-						<DebugSysEnvironmentVariables Name="PROCESSOR_IDENTIFIER">Intel64 Family 6 Model 58 Stepping 9, GenuineIntel</DebugSysEnvironmentVariables>
+						<DebugSysEnvironmentVariables Name="PROCESSOR_IDENTIFIER">Intel64 Family 6 Model 44 Stepping 2, GenuineIntel</DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="PROCESSOR_LEVEL">6</DebugSysEnvironmentVariables>
-						<DebugSysEnvironmentVariables Name="PROCESSOR_REVISION">3a09</DebugSysEnvironmentVariables>
+						<DebugSysEnvironmentVariables Name="PROCESSOR_REVISION">2c02</DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="ProgramData">C:\ProgramData</DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="ProgramFiles(x86)">C:\Program Files (x86)</DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="ProgramFiles">C:\Program Files (x86)</DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="ProgramW6432">C:\Program Files</DebugSysEnvironmentVariables>
-						<DebugSysEnvironmentVariables Name="PSModulePath">C:\windows\system32\WindowsPowerShell\v1.0\Modules\;C:\Program Files (x86)\Microsoft SQL Server\110\Tools\PowerShell\Modules\</DebugSysEnvironmentVariables>
+						<DebugSysEnvironmentVariables Name="PSModulePath">C:\Windows\system32\WindowsPowerShell\v1.0\Modules\;C:\Program Files (x86)\Microsoft SQL Server\110\Tools\PowerShell\Modules\</DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="PUBLIC">C:\Users\Public</DebugSysEnvironmentVariables>
+						<DebugSysEnvironmentVariables Name="RoxioCentral">C:\Program Files (x86)\Common Files\Roxio Shared\10.0\Roxio Central36\</DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="SESSIONNAME">Console</DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="SystemDrive">C:</DebugSysEnvironmentVariables>
-						<DebugSysEnvironmentVariables Name="SystemRoot">C:\windows</DebugSysEnvironmentVariables>
-						<DebugSysEnvironmentVariables Name="TEMP">C:\Users\lorenzo\AppData\Local\Temp</DebugSysEnvironmentVariables>
-						<DebugSysEnvironmentVariables Name="TMP">C:\Users\lorenzo\AppData\Local\Temp</DebugSysEnvironmentVariables>
-						<DebugSysEnvironmentVariables Name="USERDOMAIN">TECRA</DebugSysEnvironmentVariables>
+						<DebugSysEnvironmentVariables Name="SystemRoot">C:\Windows</DebugSysEnvironmentVariables>
+						<DebugSysEnvironmentVariables Name="TEMP">D:\Users\lorenzo\AppData\Local\Temp</DebugSysEnvironmentVariables>
+						<DebugSysEnvironmentVariables Name="TMP">D:\Users\lorenzo\AppData\Local\Temp</DebugSysEnvironmentVariables>
+						<DebugSysEnvironmentVariables Name="USERDOMAIN">Z400</DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="USERNAME">lorenzo</DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="USERPROFILE">C:\Users\lorenzo</DebugSysEnvironmentVariables>
-						<DebugSysEnvironmentVariables Name="VS100COMNTOOLS">c:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\Tools\</DebugSysEnvironmentVariables>
-						<DebugSysEnvironmentVariables Name="windir">C:\windows</DebugSysEnvironmentVariables>
+						<DebugSysEnvironmentVariables Name="VS100COMNTOOLS">C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\Tools\</DebugSysEnvironmentVariables>
+						<DebugSysEnvironmentVariables Name="windir">C:\Windows</DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="windows_tracing_flags">3</DebugSysEnvironmentVariables>
 						<DebugSysEnvironmentVariables Name="windows_tracing_logfile">C:\BVTBin\Tests\installpackage\csilogfile.log</DebugSysEnvironmentVariables>
-						<DebugSysEnvironmentVariables Name="Path">C:\Program Files (x86)\dxgettext;C:\Perl64\site\bin;C:\Perl64\bin;C:\Program Files (x86)\Embarcadero\RAD Studio\7.0\bin;C:\Users\Public\Documents\RAD Studio\7.0\Bpl;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\OpenCL SDK\2.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\2.0\bin\x64;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\UnxUtils\usr\local\wbin;C:\Program Files (x86)\putty;C:\Program Files\OpenVPN\bin;D:\lib\Developer Express.VCL\Library\Delphi14;C:\Program Files\Microsoft SQL Server\110\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\110\Tools\Binn\ManagementStudio\;C:\Program Files (x86)\Microsoft SQL Server\110\DTS\Binn\;C:\Program Files\gs\gs9.07\bin;D:\lib\ImageMagick-6.8.6-Q16;D:\lib\ZBar\bin;C:\Program Files (x86)\Toshiba\Bluetooth Toshiba Stack\sys\;C:\Program Files (x86)\Toshiba\Bluetooth Toshiba Stack\sys\x64\;C:\Program Files\Java\jdk1.7.0_25\bin;C:\MinGW\bin;C:\NotesSQL;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\PHP;C:\ProgramData\ComposerSetup\bin;C:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Nmap;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\</DebugSysEnvironmentVariables>
+						<DebugSysEnvironmentVariables Name="WIX">C:\Program Files (x86)\Windows Installer XML v3.5\</DebugSysEnvironmentVariables>
 					</DebugSysEnvironmentVariables>
 				</CPlusPlusBuilder.Personality>
 			</BorlandProject>
