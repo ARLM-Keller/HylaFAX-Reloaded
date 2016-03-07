@@ -1,5 +1,6 @@
-Version 0.4.10 (under development)
+Version 0.4.10 (2016-01-26)
 # fixed a bug in configuration dialog (ODBC authentication checkbox value wasn't saved)
+# fixed a compatibility issue with windows XP (a call to GetErrorMode prevented the software from running)
 
 
 Version 0.4.9 (2014-07-03)
