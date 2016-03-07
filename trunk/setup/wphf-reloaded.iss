@@ -38,6 +38,7 @@ VersionInfoDescription={#AppName} setup program
 VersionInfoProductName={#AppName}
 VersionInfoVersion={#FileVerStr}
 WizardImageFile=..\images\setup.bmp
+DisableWelcomePage=no
 
 CreateAppDir=yes
 DefaultDirName={pf32}\Winprint HylaFAX Reloaded
@@ -109,18 +110,34 @@ es.InstallVirtualPrinter=Instale la impresora virtual HylaFAX
 ;it.appeal=Winprint HylaFAX Reloaded vale 10 euro per la tua organizzazione? L'autore del software non li chiede per sé, ma ti chiede di donarli per la ricostruzione dell'Emilia Romagna, distrutta dal terremoto.
 ;it.donate=DONA ORA!
 ;it.url=http://www.protezionecivile.gov.it/jcms/it/donazioni.wp
-en.donatetitle=Do you like Winprint HylaFAX Reloaded?
-en.appeal=If you like Winprint HylaFAX Reloaded you can consider making a donation to help keeping the good work up. Developer tools cost money, and developing software requires much time. Alternatively, you can show your appreciation by choosing a gift for me or my children from my wish list on Amazon. Thank you!
-en.donate=Donate
-en.gift=Choose a gift
-en.donateurl=http://sourceforge.net/p/wphf-reloaded/donate/
-en.gifturl=http://www.amazon.it/registry/wishlist/2L11VD62U0NZT
-it.donatetitle=Apprezzi Winprint HylaFAX Reloaded?
-it.appeal=Se apprezzi Winprint HylaFAX Reloaded potresti fare una donazione per aiutarmi a portare avanti il progetto. I tool per programmare costano, e la programmazione richiede molto tempo. In alternativa, puoi mostrare il tuo gradimento scegliendo un regalo per me o per le mie bimbe dalla mia lista desideri su Amazon. Grazie!
-it.donate=Dona ora
-it.gift=Scegli un regalo
-it.donateurl=http://sourceforge.net/p/wphf-reloaded/donate/
-it.gifturl=http://www.amazon.it/registry/wishlist/2L11VD62U0NZT
+;forza Andrea!!!
+;en.donatetitle=Do you like Winprint HylaFAX Reloaded?
+;en.appeal=If you like Winprint HylaFAX Reloaded you can consider making a donation to help keeping the good work up. Developer tools cost money, and developing software requires much time. Alternatively, you can show your appreciation by choosing a gift for me or my children from my wish list on Amazon. Thank you!
+;en.donate=Donate
+;en.gift=Choose a gift
+;en.donateurl=http://sourceforge.net/p/wphf-reloaded/donate/
+;en.gifturl=http://www.amazon.it/registry/wishlist/2L11VD62U0NZT
+;it.donatetitle=Apprezzi Winprint HylaFAX Reloaded?
+;it.appeal=Se apprezzi Winprint HylaFAX Reloaded potresti fare una donazione per aiutarmi a portare avanti il progetto. I tool per programmare costano, e la programmazione richiede molto tempo. In alternativa, puoi mostrare il tuo gradimento scegliendo un regalo per me o per le mie bimbe dalla mia lista desideri su Amazon. Grazie!
+;it.donate=Dona ora
+;it.gift=Scegli un regalo
+;it.donateurl=http://sourceforge.net/p/wphf-reloaded/donate/
+;it.gifturl=http://www.amazon.it/registry/wishlist/2L11VD62U0NZT
+
+en.donatetitle=Please contribute to Andrea's medical fund!
+en.appeal=Winprint HylaFAX Reloaded is supporting Andrea's battle against cancer. Andrea is only 7 years old, she's affected by DIPG (Diffuse Intrinseca Pontine Glioma) and she needs expensive therapies. A brand new version of WPHFR including stunning FAXCOVER support is available for those who will donate €15 or more to Andrea. Do something good now!
+en.donate=GET WPHFR WITH FAXCOVER SUPPORT NOW!
+;en.gift=Choose a gift
+en.donateurl=http://www.lorenzomonti.it/andrea/en/
+en.goon=I understood, let me go ahead
+;en.gifturl=http://www.amazon.it/registry/wishlist/2L11VD62U0NZT
+it.donatetitle=Per favore, aiuta la raccolta fondi per Andrea!
+it.appeal=Winprint HylaFAX Reloaded supporta la lotta di Andrea contro il cancro. Andrea è una bimba di soli 7 anni, è affetta da DIPG (Diffuse Intrinseca Pontine Glioma) e necessita di terapie costose. Una nuova versione di WPHFR con uno straordinario supporto per le FAXCOVER è disponibile per coloro che donano €15 o più ad Andrea. Fai qualcosa di buono adesso!
+it.donate=OTTIENI WPHFR CON SUPPORTO FAXCOVER!
+;it.gift=Scegli un regalo
+it.donateurl=http://www.lorenzomonti.it/andrea/it/
+it.goon=Ho capito, lasciami andare avanti
+;it.gifturl=http://www.amazon.it/registry/wishlist/2L11VD62U0NZT
 
 [Files]
 ; x64 files
@@ -180,6 +197,7 @@ var
   lblMessage: TLabel;
   btnDonate: TNewButton;
   btnGift: TNewButton;
+  chkGoon: TCheckBox;
 
 {----------------------------------------------------------------------------------------}
 procedure btnDonateOnClick(Sender: TObject);
@@ -200,10 +218,16 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------}
+procedure chkGoonOnClick(Sender: TObject);
+begin
+  Wizardform.NextButton.Enabled := chkGoon.Checked;
+end;
+
+{----------------------------------------------------------------------------------------}
 procedure CreateWizardPages;
 begin
   //Donate please!
-  DonatePage := CreateCustomPage(wpInstalling, CustomMessage('donatetitle'), '');
+  DonatePage := CreateCustomPage(wpWelcome, CustomMessage('donatetitle'), '');
   
   lblMessage := TLabel.Create(DonatePage);
   lblMessage.Font.Size := 10;
@@ -218,13 +242,23 @@ begin
   btnDonate.Font.Size := 10;
   btnDonate.Font.Style := [fsBold];
   btnDonate.Top := lblMessage.Top + lblMessage.Height + ScaleY(4);
-  btnDonate.Left := (DonatePage.SurfaceWidth div 3) * 1 - ScaleX(64);
-  btnDonate.Width := ScaleX(128);
+  btnDonate.Left := (DonatePage.SurfaceWidth div 2) - ScaleX(170);
+  btnDonate.Width := ScaleX(340);
   btnDonate.Height := ScaleY(32);
   btnDonate.Caption := CustomMessage('donate');
   btnDonate.Parent := DonatePage.Surface;
   btnDonate.OnClick := @btnDonateOnClick;
-	
+
+  chkGoon := TCheckBox.Create(DonatePage);
+  chkGoon.Font.Size := 10;
+  chkGoon.Top := btnDonate.Top + btnDonate.Height + ScaleY(8);
+  chkGoon.Width := DonatePage.SurfaceWidth;
+  chkGoon.Height := ScaleY(32);
+  chkGoon.Caption := CustomMessage('goon');
+  chkGoon.Parent := DonatePage.Surface;
+  chkGoon.OnClick := @chkGoonOnClick;
+
+{	
   btnGift := TNewButton.Create(DonatePage);
   btnGift.Font.Size := 10;
   btnGift.Font.Style := [fsBold];
@@ -235,6 +269,7 @@ begin
   btnGift.Caption := CustomMessage('gift');
   btnGift.Parent := DonatePage.Surface;
   btnGift.OnClick := @btnGiftOnClick;
+}
 end;
 
 {----------------------------------------------------------------------------------------}
@@ -282,6 +317,16 @@ begin
           Exec(ExpandConstant('{sys}\net.exe'), 'stop spooler', '', SW_SHOW, ewWaitUntilTerminated, rc);
       end;
   end;
+end;
+
+{----------------------------------------------------------------------------------------}
+procedure CurPageChanged(CurPageID: Integer);
+begin
+  // always disable the cancel button; no going back now!!!
+  if CurPageID = DonatePage.ID then
+    Wizardform.NextButton.Enabled := chkGoon.Checked
+  else
+    Wizardform.NextButton.Enabled := True;
 end;
 
 {----------------------------------------------------------------------------------------}

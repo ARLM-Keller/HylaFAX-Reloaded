@@ -857,7 +857,21 @@ __fastcall TFAXSend::TFAXSend(TComponent* Owner)
 	}
 
 	//disable WER so Ghostscript can eventually crash silently
-	SetErrorMode(GetErrorMode() | SEM_NOGPFAULTERRORBOX);
+	typedef UINT (WINAPI *PFNGETERRORMODE)(void);
+	PFNGETERRORMODE pfnGetErrorMode = NULL;
+	HMODULE hKernel = NULL;
+	UINT oldMode = 0;
+
+	hKernel = LoadLibraryW(L"KERNEL32.DLL");
+	if (hKernel) {
+		pfnGetErrorMode = (PFNGETERRORMODE)GetProcAddress(hKernel, "GetErrorMode");
+		if (pfnGetErrorMode) {
+			oldMode = pfnGetErrorMode();
+		}
+        FreeLibrary(hKernel);
+    }
+
+	SetErrorMode(oldMode | SEM_NOGPFAULTERRORBOX);
 }
 //---------------------------------------------------------------------------
 
