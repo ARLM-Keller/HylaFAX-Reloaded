@@ -57,16 +57,16 @@
 			<TASM_Debugging>None</TASM_Debugging>
 		</PropertyGroup>
 		<ItemGroup>
-			<CppCompile Include="Main.cpp">
-				<Form>FormNotify</Form>
-				<DependentOn>Main.h</DependentOn>
-				<BuildOrder>2</BuildOrder>
+			<CppCompile Include="traynotif.cpp">
+				<BuildOrder>0</BuildOrder>
 			</CppCompile>
 			<ResFiles Include="traynotif.res">
 				<BuildOrder>1</BuildOrder>
 			</ResFiles>
-			<CppCompile Include="traynotif.cpp">
-				<BuildOrder>0</BuildOrder>
+			<CppCompile Include="Main.cpp">
+				<Form>FormNotify</Form>
+				<DependentOn>Main.h</DependentOn>
+				<BuildOrder>2</BuildOrder>
 			</CppCompile>
 			<FormResources Include="Main.dfm"/>
 			<BuildConfiguration Include="Base">
@@ -83,7 +83,7 @@
 		</ItemGroup>
 		<Import Project="$(BDS)\Bin\CodeGear.Cpp.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Cpp.Targets')"/>
 		<PropertyGroup Condition="'$(FileToCompile)'==''">
-			<PostBuildEvent><![CDATA["C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Bin\signtool.exe" sign /f S:\Lorenzo_Monti.pfx /p $(PFXPWD) /d "Winprint HylaFAX Reloaded" /t http://time.certum.pl/ /v $(OUTPUTPATH)]]></PostBuildEvent>
+			<PostBuildEvent><![CDATA[if x$(Config)==xRelease D:\proj\firma\firma.bat /d "Winprint HylaFAX Reloaded" $(OUTPUTPATH)]]></PostBuildEvent>
 		</PropertyGroup>
 		<ProjectExtensions>
 			<Borland.Personality>CPlusPlusBuilder.Personality.12</Borland.Personality>
